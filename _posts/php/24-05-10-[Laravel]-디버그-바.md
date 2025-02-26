@@ -46,7 +46,7 @@ Generating optimized autoload files
 > Illuminate\Foundation\ComposerScripts::postAutoloadDump
 > @php artisan package:discover --ansi
 
-   INFO  Discovering packages.  
+   INFO  Discovering packages.
 
   barryvdh/laravel-debugbar ........................................ DONE
   laravel/sail ..................................................... DONE
@@ -61,7 +61,7 @@ Generating optimized autoload files
 Use the `composer fund` command to find out more!
 > @php artisan vendor:publish --tag=laravel-assets --ansi --force
 
-   INFO  No publishable resources for tag [laravel-assets].  
+   INFO  No publishable resources for tag [laravel-assets].
 
 No security vulnerability advisories found.
 Using version ^3.13 for barryvdh/laravel-debugbar
@@ -77,7 +77,7 @@ $ php artisan vendor:publish
 
 이후 디버깅 프로바이더를 선택하는 화면이 나타나는데, 일단 `All providers and tags`를 선택하자.
 
-![img](/images/posts/2024/0510/lb01.png)
+![img](/images/2024/0510/lb01.png)
 
 # #02. 디버그바 사용하기
 
@@ -87,7 +87,7 @@ $ php artisan vendor:publish
 
 (서버를 재가동할 필요는 없다.)
 
-![img](/images/posts/2024/0510/lb02.png)
+![img](/images/2024/0510/lb02.png)
 
 ## [2] 디버그 ON/OFF
 
@@ -117,7 +117,7 @@ Route::get('/', function () {
 
 브라우저로 결과를 확인하면 아래와 같이 메시지가 표시된다.
 
-![img](/images/posts/2024/0510/lb03.png)
+![img](/images/2024/0510/lb03.png)
 
 
 ## [3] 설정파일 확인

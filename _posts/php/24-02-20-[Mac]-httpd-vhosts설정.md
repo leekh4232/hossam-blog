@@ -28,7 +28,7 @@ Include /opt/homebrew/etc/httpd/extra/httpd-vhosts.conf
 LoadModule vhost_alias_module lib/httpd/modules/mod_vhost_alias.so
 ```
 
-![img](/images/posts/2024/0220/vhost01.png)
+![img](/images/2024/0220/vhost01.png)
 
 # #02. vhosts 설정 파일 편집
 
@@ -127,7 +127,7 @@ $ sudo vi /etc/hosts
 
 아래와 같이 설정하였다.
 
-![img](/images/posts/2024/0220/vhost02.png)
+![img](/images/2024/0220/vhost02.png)
 
 # 04. 결과 확인
 
@@ -145,7 +145,7 @@ $ brew services restart httpd
 $ brew services list
 ```
 
-![img](/images/posts/2024/0220/vhost03.png)
+![img](/images/2024/0220/vhost03.png)
 
 
 ## [2] 웹 브라우저로 확인
@@ -154,5 +154,5 @@ Virtual Host가 설정된 디렉토리에 임의의 파일을 생성하고 웹 �
 
 Virtual Host설정에서 정의한 도메인으로 접속해야 한다.
 
-![img](/images/posts/2024/0220/vhost04.png)
+![img](/images/2024/0220/vhost04.png)
 

@@ -24,7 +24,7 @@ PHP를 설치하는 방법은 이전 포스팅을 참고하세요.
 $ php --version
 ```
 
-![php](/images/posts/2024/0507/php.png)
+![php](/images/2024/0507/php.png)
 
 ## [2] 컴포저 설치하기
 
@@ -53,7 +53,7 @@ $ php -r "unlink('composer-setup.php');"
 
 위 3단계를 터미널에서 실행하면 아래와 같습니다.
 
-![composer1](/images/posts/2024/0507/composer1.png)
+![composer1](/images/2024/0507/composer1.png)
 
 ### (4) 설치된 파일 이동
 
@@ -73,4 +73,4 @@ $ sudo mv composer.phar /usr/local/bin/composer
 $ composer --version
 ```
 
-![composer2](/images/posts/2024/0507/composer2.png)
+![composer2](/images/2024/0507/composer2.png)

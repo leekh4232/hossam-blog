@@ -202,7 +202,7 @@ $ jupyter lab
 
 이 중에서 IP주소가 지정된 URL을 확인하고 브라우저로 접속을 확인해 봅니다.
 
-![jupyter](/images/posts/2024/0421/jupyter.png)
+![jupyter](/images/2024/0421/jupyter.png)
 
 
 # #04. Jupyter 서비스 등록
@@ -231,7 +231,7 @@ $ sudo vi /usr/lib/systemd/system/jupyter.service
 
 파일이 생성되면 아래의 내용을 작성하고 저장합니다.
 
-> 
+>
 
 ```
 [Unit]
@@ -251,7 +251,7 @@ WantedBy=multi-user.target
 만약 이 파일을 수정한다면 아래 명령으로 다시 로드해 준수 서비스를 중지/시작해야 합니다.
 
 ```shell
-$ sudo systemctl daemon-reload 
+$ sudo systemctl daemon-reload
 ```
 
 ## [3] 서비스 가동
@@ -278,7 +278,7 @@ $ sudo systemctl start jupyter
 
 `Remote SSH` 익스텐션을 검색하여 설치합니다.
 
-![rssh](/images/posts/2024/0421/rssh.png)
+![rssh](/images/2024/0421/rssh.png)
 
 ## [2] VSCode SSH 설정
 
@@ -286,11 +286,11 @@ $ sudo systemctl start jupyter
 
 좌측 탐색기 영역에서 `SSH`화면으로 이동 후 `설정`아이콘을 누릅니다.
 
-![vsconfig1](/images/posts/2024/0421/vsconfig1.png)
+![vsconfig1](/images/2024/0421/vsconfig1.png)
 
 설정파일 선택 화면이 나타나면 사용자 홈 디렉토리 하위의 파일을 선택합니다.
 
-![vsconfig2](/images/posts/2024/0421/vsconfig2.png)
+![vsconfig2](/images/2024/0421/vsconfig2.png)
 
 ### (2) 설정 내용 작성
 
@@ -318,14 +318,14 @@ Host leekh@192.168.245.128:9902
 
 파일을 작성한 후 VSCode에서 설정 새로고침 버튼을 눌러 설정파일을 다시 로드 합니다.
 
-![vsconfig3](/images/posts/2024/0421/vsconfig3.png)
+![vsconfig3](/images/2024/0421/vsconfig3.png)
 
 
 ## [3] 원격 접속하기
 
 등록된 SSH 항목을 통해 접속합니다.
 
-![vsconfig4](/images/posts/2024/0421/vsconfig4.png)
+![vsconfig4](/images/2024/0421/vsconfig4.png)
 
 ## [4] 익스텐션 설치
 
@@ -339,7 +339,7 @@ Host leekh@192.168.245.128:9902
 
 이 과정에서 파이썬 관련 익스텐션들도 다시 설치됩니다.
 
-![vsconfig5](/images/posts/2024/0421/vsconfig5.png)
+![vsconfig5](/images/2024/0421/vsconfig5.png)
 
 
 > 이제 적절한 작업 폴더를 workspace로 지정하고 사용하면 됩니다. Enjoy~!!

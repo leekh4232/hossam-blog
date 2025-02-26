@@ -20,31 +20,31 @@ tags: [Linux]
 
 Parallels에서 제공하는 Ubuntu 설치 항목은 Server가 아닌 Desktop Version이므로 여기서는 Server를 설치하기 위해 직접 ISO 이미지를 등록해야 한다.
 
-![img](/images/posts/2022/0903/pa01.png)
+![img](/images/2022/0903/pa01.png)
 
 ## ISO 이미지 파일 등록하기
 
-![img](/images/posts/2022/0903/pa02.png)
+![img](/images/2022/0903/pa02.png)
 
 ## 설치 계속하기
 
-![img](/images/posts/2022/0903/pa03.png)
+![img](/images/2022/0903/pa03.png)
 
 ## 가상머신의 이름 및 위치 지정
 
-![img](/images/posts/2022/0903/pa04.png)
+![img](/images/2022/0903/pa04.png)
 
 ## 공유옵션 해제
 
-![img](/images/posts/2022/0903/pa05.png)
+![img](/images/2022/0903/pa05.png)
 
 ## 응용 프로그램 공유 옵션 해제
 
-![img](/images/posts/2022/0903/pa06.png)
+![img](/images/2022/0903/pa06.png)
 
 ## 설치 시작
 
-![pa07](/images/posts/2022/0903/pa07.png)
+![pa07](/images/2022/0903/pa07.png)
 
 <br/><br/><br/>
 

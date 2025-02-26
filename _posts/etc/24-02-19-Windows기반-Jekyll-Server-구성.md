@@ -20,13 +20,13 @@ https://rubyinstaller.org/ 사이트에서 Ruby를 다운로드 합니다.
 
 예전에는 버전을 탔던것 같은데 여기서는 현재 기준 가장 최신 버전인 `3.2.3-1`을 설치하도록 하겠습니다.
 
-![img](/images/posts/2024/0219/ruby01.png)
+![img](/images/2024/0219/ruby01.png)
 
 링크를 타고 들어가면 다운로드 받을 항목을 선택할 수 있습니다.
 
 개발환경이 포함된 "WITH DEVKIT"항목 중에서 가장 최신 버전을 선택했습니다.
 
-![img](/images/posts/2024/0219/ruby02.png)
+![img](/images/2024/0219/ruby02.png)
 
 
 ## [2] RubyInstaller 설치하기
@@ -35,11 +35,11 @@ https://rubyinstaller.org/ 사이트에서 Ruby를 다운로드 합니다.
 
 윈도우 환경에서의 설치는 특별한 설정 과정 없이 진행하면 됩니다.
 
-![img](/images/posts/2024/0219/ruby03.png)
+![img](/images/2024/0219/ruby03.png)
 
 설치가 완료되면 아래와 같이 `MSYS2`라는 것을 설치할지 붇는 터미널이 실행됩ㄴ디ㅏ. `1`을 입력하고 엔터를 눌러 설치하면 됩니다.
 
-![img](/images/posts/2024/0219/ruby04.png)
+![img](/images/2024/0219/ruby04.png)
 
 
 > 저는 설치과정에서 입력을 잘못해서 이 화면을 강제종료 시켰는데 이후 과정에서 `MSYS2`가 없으면 설치하고 넘어가더군요.
@@ -49,7 +49,7 @@ https://rubyinstaller.org/ 사이트에서 Ruby를 다운로드 합니다.
 
 ## [1] Jekyll Server 설치
 
-명령프롬프트를 열고 아래의 명령을 수행합니다. 
+명령프롬프트를 열고 아래의 명령을 수행합니다.
 
 이 명령은 컴퓨터에 Jekyll을 설치하는 것이므로 명령프롬트트가 어느 경로에 있건 실행에 상관이 없습니다.
 
@@ -89,4 +89,4 @@ $ bundle exec jekyll serve
 
 이제 이 명령프롬프트를 종료하지 않는 한 포스팅을 작성하고 내 컴퓨터에서 즉시 확인이 가능합니다. 글 작성이 모두 완료되면 Git에 push하여 발행하는 개념으로 사용할 수 있습니다.
 
-![img](/images/posts/2024/0219/jekyll.png)
+![img](/images/2024/0219/jekyll.png)

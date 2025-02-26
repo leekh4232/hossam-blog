@@ -16,32 +16,32 @@ Next.js 자체적으로 API Route 기능을 제공하기는 하지만 백엔드 
 
 Express와 미들웨어 패키지들을 아래와 같이 설치하였다.
 
-| 패키지 명 | 설명 |
-|--|--|
-| express | Node.js 기반으로 백엔드를 구현할 수 있게 하는 패키지(필수) |
-| method-override | express에 PUT, DELETE 메서드를 처리할 수 있게 하는 미들웨어 |
-| cors | CORS 관련 설정을 처리하는 미들웨어 |
-| dotenv | 환경설정파일인 `*.env` 파일을 로드하는 미들웨어 |
-| express-fileupload | 파일 업로드 처리 미들웨어 |
-| express-session | 세션 사용 미들웨어 |
-| express-useragent | 브라우저의 UserAgent 기능 사용 미들웨어 |
-| cookie-parser | 쿠키를 처리하는 미들웨어 |
-| serve-favicon | favicon 설정 미들웨어 | 
-| serve-static | public 폴더 지정 미들웨어 |
-| winston | 로그 처리 패키지 |
-| winston-daily-rotate-file | 로그 파일을 날짜별로 생성할 수 있게 하는 미들웨어 |
-| express-winston | Express로의 HTTP 요청을 로그로 기록할 수 있게 하는 미들웨어 |
-| node-schedule | 스케쥴러 사용 패키지 |
-| node-thumbnail | 썸네일 이미지 생성 패키지 |
-| nodemailer | 메일 발송을 위해 SMTP와 연동할 수 있는 기능을 제공하는 패키지 |
-| mysql2 | MySQL Client 패키지 |
-| mybatis-mapper | MyBatis의 Node.js 버전 |
-| express-mysql-session | DB세션을 사용할 수 있게 하는 미들웨어 | 
-| bcrypt | 암호화 처리 패키지 |
-| passport | 로그인 및 인증 기능을 제공하는 패키지 |
-| passport-local | 로컬 인증 기능을 제공하는 패키지 |
-| passport-jwt | jwt 방식 토큰 발생을 가능하게 하는 패키지 |
-| fs-file-tree | 특정 폴더의 하위 항목들을 조회하는 패키지 |
+| 패키지 명                 | 설명                                                          |
+| ------------------------- | ------------------------------------------------------------- |
+| express                   | Node.js 기반으로 백엔드를 구현할 수 있게 하는 패키지(필수)    |
+| method-override           | express에 PUT, DELETE 메서드를 처리할 수 있게 하는 미들웨어   |
+| cors                      | CORS 관련 설정을 처리하는 미들웨어                            |
+| dotenv                    | 환경설정파일인 `*.env` 파일을 로드하는 미들웨어               |
+| express-fileupload        | 파일 업로드 처리 미들웨어                                     |
+| express-session           | 세션 사용 미들웨어                                            |
+| express-useragent         | 브라우저의 UserAgent 기능 사용 미들웨어                       |
+| cookie-parser             | 쿠키를 처리하는 미들웨어                                      |
+| serve-favicon             | favicon 설정 미들웨어                                         |
+| serve-static              | public 폴더 지정 미들웨어                                     |
+| winston                   | 로그 처리 패키지                                              |
+| winston-daily-rotate-file | 로그 파일을 날짜별로 생성할 수 있게 하는 미들웨어             |
+| express-winston           | Express로의 HTTP 요청을 로그로 기록할 수 있게 하는 미들웨어   |
+| node-schedule             | 스케쥴러 사용 패키지                                          |
+| node-thumbnail            | 썸네일 이미지 생성 패키지                                     |
+| nodemailer                | 메일 발송을 위해 SMTP와 연동할 수 있는 기능을 제공하는 패키지 |
+| mysql2                    | MySQL Client 패키지                                           |
+| mybatis-mapper            | MyBatis의 Node.js 버전                                        |
+| express-mysql-session     | DB세션을 사용할 수 있게 하는 미들웨어                         |
+| bcrypt                    | 암호화 처리 패키지                                            |
+| passport                  | 로그인 및 인증 기능을 제공하는 패키지                         |
+| passport-local            | 로컬 인증 기능을 제공하는 패키지                              |
+| passport-jwt              | jwt 방식 토큰 발생을 가능하게 하는 패키지                     |
+| fs-file-tree              | 특정 폴더의 하위 항목들을 조회하는 패키지                     |
 
 일일이 설치하는 과정은 번거롭기 때문에 아래 명령으로 일괄 설치하도록 처리했다.
 
@@ -105,7 +105,7 @@ $ mkcert -install
 
 윈도우의 경우 아래와 같은 창이 표시되는데, `확인`을 선택하면 된다.
 
-![cert-dialog.png](/images/posts/2023/0820/cert-dialog.png)
+![cert-dialog.png](/images/2023/0820/cert-dialog.png)
 
 ### HOST에 대한 인증서 생성
 
@@ -117,14 +117,14 @@ $ mkcert "*.hossam.kr" localhost 127.0.0.1 ::1
 
 별다른 추가 옵션을 명시하지 않았다면, 현재 명령어를 실행하고 있는 경로에 두 개의 .pem 파일(cert, key)이 생성된다.
 
-![cert-dialog.png](/images/posts/2023/0820/cert-dir.png)
+![cert-dialog.png](/images/2023/0820/cert-dir.png)
 
 여기서는 해당 파일의 이름들을 아래와 같이 수정하였다.
 
-| 구분 | 원본 파일명 | 변경된 파일명 |
-|--|--|--|
-| cert | _wildcard.hossam.kr+3.pem | localhost.pem |
-| key | _wildcard.hossam.kr+3-key.pem | localhost.key.pem |
+| 구분 | 원본 파일명                   | 변경된 파일명     |
+| ---- | ----------------------------- | ----------------- |
+| cert | _wildcard.hossam.kr+3.pem     | localhost.pem     |
+| key  | _wildcard.hossam.kr+3-key.pem | localhost.key.pem |
 
 
 # #03. 환경설정 파일 생성
@@ -527,11 +527,11 @@ $ yarn install
 
 이제 프로젝트를 가동하여 결과를 확인한다.
 
-| 구분 | URL |
-|---|---|
-| 프론트엔드 | https://localhost:3000 |
-| 백엔드 | https://localhost:3000/api/sample/hello_world |
+| 구분       | URL                                           |
+| ---------- | --------------------------------------------- |
+| 프론트엔드 | https://localhost:3000                        |
+| 백엔드     | https://localhost:3000/api/sample/hello_world |
 
-![bw](/images/posts/2023/0820/cert-bw.png)
+![bw](/images/2023/0820/cert-bw.png)
 
-![bk](/images/posts/2023/0820/cert-bk.png)
+![bk](/images/2023/0820/cert-bk.png)

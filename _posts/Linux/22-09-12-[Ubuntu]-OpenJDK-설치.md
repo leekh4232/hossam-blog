@@ -34,7 +34,7 @@ $ sudo apt-cache search openjdk | grep Development
 
 현재 확인되는 가장 최신 버전은 `JDK 19`로 나타납니다. 이 버전을 설치하도록 하겠습니다.
 
-![jdk1](/images/posts/2022/0912/jdk1.png)
+![jdk1](/images/2022/0912/jdk1.png)
 
 ## 주의!!!
 
@@ -62,7 +62,7 @@ $ which java
 
 해당 명령어의 경로가 출력됩니다.
 
-![jdk2](/images/posts/2022/0912/jdk2.png)
+![jdk2](/images/2022/0912/jdk2.png)
 
 ### 출력 결과에 대한 파일 종류 확인
 
@@ -74,7 +74,7 @@ $ ls -l /usr/bin/java
 
 파일 목록을 확인해 보니 링크파일임을 확인할 수 있습니다.
 
-![jdk3](/images/posts/2022/0912/jdk3.png)
+![jdk3](/images/2022/0912/jdk3.png)
 
 ### 링크 파일의 실제 위치 확인
 
@@ -88,14 +88,14 @@ $ readlink -f $(which java)
 
 이제 아래와 같이 JAVA 명령어의 실제 경로를 확인할 수 있습니다.
 
-![jdk4](/images/posts/2022/0912/jdk4.png)
+![jdk4](/images/2022/0912/jdk4.png)
 
 위의 출력 결과를 통해 다음과 같이 값을 확인하였습니다.
 
-| 환경변수 | 경로 |
-|:--:|--|
-| JAVA_HOME | `/usr/lib/jvm/java-19-openjdk-arm64` |
-| PATH | `/usr/lib/jvm/java-19-openjdk-arm64/bin` |
+| 환경변수  | 경로                                     |
+| :-------: | ---------------------------------------- |
+| JAVA_HOME | `/usr/lib/jvm/java-19-openjdk-arm64`     |
+|   PATH    | `/usr/lib/jvm/java-19-openjdk-arm64/bin` |
 
 ### 쉘 초기화 파일에 환경변수 추가
 
@@ -148,4 +148,4 @@ $ source ~/.zshrc
 $ javac --version
 ```
 
-![jdk5](/images/posts/2022/0912/jdk5.png)
+![jdk5](/images/2022/0912/jdk5.png)

@@ -25,7 +25,7 @@ $ laravel new 프로젝트이름
 
 ### (1) 스타터킷
 
-프로젝트 생성 명령을 실행하면 기본 스타터킷을 사용할지 물어본다. 
+프로젝트 생성 명령을 실행하면 기본 스타터킷을 사용할지 물어본다.
 
 스타터킷은 기본적으로 필요한 기능들에 대한 최소한의 완성코드가 포함되는 형태이다.
 
@@ -35,7 +35,7 @@ $ laravel new 프로젝트이름
 
 여기서는 스타터킷을 선택하지 않았다.
 
-![laravel](/images/posts/2024/0509/laravel01.png)
+![laravel](/images/2024/0509/laravel01.png)
 
 ### (2) 테스팅 프레임워크
 
@@ -43,7 +43,7 @@ Pest와 PHPUnit중에서 선택할 수 있다.
 
 단위 테스트의 근본은 PHPUnit이지만 Pest는 PHPUnit을 좀 더 편하게 사용할 수 있는 환경을 제공한다.
 
-![laravel](/images/posts/2024/0509/laravel02.png)
+![laravel](/images/2024/0509/laravel02.png)
 
 ### (3) Git 저장소 설정
 
@@ -53,7 +53,7 @@ Pest와 PHPUnit중에서 선택할 수 있다.
 
 추후 `git remote add origin 저장소URL` 명령으로 특정 저장소에 연결할 수 있다.
 
-![laravel](/images/posts/2024/0509/laravel03.png)
+![laravel](/images/2024/0509/laravel03.png)
 
 여기까지 설정하면 기본 파일들이 생성된다.
 
@@ -61,13 +61,13 @@ Pest와 PHPUnit중에서 선택할 수 있다.
 
 사용할 DBMS 종류를 선택한다.
 
-![laravel](/images/posts/2024/0509/laravel04.png)
+![laravel](/images/2024/0509/laravel04.png)
 
 ### (5) 데이터베이스 마이그레이션 선택
 
 여기서는 `No`를 선택한다. 어차피 데이터베이스 계정 정보가 없기 때문에 `Yes`를 선택하더라도 에러난다.
 
-![laravel](/images/posts/2024/0509/laravel05.png)
+![laravel](/images/2024/0509/laravel05.png)
 
 
 ## [3] 데이터베이스 설정
@@ -104,11 +104,11 @@ DB_PASSWORD="비밀번호"
 $ php artisan migrate
 ```
 
-![laravel](/images/posts/2024/0509/laravel06.png)
+![laravel](/images/2024/0509/laravel06.png)
 
 데이터베이스에 접속하여 확인해 보면 상당히 많은 테이블들이 생성되어 있음을 알 수 있다.
 
-![laravel](/images/posts/2024/0509/laravel07.png)
+![laravel](/images/2024/0509/laravel07.png)
 
 # #02. 결과 확인
 
@@ -120,4 +120,4 @@ $ php artisan serve
 
 웹 브라우저를 열고 `http://localhost:8000` URL로 접속해 결과를 확인한다.
 
-![laravel](/images/posts/2024/0509/laravel08.png)
+![laravel](/images/2024/0509/laravel08.png)

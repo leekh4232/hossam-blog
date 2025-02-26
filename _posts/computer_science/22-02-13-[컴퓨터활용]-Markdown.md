@@ -1,23 +1,26 @@
 ---
-layout: post
 title:  "[컴퓨터활용] Markdown"
-date:   2022-02-13
-banner_image: index-computing.png
-tags: [컴퓨터활용]
+description: Markdown은 텍스트 기반의 마크업언어로 문서를 쉽고 빠르게 작성할 수 있게 합니다. 마크다운은 별도의 도구없이 간결하게 작성할 수 있고 웹 페이지, pdf등의 다양한 형태로 변환이 가능하며 텍스트(Text)로 저장되기 때문에 용량이 적어 보관이 용이합니다. 또한 지원하는 프로그램과 플랫폼이 다양하기 때문에 활용도가 매우 높습니다.
+categories: [컴퓨터활용]
+date:   2022-02-13 11:26:00 +0900
+author: Hossam
+image:
+  path: /images/index-computing.png
+tags: [컴퓨터활용,Markdown]
+pin: true
+math: true
+mermaid: true
 ---
 
-[**Markdown**](http://whatismarkdown.com/)은 텍스트 기반의 마크업언어로 문서를 쉽고 빠르게 작성할 수 있게 합니다. 마크다운은 별도의 도구없이 간결하게 작성할 수 있고 웹 페이지, pdf등의 다양한 형태로 변환이 가능하며 텍스트(Text)로 저장되기 때문에 용량이 적어 보관이 용이합니다. 또한 지원하는 프로그램과 플랫폼이 다양하기 때문에 활용도가 매우 높습니다.
-
-<!--more-->
 
 # #01. 마크다운 지원 VScode 익스텐션
 
-| 익스텐션 | 개발자 | 설명 |
-|---|---|---|
-| Markdown All in One | Yu Zhang | 문법강조, 미리보기 기능 지원 |
-| Markdown PDF | yzane | PDF 파일 변환 |
+| 익스텐션                        | 개발자                        | 설명                          |
+| ------------------------------- | ----------------------------- | ----------------------------- |
+| Markdown All in One             | Yu Zhang                      | 문법강조, 미리보기 기능 지원  |
+| Markdown PDF                    | yzane                         | PDF 파일 변환                 |
 | Markdown Preview Github Styling | Matt Bierner(mattbierner.com) | Github 스타일의 미리보기 지원 |
-| vscode-pdf | tomoki1207.dev | PDF 뷰어 |
+| vscode-pdf                      | tomoki1207.dev                | PDF 뷰어                      |
 
 # #02. 새 Markdown 파일 생성
 
@@ -197,10 +200,10 @@ for i in range(5):
 
 Visual Studio Code Extension에서 `Markdown PDF`를 설치가 되어 있어야 한다.
 
-![md01](/images/posts/2022/0213/md01.png)
+![md01](/images/2022/0213/md01.png)
 
 작성중인 Markdown 파일에서 `Ctrl + Shift + P`를 눌러서 명령창을 열고 **`Markdown pdf`**로 검색한 후 **`Markdown PDF: Export (pdf)`** 항목을 선택한다.
 
-![md02](/images/posts/2022/0213/md02.png)
+![md02](/images/2022/0213/md02.png)
 
 이 때 명령창 맨 앞에 `>`가 반드시 포함되어야 한다. 실수로 `>`를 삭제한 경우 다시 입력해야 한다.
