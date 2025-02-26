@@ -1,12 +1,12 @@
 ---
-title:  "[컴퓨터활용] Windows 기본 활용"
+title:  "Windows 기본 활용"
 description: 코딩을 처음 시작하는 학생들을 만나면 개발자로서의 컴퓨터 기본 지식부터 학습해야 하는 경우를 만나게 됩니다. 이 포스팅은 그런 분들을 위해 기본 지식을 정리하고 있습니다.
-categories: [컴퓨터활용,Windows]
+categories: [운영체제,Windows]
 date:   2022-02-11 18:26:00 +0900
 author: Hossam
 image:
   path: /images/index-computing.png
-tags: [컴퓨터활용,Windows]
+tags: [컴퓨터활용,운영체제,Windows]
 pin: true
 math: true
 mermaid: true

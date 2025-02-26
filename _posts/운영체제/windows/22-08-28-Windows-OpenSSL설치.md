@@ -1,14 +1,17 @@
 ---
-layout: post
-title:  "[Windows] OpenSSL 설치"
-date:   2022-08-28
-banner_image: index-windows.png
-tags: [Windows]
+title:  "Windows OpenSSL 설치"
+description: OpenSSL은 데이터통신을 위한 TLS, SSL 프로토콜을 이용할 수 있는 오픈소스 라이브러리 입니다. http통신을 좀 더 안전하게 하기 위한 프로토콜이라고 이해할 수 있습니다. 이것은 실제 https나 sftp와 같은 표준 프로토콜에 적용된 기술입니다. 백엔드 프로그래밍을 진행하면서 SSL 적용이 필요한 경우 필수적인 라이브러리라 할 수 있습니다.
+categories: [운영체제,Windows]
+date:   2022-08-28 18:26:00 +0900
+author: Hossam
+image:
+  path: /images/index-computing.png
+tags: [컴퓨터활용,운영체제,Windows]
+pin: true
+math: true
+mermaid: true
 ---
 
-OpenSSL은 데이터통신을 위한 TLS, SSL 프로토콜을 이용할 수 있는 오픈소스 라이브러리 입니다. http통신을 좀 더 안전하게 하기 위한 프로토콜이라고 이해할 수 있습니다. 이것은 실제 https나 sftp와 같은 표준 프로토콜에 적용된 기술입니다. 백엔드 프로그래밍을 진행하면서 SSL 적용이 필요한 경우 필수적인 라이브러리라 할 수 있습니다.
-
-<!--more-->
 
 # #01. OpenSSL 설치
 

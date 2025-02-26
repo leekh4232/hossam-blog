@@ -1,9 +1,15 @@
 ---
-layout: post
-title:  "[Windows] 특정 포트 방화벽 열기"
-date:   2022-08-27
-banner_image: index-windows.png
-tags: [Windows]
+title:  "Windows 특정 포트 방화벽 열기"
+description: 수동으로 설치한 프로그램들이 윈도우 부팅시에 자동으로 구동되도록 명령프롬프트 상에서 윈도우에 서비스를 등록하는 명령어들 정리.
+categories: [운영체제,Windows]
+date:   2022-08-27 18:26:00 +0900
+author: Hossam
+image:
+  path: /images/index-computing.png
+tags: [컴퓨터활용,운영체제,Windows]
+pin: true
+math: true
+mermaid: true
 ---
 
 윈도우는 기본적으로 방화벽을 통해 모든 포트번호에 대한 외부 접근을 차단하고 있다. 톰켓이나 MySQL같은 서버 프로그램을 운영하면서 특정 포트번호에 대한 방화벽 접근을 허용하면 다른 PC를 통해 원격 접속을 테스트해 볼 수 있다.

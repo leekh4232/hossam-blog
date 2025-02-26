@@ -1,14 +1,16 @@
 ---
-layout: post
-title:  "[Windows] 서비스 등록"
-date:   2022-08-26
-banner_image: index-windows.png
-tags: [Windows]
+title:  "Windows 서비스 등록"
+description: 수동으로 설치한 프로그램들이 윈도우 부팅시에 자동으로 구동되도록 명령프롬프트 상에서 윈도우에 서비스를 등록하는 명령어들 정리.
+categories: [운영체제,Windows]
+date:   2022-08-26 18:26:00 +0900
+author: Hossam
+image:
+  path: /images/index-computing.png
+tags: [컴퓨터활용,운영체제,Windows]
+pin: true
+math: true
+mermaid: true
 ---
-
-수동으로 설치한 프로그램들이 윈도우 부팅시에 자동으로 구동되도록 명령프롬프트 상에서 윈도우에 서비스를 등록하는 명령어들 정리.
-
-<!--more-->
 
 # #01. `sc`명령 사용
 
