@@ -1,16 +1,16 @@
 ---
-layout: post
-title:  "[CentOS] CentOS에 SSL 인증서 설치하기"
-date:   2022-09-01
-banner_image: index-desital.png
-tags: [Linux]
+title:  "CentOS에 SSL 인증서 설치하기"
+description: CentOS는 유료로 제공되는 레드햇 엔터프라이즈 리눅스(RHEL)와 동일한 무료 배포판을 제공하는 것을 목적으로 만들어진 배포판입니다. 현재는 개발과 지원이 중단되었지만 아직까지도 꽤 많은 서비스가 CentOS를 기반으로 운영되고 있습니다. 이 글은 개인적인 필요에 따라 PHP로 개발된 웹 서비스를 Apache 웹서버로 운영하던 CentOS에 SSL 인증서를 설치하던 개인적 경험에 대한 정리 입니다.
+categories: [운영체제,Linux]
+date:   2022-09-01 18:26:00 +0900
+author: Hossam
+image:
+  path: /images/index-desital.png
+tags: [컴퓨터활용,운영체제,Linux]
+pin: true
+math: true
+mermaid: true
 ---
-
-CentOS는 유료로 제공되는 레드햇 엔터프라이즈 리눅스(RHEL)와 동일한 무료 배포판을 제공하는 것을 목적으로 만들어진 배포판입니다. 현재는 개발과 지원이 중단되었지만 아직까지도 꽤 많은 서비스가 CentOS를 기반으로 운영되고 있습니다.
-
-이 글은 개인적인 필요에 따라 PHP로 개발된 웹 서비스를 Apache 웹서버로 운영하던 CentOS에 SSL 인증서를 설치하던 개인적 경험에 대한 정리 입니다.
-
-<!--more-->
 
 # 1. open ssl 설치 확인
 
@@ -81,7 +81,7 @@ $ vi /etc/httpd/conf.d/ssl.conf
 <VirtualHost *:443>
 	ServerName lms.hossam.kr
 	DocumentRoot /home/ems/public_html
-  
+
 	SSLEngine on
 	SSLProtocol all -SSLv2
 	SSLCipherSuite ALL:!ADH:!EXPORT:!SSLv2:RC4+RSA:+HIGH:+MEDIUM:+LOW
