@@ -1,14 +1,15 @@
 ---
-layout: post
-title:  "[Laravel] 디버그 바"
-date:   2024-05-10
-banner_image: index-laravel.jpg
-tags: [PHP,Laravel]
+title:  "Laravel 디버그 바"
+description: "라라벨 디버그바를 사용하면 프로그램의 디버그가 손쉬워 진다. PHP가 이런것도 되다니... 세상 참 좋아졌다."
+categories: [Web Develpment,Backend,PHP]
+date:   2024-05-10 11:33:00 +0900
+author: Hossam
+image: /images/index-laravel.jpg
+tags: [Web,Mac,Backend,PHP,Laravel]
+pin: true
+math: true
+mermaid: true
 ---
-
-나는 Docker등의 가상환경보다는 로컬 환경에서 직접 개발하는 것을 선호한다. 그러다 보니 Laravel도 Docker환경보다는 로컬에 직접 프로젝트를 생성하고 DBMS도 로컬에서 직접 구동시키는 과정을 시도해 보았다.
-
-
 
 # #01. Laravel Debugbar
 

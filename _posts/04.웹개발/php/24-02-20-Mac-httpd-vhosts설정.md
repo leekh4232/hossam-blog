@@ -1,14 +1,15 @@
 ---
-layout: post
-title:  "[Mac] MacOS의 httpd Virtual Host 설정"
-date:   2024-02-20
-banner_image: index-mac.jpg
-tags: [Mac,PHP]
+title:  "MacOS의 httpd Virtual Host 설정"
+description: "httpd로 PHP구동 환경을 구성한 후 한 번에 여러 개의 웹 사이트를 구동해야 하는 경우가 있다.(외주개발용 사이트와 스터디용 사이트 등) VirtualHost는 하나의 httpd가 호스트이름으로 구분된 여러 개의 사이트를 운영하도록 하는 설정이다."
+categories: [Web Develpment,Backend,PHP]
+date:   2024-02-20 11:33:00 +0900
+author: Hossam
+image: /images/index-mac.jpg
+tags: [Web,Mac,Backend,PHP]
+pin: true
+math: true
+mermaid: true
 ---
-
-httpd로 PHP구동 환경을 구성한 후 한 번에 여러 개의 웹 사이트를 구동해야 하는 경우가 있다.(외주개발용 사이트와 스터디용 사이트 등) VirtualHost는 하나의 httpd가 호스트이름으로 구분된 여러 개의 사이트를 운영하도록 하는 설정이다.
-
-
 
 # #01. httpd 설정 파일 편집
 

@@ -1,14 +1,15 @@
 ---
-layout: post
-title:  "[MySQL] 테이블 스키마 기반 POJO 클래스의 멤버변수 선언문 생성"
-date:   2022-10-27
-banner_image: 2022/1028/index.jpg
-tags: [Database]
+title:  "MySQL 테이블 스키마 기반 POJO 클래스의 멤버변수 선언문 생성"
+description: "MySQL의 information_schema 데이터베이스에 저장되어 있는 테이블 정보들을 통해 Java에서 사용할 Pojo 클래스의 멤버변수 이름을 자동으로 생성하는 쿼리 입니다."
+categories: [Database,MySQL & MariaDB]
+tags: [Database,MySQL,MariaDB]
+image: /images/2022/1028/index.jpg
+date: 2022-10-27 13:04:19 +0900
+author: Hossam
+pin: true
+math: true
+mermaid: true
 ---
-
-MySQL의 information_schema 데이터베이스에 저장되어 있는 테이블 정보들을 통해 Java에서 사용할 Pojo 클래스의 멤버변수 이름을 자동으로 생성하는 쿼리 입니다.
-
-
 
 # 구문형식
 
