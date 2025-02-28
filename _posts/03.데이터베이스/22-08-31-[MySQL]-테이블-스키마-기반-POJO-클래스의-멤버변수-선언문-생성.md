@@ -8,7 +8,7 @@ tags: [Database]
 
 MySQL의 information_schema 데이터베이스에 저장되어 있는 테이블 정보들을 통해 Java에서 사용할 Pojo 클래스의 멤버변수 이름을 자동으로 생성하는 쿼리 입니다.
 
-<!--more-->
+
 
 # 구문형식
 

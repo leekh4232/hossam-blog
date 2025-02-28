@@ -1,51 +1,51 @@
 ---
 title:  "CentOS에 SSL 인증서 설치하기"
 description: CentOS는 유료로 제공되는 레드햇 엔터프라이즈 리눅스(RHEL)와 동일한 무료 배포판을 제공하는 것을 목적으로 만들어진 배포판입니다. 현재는 개발과 지원이 중단되었지만 아직까지도 꽤 많은 서비스가 CentOS를 기반으로 운영되고 있습니다. 이 글은 개인적인 필요에 따라 PHP로 개발된 웹 서비스를 Apache 웹서버로 운영하던 CentOS에 SSL 인증서를 설치하던 개인적 경험에 대한 정리 입니다.
-categories: [운영체제,Linux]
+categories: [Operating System,Linux,CentOS]
 date:   2022-09-01 18:26:00 +0900
 author: Hossam
 image:
   path: /images/index-desital.png
-tags: [컴퓨터활용,운영체제,Linux]
+tags: [컴퓨터활용,Operating System,Linux,SSL]
 pin: true
 math: true
 mermaid: true
 ---
 
-# 1. open ssl 설치 확인
+## 1. open ssl 설치 확인
 
 ```shell
 $ rpm -qa openssl
 ```
 
-## 설치 안되어있을 시
+### 설치 안되어있을 시
 
 ```shell
 $ yum install openssl
 ```
 
-# 2. mod ssl 확인
+## 2. mod ssl 확인
 
 ```shell
 ls /etc/httpd/modules/mod_ssl*
 ```
 
-## 설치 안되어있을 시
+### 설치 안되어있을 시
 
 ```shell
 $ yum info mod_ssl
 $ yum install mod_ssl
 ```
 
-# 3. certbot 설치
+## 3. certbot 설치
 
 ```shell
 $ sudo yum install certbot python2-certbot-apache
 ```
 
-# 4. 인증서 발급
+## 4. 인증서 발급
 
-## 인증서 발급 진행
+### 인증서 발급 진행
 
 설정도메인이 ServerName과 동일해야한다.
 
@@ -59,7 +59,7 @@ $ certbot --apache certonly -d lms.hossam.kr
 - 두 번째 는  약관 동의하는 것으로 Y를 입력한다.
 - 세 번째는 여러 수신 동의를 묻는 것으로 동의하면 Y, 거부하면 N을 입력한다.
 
-## 인증서 확인
+### 인증서 확인
 
 `/etc/letsencrypt/live/도메인` 위치에 생성된다.
 
@@ -69,9 +69,9 @@ $ ls /etc/letsencrypt/live/lms.hossam.kr
 cert.pem  chain.pem  fullchain.pem  privkey.pem  README
 ```
 
-# #05. 아파치 환경 설정
+## #05. 아파치 환경 설정
 
-## 인증서 정보 추가
+### 인증서 정보 추가
 
 ```shell
 $ vi /etc/httpd/conf.d/ssl.conf
@@ -101,7 +101,7 @@ $ vi /etc/httpd/conf.d/ssl.conf
 </VirtualHost>
 ```
 
-## http 접속시 https 자동 접속
+### http 접속시 https 자동 접속
 
 ```shell
 $ vi /etc/httpd/conf.d/vhost.conf
@@ -119,7 +119,7 @@ $ vi /etc/httpd/conf.d/vhost.conf
 ```
 
 
-# #06. 방화벽 및 apache 재시작
+## #06. 방화벽 및 apache 재시작
 
 ```shell
 $ firewall-cmd --permanent --zone=public --add-port=443/tcp
@@ -127,7 +127,7 @@ $ firewall-cmd --reload
 $ systemctl restart httpd
 ```
 
-# #07. 인증서 자동 갱신 설정
+## #07. 인증서 자동 갱신 설정
 
 인증서 갱신 명령은 `certbot renew`이다. 이 명령을 주기적으로 자동 실행될 수 있도록 아래와 같이 배치작업을 등록한다.
 

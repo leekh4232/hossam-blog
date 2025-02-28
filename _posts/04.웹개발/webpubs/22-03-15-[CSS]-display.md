@@ -10,7 +10,7 @@ display속성은 요소를 어떻게 보여줄지를 결정하는 속성으로 b
 
 block-level과 inline-level이 각각 다른 기본값을 갖고 있기 때문에 이를 잘 구별하여 사용해야 합니다.
 
-<!--more-->
+
 
 # #01. display 속성값의 종류
 

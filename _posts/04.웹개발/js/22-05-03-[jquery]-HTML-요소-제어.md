@@ -8,7 +8,7 @@ tags: [jQuery]
 
 우리가 HTML태그의 속성이라고 부르는 것을 Javascript에서는 값을 갖는 속성의 경우 `attribute`, 값을 갖지 않고 속성 이름만 지정하는 경우 `property`라고 합니다. `attribute`는 `<img>`태그의 `src`속성과 같은 것이 있고 `property`는 `disabled`, `readonly`, `checked` 등의 속성이 있습니다.
 
-<!--more-->
+
 
 # #01. 요소의 판별
 

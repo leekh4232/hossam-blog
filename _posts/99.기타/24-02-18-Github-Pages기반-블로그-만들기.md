@@ -1,18 +1,19 @@
 ---
-layout: post
 title:  "Github Pages 기반 블로그 만들기"
-date:   2024-02-18
-banner_image: photo/study-cafe.png
-tags: [Tip&Tech]
+description: "수업을 진행하면서 자신의 학습 과정을 블로그로 정리하라는 말을 자주 합니다. 자신의 학습 과정이 쌓이면 그것도 하나의 포트폴리오가 될 수 있기 때문입니다. 하지만 정작 블로그를 처음 시작하는 경우 어떤 플랫폼에서 시작해야 할지 선듯 결정하기 어려운 경우가 있습니다. Velog나 Tistory등과 같이 완성형 서비스를 사용하는것도 방법이 되겠지만 Github-Pages를 활용하면 하나하나 내가 직접 꾸미는 재미를 느낄 수 있습니다. 하지만 어느정도의 HTML,CSS,JS에 대한 배경지식이 필요한 것은 사실입니다."
+categories: [컴퓨터활용,Jekyll]
+date:   2024-02-18 15:26:00 +0900
+author: Hossam
+image: /images/photo/study-cafe.png
+tags: [컴퓨터활용,Git,Github,블로그]
+pin: true
+math: true
+mermaid: true
 ---
 
-수업을 진행하면서 자신의 학습 과정을 블로그로 정리하라는 말을 자주 합니다. 자신의 학습 과정이 쌓이면 그것도 하나의 포트폴리오가 될 수 있기 때문입니다. 하지만 정작 블로그를 처음 시작하는 경우 어떤 플랫폼에서 시작해야 할지 선듯 결정하기 어려운 경우가 있습니다. Velog나 Tistory등과 같이 완성형 서비스를 사용하는것도 방법이 되겠지만 Github-Pages를 활용하면 하나하나 내가 직접 꾸미는 재미를 느낄 수 있습니다. 하지만 어느정도의 HTML,CSS,JS에 대한 배경지식이 필요한 것은 사실입니다.
+## #01. Github Pages 생성
 
-<!--more-->
-
-# #01. Github Pages 생성
-
-## [1] 새로운 저장소 만들기
+### [1] 새로운 저장소 만들기
 
 아래와 같이 새로운 저장소를 생성합니다.
 
@@ -24,9 +25,9 @@ tags: [Tip&Tech]
 
 만약 유료 계정을 사용할 경우 위 내용에서 `1`,`2`번은 해당사항이 없습니다.
 
-## [2] Github Pages 설정
+### [2] Github Pages 설정
 
-### (1) 기본 노출 설정
+#### (1) 기본 노출 설정
 
 1. 저장소의 `Settins`로 이동합니다.
 2. `Pages` 메뉴를 클릭합니다.
@@ -38,7 +39,7 @@ tags: [Tip&Tech]
 
 ![img](/images/2024/0218/github-page-02.png)
 
-### (2) 도메인 설정 (선택사항)
+#### (2) 도메인 설정 (선택사항)
 
 만약 개인 도메인을 갖고 있다면 아래와 같이 Custom Domain을 지정하여 원하는 URL로 설정할 수 있습니다.
 
@@ -52,7 +53,7 @@ tags: [Tip&Tech]
 
 ![img](/images/2024/0218/github-page-04.png)
 
-## [3] 중간 결과 확인
+### [3] 중간 결과 확인
 
 여기까지 설정이 완료되었다면 `https://자신의github아이디.github.io` 주소로 접속하여 결과를 확인해 봅니다.
 
@@ -62,11 +63,11 @@ tags: [Tip&Tech]
 
 ![img](/images/2024/0218/github-page-05.png)
 
-# #02. Jekyll Theme 적용하기
+## #02. Jekyll Theme 적용하기
 
 복잡한 내용는 생략하고 간단히 요약하면 github-page에 push된 markdown 파일을 미리 정의해둔 웹 사이트 레이아웃과 결합하여 웹 페이지로 변환해주는 환경입니다.
 
-## [1] github-page 저장소 clone 받기
+### [1] github-page 저장소 clone 받기
 
 생성해 둔 저장소를 자신의 컴퓨터에 클론 받습니다.
 
@@ -76,34 +77,34 @@ tags: [Tip&Tech]
 $ git clone git@github.com:자신의github아이디/자신의github아이디.github.io
 ```
 
-## [2] Jekyll Theme 적용
+### [2] Jekyll Theme 적용
 
-### (1) 원하는 테마 찾기
+#### (1) 원하는 테마 찾기
 
 `http://jekyllthemes.org/` 사이트에서 무료 테마를 내려받을 수 있습니다.
 
 그 외에 `https://jekyllthemes.io/`에서도 테마를 내려받을 수 있는데, 이 곳은 무료 테마와 유료 테마가 함께 있으므로 잘 살펴보고 원하는 테마를 선택하면 됩니다.
 
-### (2) 테마 적용하기
+#### (2) 테마 적용하기
 
 내려받은 테마를 클론 받은 저장소 폴더 안에 덮어 씌웁니다.
 
 ![img](/images/2024/0218/github-page-06.png)
 
-### (3) 테마 기본 설정
+#### (3) 테마 기본 설정
 
 사이트에 노출될 제목이라던가 설명글, 대표 주소 등의 값은 `_config.yml` 파일에 명시되어 있습니다. 이 파일을 잘 확인하고 자신의 환경에 맞게 수정해야 합니다.
 
 수정 항목은 테마마다 다를 수 있으니 잘 읽어본 후에 설정해야 합니다.
 
 ```yml
-# Site settings
+## Site settings
 title: 호쎔 블로그
 description: 안녕하세요. 테스트 블로그 입니다.
-baseurl: "" # the subpath of your site, e.g. /blog
+baseurl: "" ## the subpath of your site, e.g. /blog
 url: "https://leekh4232.github.io/"
 
-# Banner Section
+## Banner Section
 hero: 112.jpg
 hero-title: Welcome to Lokmont
 

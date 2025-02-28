@@ -1,24 +1,23 @@
 ---
 title:  "Windows 기본 활용"
 description: 코딩을 처음 시작하는 학생들을 만나면 개발자로서의 컴퓨터 기본 지식부터 학습해야 하는 경우를 만나게 됩니다. 이 포스팅은 그런 분들을 위해 기본 지식을 정리하고 있습니다.
-categories: [운영체제,Windows]
+categories: [Operating System,Windows]
 date:   2022-02-11 18:26:00 +0900
 author: Hossam
-image:
-  path: /images/index-computing.png
-tags: [컴퓨터활용,운영체제,Windows]
+image: /images/index-computing.png
+tags: [컴퓨터활용,Operating System,Windows]
 pin: true
 math: true
 mermaid: true
 ---
 
-# #01. 파일 확장자 표시하기
+## #01. 파일 확장자 표시하기
 
 아무 폴더나 열고 “보기 > 파일 확장명” 체크
 
-# #02. 필수 단축키
+## #02. 필수 단축키
 
-## 1. 기본 단축키
+### 1. 기본 단축키
 
 | 단축키       | 설명                        |
 | ------------ | --------------------------- |
@@ -26,7 +25,7 @@ mermaid: true
 | `WinKey + E` | 탐색기 열기                 |
 | `Alt + F4`   | 현재 사용중인 프로그램 종료 |
 
-## 2. 파일 작업 단축키
+### 2. 파일 작업 단축키
 
 > 탐색기에서 파일을 선택한 상태에서...
 
@@ -42,7 +41,7 @@ mermaid: true
 | `Ctrl + Z`               | 작업 되돌리기<br/>- 잘라낸 후 붙여 넣은 파일(=이동)을 원래 위치로<br/>- 복사후 붙여넣은 파일을 삭제<br/>- 휴지통에 넣은 파일을 복원 |
 | `Ctrl + Shift + N`       | 새 폴더 만들기                                                                                                                      |
 
-## 3. 텍스트 입력 단축키
+### 3. 텍스트 입력 단축키
 
 | 단축키                        | 설명                             |
 | ----------------------------- | -------------------------------- |
@@ -60,20 +59,20 @@ mermaid: true
 | `Ctrl + Shift + 좌,우 방향키` | 단어 단위로 선택                 |
 | `Ctrl + F`                    | 내용 검색                        |
 
-# #03. 컴퓨팅 환경
+## #03. 컴퓨팅 환경
 
-## 1. 인터페이스(Interface)
+### 1. 인터페이스(Interface)
 
 - 2개 이상의 장치나 소프트웨어 사이에서 정보나 신호를 주고 받을 때 그 사이를 연결하는 장치, 소프트웨어, 조건, 규약등을 의미
 
-## 2. 사용자 인터페이스 (UI: User Interface)
+### 2. 사용자 인터페이스 (UI: User Interface)
 
 - 컴퓨터와 사용자간에 정보교환이 가능하도록 하는 장치나 프로그램 혹은 화면 형태를 의미하기도 함
 - 일반적으로 화면의 모습을 UI라고 함
 
-## 3. UI의 종류
+### 3. UI의 종류
 
-### GUI (Graphic User Interface)
+#### GUI (Graphic User Interface)
 
 - 사용자가 컴퓨터의 입출력 등의 기능을 쉽게 이해하고 사용할 수 있도록 아이콘 따위의 그래픽으로 나타낸 것.
 - 컴퓨터를 조작하기 위하 다양한 입력(input)과 출력(output)이 필요하다.
@@ -85,7 +84,7 @@ mermaid: true
 | I/O(input/output)       | 컴퓨터를 조작하기 위한 입력과 출력                                                   |
 
 
-### CLI (Command Line Interface)
+#### CLI (Command Line Interface)
 
 - 명령어를 입력해 컴퓨터를 조작하는 방식
 
@@ -94,7 +93,7 @@ mermaid: true
 | 터미널 | 콘솔상에서 실행하여 명령어를 입력하기 위한 환경                                                                                   |
 | 쉘     | 터미널에 탑제된 명령어 해석기.<br/>- 유닉스 계열 : C쉘, Bash쉘,zsh쉘 등<br/>- 윈도우 계열 : 명령프롬프트(cmd), 파워쉘(PowerShell) |
 
-# #04. Window 기본 명령어
+## #04. Window 기본 명령어
 
 - 명령프롬프트(commander)에서 실행한다.
 

@@ -1,20 +1,21 @@
 ---
-layout: post
 title:  "Windows기반 Jekyll Server 구성"
-date:   2024-02-19
-banner_image: photo/study-cafe.png
-tags: [Tip&Tech, Windows]
+description: "Github Page에 블로그 포스팅을 push하고 결과를 확인하는 과정을 반복하면 github에서 변환되는 시간이 매우 길게 느껴져서 불편합니다. 그래서 자신의 컴퓨터에서 Jekyll이 직접적으로 작동할 수 있도록 로컬 환경을 구성하고 글을 작성하는 동안은 내 컴퓨터에서 바로 확인한 후 최종적으로 완료되었을 경우에만 github에 push하는 것이 여러모로 편리합니다."
+categories: [컴퓨터활용,Jekyll]
+date:   2024-02-19 15:26:00 +0900
+author: Hossam
+image: /images/photo/study-cafe.png
+tags: [컴퓨터활용,블로그,Jekyll]
+pin: true
+math: true
+mermaid: true
 ---
 
-Github Page에 블로그 포스팅을 push하고 결과를 확인하는 과정을 반복하면 github에서 변환되는 시간이 매우 길게 느껴져서 불편합니다. 그래서 자신의 컴퓨터에서 Jekyll이 직접적으로 작동할 수 있도록 로컬 환경을 구성하고 글을 작성하는 동안은 내 컴퓨터에서 바로 확인한 후 최종적으로 완료되었을 경우에만 github에 push하는 것이 여러모로 편리합니다.
-
-<!--more-->
-
-# #01. Ruby 설치
+## #01. Ruby 설치
 
 Jekyll은 Ruby라는 환경 위에서 동작하므로 먼저 Ruby를 설치해야 합니다. (Ruby는 Python과 비슷한 인터프리터 프로그래밍 언어의 한 종류 입니다.)
 
-## [1] RubyInstaller 다운로드
+### [1] RubyInstaller 다운로드
 
 https://rubyinstaller.org/ 사이트에서 Ruby를 다운로드 합니다.
 
@@ -29,7 +30,7 @@ https://rubyinstaller.org/ 사이트에서 Ruby를 다운로드 합니다.
 ![img](/images/2024/0219/ruby02.png)
 
 
-## [2] RubyInstaller 설치하기
+### [2] RubyInstaller 설치하기
 
 내려받은 설치 프로그램을 실행하여 설치를 진행합니다.
 
@@ -45,9 +46,9 @@ https://rubyinstaller.org/ 사이트에서 Ruby를 다운로드 합니다.
 > 저는 설치과정에서 입력을 잘못해서 이 화면을 강제종료 시켰는데 이후 과정에서 `MSYS2`가 없으면 설치하고 넘어가더군요.
 
 
-# #02. Jekyll Server
+## #02. Jekyll Server
 
-## [1] Jekyll Server 설치
+### [1] Jekyll Server 설치
 
 명령프롬프트를 열고 아래의 명령을 수행합니다.
 
@@ -65,7 +66,7 @@ $ gem install jekyll bundler
 $ jekyll -v
 ```
 
-## [2] Github Pages 블로그를 내 컴퓨터에 설치
+### [2] Github Pages 블로그를 내 컴퓨터에 설치
 
 컴퓨터에 클론 받아 놓은 Github Page 저장소 폴더 위치에서 명령프롬프트를 실행합니다.
 
@@ -77,7 +78,7 @@ $ jekyll -v
 $ bundle install
 ```
 
-## [2] Github Pages 블로그를 로컬 가동
+### [2] Github Pages 블로그를 로컬 가동
 
 아래 명령을 수행하면 로컬 웹서버가 작동합니다.
 

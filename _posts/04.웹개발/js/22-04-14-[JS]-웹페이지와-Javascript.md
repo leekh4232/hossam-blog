@@ -8,7 +8,7 @@ tags: [Javascript]
 
 Javascript는 원래 HTML 파일 안에서 HTML태그나 CSS를 제어하기 위한 언어였습니다. 그렇기 때문에 늘 Javascript의 기초는 웹 페이지에 어떻게 인터렉티브한 효과를 주는가를 이야기 합니다. 이제 본격적으로 웹 페이지에서의 Javascript를 시작해 봅시다.
 
-<!--more-->
+
 
 # #01. Javascript 소스코드의 위치
 

@@ -10,7 +10,7 @@ tags: [Javascript]
 
 (이 단원은 세부 내용이 제공되지 않습니다. 수업중 설명으로 대신합니다.)
 
-<!--more-->
+
 
 ![img](/images/2022/0408/string.png)
 
