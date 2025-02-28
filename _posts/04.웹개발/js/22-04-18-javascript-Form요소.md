@@ -1,39 +1,44 @@
 ---
-layout: post
-title: "[JS] Form 요소"
-date: 2022-04-18
-banner_image: index-js.png
-tags: [Javascript]
+title: "Javascript로 Form 요소 제어하기"
+description: ""
+categories: [Web Develpment,Frontend,Javascript]
+date: 2022-04-18 11:33:00 +0900
+author: Hossam
+image: /images/index-js.png
+tags: [Web Develpment,Frontend,Javascript]
+pin: true
+math: true
+mermaid: true
 ---
 
 입력 요소의 상태를 Javascript로 제어할 수 있습니다. 또한 `<input>`, `<select>` 등의 입력요소로부터 사용자가 입력한 내용을 Javascript의 변수로 가져올 수 있습니다.
 
 
 
-# #01. `<form>`요소의 객체 획득하기
+## #01. `<form>`요소의 객체 획득하기
 
-## 1) id속성값으로 접근하는 경우
+### 1) id속성값으로 접근하는 경우
 
 ```javascript
 // form의 id속성값이 `form_id`인 경우
 const myform = document.getElementById("form_id");
 ```
-## 2) name속성값으로 접근하는 경우
+### 2) name속성값으로 접근하는 경우
 
 ```javascript
 // form의 name속성값이 `form_name`인 경우
 const myform = document.form_name;
 ```
 
-# #02. 획득한 `<form>` 안의 `<input>`요소 접근
+## #02. 획득한 `<form>` 안의 `<input>`요소 접근
 
-## 1) id속성값으로 접근하는 경우
+### 1) id속성값으로 접근하는 경우
 
 ```javascript
 const hello = document.getElementById("input_id");
 ```
 
-## 2) name속성값으로 접근하는 경우
+### 2) name속성값으로 접근하는 경우
 
 ```javascript
 const myform = document.form_name;
@@ -45,7 +50,7 @@ name속성값을 사용하는 경우 아래와 같이 축약도 가능함.
 const hello = document.form_name.input_name;
 ```
 
-# #03. 획득한 `<input>`요소의 입력값 처리
+## #03. 획득한 `<input>`요소의 입력값 처리
 
 `input`요소의 `value` 속성을 사용하여 입력값을 조회하거나 설정할 수 있다.
 
@@ -74,9 +79,9 @@ if (!document.form_name.input_name.value) {
 }
 ```
 
-# #04. 선택 가능한 요소의 제어
+## #04. 선택 가능한 요소의 제어
 
-## 1) 드롭다운의 제어
+### 1) 드롭다운의 제어
 
 - `<select>`태그로 표현되는 드롭다운 요소는 그 자체가 배열이며<br/>`<option>`태그들이 배열의 요소가 된다.
 - 드롭다운 객체에 대한 selectedIndex는 선택된 요소의 배열 인덱스를 의미
@@ -102,7 +107,7 @@ if (dropdown.selectedIndex == 0) {
 }
 ```
 
-## 2) checkbox, radio의 제어
+### 2) checkbox, radio의 제어
 
 name속성이 동일한 요소들끼리 하나의 배열로 그룹화 됨.
 
@@ -136,15 +141,15 @@ for (const i=0; i<checkbox.length; i++) {
 }
 ```
 
-# #05. `<form>`의 reset, submit 처리
+## #05. `<form>`의 reset, submit 처리
 
-## 1) reset
+### 1) reset
 
 ```javascript
 document.form_name.reset();
 ```
 
-## 2) submit
+### 2) submit
 
 - `<form>`요소의 action속성에 지정된 페이지로 사용자의 입력내용을 전송하는 기능.
 - `<input type="submit"/>`요소를 클릭하거나 아래의 자바스크립트 구문의 호출을 통해서 구현된다.
@@ -153,7 +158,7 @@ document.form_name.reset();
 document.form_name.submit();
 ```
 
-## 3) submit 이벤트
+### 3) submit 이벤트
 
 `<form>`요소에 onsubmit 이벤트 적용후 데이터 전송을 방지하기 위한 `e.preventDefault()` 처리가 필요하다.
 

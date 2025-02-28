@@ -1,16 +1,21 @@
 ---
-layout: post
-title: "[JS] 이벤트 처리"
-date: 2022-04-15
-banner_image: index-js.png
-tags: [Javascript]
+title: "Javascript 이벤트 처리"
+description: ""
+categories: [Web Develpment,Frontend,Javascript]
+date: 2022-04-15 11:33:00 +0900
+author: Hossam
+image: /images/index-js.png
+tags: [Web Develpment,Frontend,Javascript]
+pin: true
+math: true
+mermaid: true
 ---
 
 이벤트란 프로그램이 겪는 어떠한 사건을 말합니다. 웹페이지에게는 사용자의 클릭, 마우스 오버, 페이지 로딩 전후 등의 상황에 해당합니다. Javascript는 이러한 이벤트 상황을 감지하고 적절한 대응을 할 수 있는 코드를 구현할 수 있습니다.
 
 
 
-## #01. 이벤트의 정의
+### #01. 이벤트의 정의
 
 프로그램이 겪는 어떠한 사건.
 
@@ -19,9 +24,9 @@ tags: [Javascript]
 
 자바스크립트가 제공하는 브라우저 관련 기능 안에 이미 다양한 이벤트를 감지하는 기능이 구현되어 내장 기능으로 개발자에게 제공된다.
 
-## #02. 이벤트를 처리하는 방법
+### #02. 이벤트를 처리하는 방법
 
-### 1) 이벤트 리스너
+#### 1) 이벤트 리스너
 
 어떤 이벤트가 발생하기를 기다리고 있다가 이벤트 발생시 연결된 함수를 호출해 주는 기능.
 
@@ -33,7 +38,7 @@ tags: [Javascript]
 객체.addEventListener('이벤트이름', 콜백함수);
 ```
 
-### 2) 이벤트 핸들러
+#### 2) 이벤트 핸들러
 
 HTML 태그의 속성 형태로 존재하는, 이벤트 발생시 실행할 자바스크립트 코드 영역
 
@@ -43,9 +48,9 @@ Javascript가 고도화 됨에 따라 HTML과 Javascript 코드를 분리하는 
 <태그이름 on이벤트이름="...JS코드영역..."></태그이름>
 ```
 
-## #03. Javascript 이벤트 종류
+### #03. Javascript 이벤트 종류
 
-### 1) 마우스관련
+#### 1) 마우스관련
 
 자주 사용되는 이벤트만 이번 단원에서 정리
 
@@ -60,7 +65,7 @@ Javascript가 고도화 됨에 따라 HTML과 Javascript 코드를 분리하는 
 | mouseover | OnMouseOver   | 대상에 마우스 포인터가 위치했을 경우     |
 | dragdrop  | OnDragDrop    | 대상을 클릭한 상태에서 이동했을 경우     |
 
-### 2) 키보드 관련
+#### 2) 키보드 관련
 
 자주 사용되는 이벤트만 이번 단원에서 정리
 
@@ -70,7 +75,7 @@ Javascript가 고도화 됨에 따라 HTML과 Javascript 코드를 분리하는 
 | keyup   | OnKeyUp       | 키를 눌렀다가 놓았을 경우                       |
 | keyprss | OnKeyPress    | 화면에 출력되는 키가 눌러질 경우 (한글동작안함) |
 
-### 3) form 요소 관련
+#### 3) form 요소 관련
 
 **20단원-Form요소**에서 정리함
 
@@ -84,7 +89,7 @@ Javascript가 고도화 됨에 따라 HTML과 Javascript 코드를 분리하는 
 | select | OnSelect      | 입력 양식의 한 필드를 선택했을 경우                                               |
 
 
-### 4) 브라우저 관련
+#### 4) 브라우저 관련
 
 자주 사용되는 이벤트만 이번 단원에서 정리
 
@@ -98,7 +103,7 @@ Javascript가 고도화 됨에 따라 HTML과 Javascript 코드를 분리하는 
 | unload | OnUnload      | 대상을 종료했을 경우                              |
 
 
-### 5) 트랜지션 관련
+#### 5) 트랜지션 관련
 
 | 이벤트           | 이벤트 핸들러      | 설 명                    |
 | ---------------- | ------------------ | ------------------------ |

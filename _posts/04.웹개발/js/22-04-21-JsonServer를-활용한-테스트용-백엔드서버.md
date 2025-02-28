@@ -1,9 +1,14 @@
 ---
-layout: post
-title: "[JS] JsonServer를 활용한 테스트용 백엔드서버"
-date: 2022-04-20
-banner_image: index-js.png
-tags: [Javascript]
+title: "JsonServer를 활용한 테스트용 백엔드서버"
+description: ""
+categories: [Web Develpment,Frontend,Javascript]
+date: 2022-04-20 11:33:00 +0900
+author: Hossam
+image: /images/index-js.png
+tags: [Web Develpment,Frontend,Javascript]
+pin: true
+math: true
+mermaid: true
 ---
 
 간단한 JSON 파일 구성만으로 프론트엔드가 Ajax로 연동할 수 있는 테스트 RestfulAPI서버를 구축할 수 있다.
@@ -12,7 +17,7 @@ tags: [Javascript]
 
 
 
-# #01. 설치
+## #01. 설치
 
 ```shell
 npm install -g json-server
@@ -24,9 +29,9 @@ npm install -g json-server
 
 설치 위치가 명령어 실행 위치와 상관 없이 사용자 홈 디렉토리 내의 위치로 지정된다.
 
-# #02. 기본 사용 방법
+## #02. 기본 사용 방법
 
-## 1) JSON 데이터 만들기
+### 1) JSON 데이터 만들기
 
 아래와 같은 형식으로 JSON 데이터 구성
 
@@ -49,7 +54,7 @@ npm install -g json-server
 }
 ```
 
-## 2) json-server 가동하기
+### 2) json-server 가동하기
 
 ```shell
 json-server --watch 데이터파일경로 [--port 3001]
@@ -65,7 +70,7 @@ json-server --watch 데이터파일경로 [--port 3001]
 | PUT | id를 제외한 항목을 전송하여 데이터 수정 | http://localhost:포트번호/테이블이름/id |
 | DELETE | 데이터 삭제 | http://localhost:포트번호/테이블이름/id |
 
-## 3) public 디렉토리 구성
+### 3) public 디렉토리 구성
 
 `json-server`를 가동한 디렉토리에 `public`이라는 이름의 폴더를 생성해 놓으면 이 폴더가 웹 서버상의 root 디렉토리로 사용된다.
 

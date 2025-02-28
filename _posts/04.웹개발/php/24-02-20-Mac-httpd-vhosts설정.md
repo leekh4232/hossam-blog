@@ -11,7 +11,7 @@ math: true
 mermaid: true
 ---
 
-# #01. httpd 설정 파일 편집
+## #01. httpd 설정 파일 편집
 
 편집기로 httpd의 설정 파일을 다시 연다
 
@@ -31,23 +31,23 @@ LoadModule vhost_alias_module lib/httpd/modules/mod_vhost_alias.so
 
 ![img](/images/2024/0220/vhost01.png)
 
-# #02. vhosts 설정 파일 편집
+## #02. vhosts 설정 파일 편집
 
 앞서 include 주석을 해제했던 `httpd-vhosts.conf` 파일을 편집기로 열어서 수정한다.
 
-## [1] VI로 열기
+### [1] VI로 열기
 
 ```shell
 $ vi /opt/homebrew/etc/httpd/extra/httpd-vhosts.conf
 ```
 
-## [2] VSCode로 열기
+### [2] VSCode로 열기
 
 ```shell
 $ code /opt/homebrew/etc/httpd/extra/httpd-vhosts.conf
 ```
 
-## [3] 기본값 정리
+### [3] 기본값 정리
 
 아래와 같이 기본 내용들이 작성되어 있다. 템플릿으로 활용할 한 블록만 남겨두고 삭제한다.
 
@@ -70,7 +70,7 @@ $ code /opt/homebrew/etc/httpd/extra/httpd-vhosts.conf
 </VirtualHost>
 ```
 
-## [4] vhost 설정
+### [4] vhost 설정
 
 아래의 형식을 참고하여 가상 호스트를 구성한다.
 
@@ -112,7 +112,7 @@ $ code /opt/homebrew/etc/httpd/extra/httpd-vhosts.conf
 </VirtualHost>
 ```
 
-# #03. 가상 도메인 설정
+## #03. 가상 도메인 설정
 
 Virtual Host로 설정한 `home.hossam.kr`도메인은 실존하는 주소가 아니기 때문에 현재 사용중인 컴퓨터 한정으로 도메인을 가상으로 지정해 주는 작업이 필요하다. 이렇게 하면 개발용 주소와 운영 주소를 구분하여 사용할 수 있다.
 
@@ -130,9 +130,9 @@ $ sudo vi /etc/hosts
 
 ![img](/images/2024/0220/vhost02.png)
 
-# 04. 결과 확인
+## 04. 결과 확인
 
-## [1] 서비스 재시작
+### [1] 서비스 재시작
 
 Virtual Host에 설정한 디렉토리를 생성하고 아파치 웹 서버를 재시작한다.
 
@@ -149,7 +149,7 @@ $ brew services list
 ![img](/images/2024/0220/vhost03.png)
 
 
-## [2] 웹 브라우저로 확인
+### [2] 웹 브라우저로 확인
 
 Virtual Host가 설정된 디렉토리에 임의의 파일을 생성하고 웹 브라우저로 접속해 결과를 확인한다.
 

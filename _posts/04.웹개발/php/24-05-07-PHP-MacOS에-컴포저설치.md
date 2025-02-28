@@ -11,9 +11,9 @@ math: true
 mermaid: true
 ---
 
-# #01. 컴포저 설치하기
+## #01. 컴포저 설치하기
 
-## [1] PHP 설치 확인
+### [1] PHP 설치 확인
 
 우선 MacOS에 PHP가 구성되어 있어야 하며 터미널을 통해 PHP가 실행 가능해야 합니다.
 
@@ -27,7 +27,7 @@ $ php --version
 
 ![php](/images/2024/0507/php.png)
 
-## [2] 컴포저 설치하기
+### [2] 컴포저 설치하기
 
 컴포저를 설치하는 방법은 공식 사이트에 설명이 되어 있습니다.
 
@@ -35,18 +35,18 @@ $ php --version
 
 터미널을 열고 공식 사이트의 설명에 따라 명령어를 입력하면 됩니다.
 
-### (1) 설치 스크립트 다운로드
+#### (1) 설치 스크립트 다운로드
 
 ```shell
 $ php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 ```
 
-### (2) 설치 스크립트 실행
+#### (2) 설치 스크립트 실행
 ```shell
 $ php composer-setup.php
 ```
 
-### (3) 설치 스크립트 삭제
+#### (3) 설치 스크립트 삭제
 
 ```shell
 $ php -r "unlink('composer-setup.php');"
@@ -56,7 +56,7 @@ $ php -r "unlink('composer-setup.php');"
 
 ![composer1](/images/2024/0507/composer1.png)
 
-### (4) 설치된 파일 이동
+#### (4) 설치된 파일 이동
 
 설치가 완료되면 `composer.phar` 파일이 생성됩니다. 이 파일을 `/usr/local/bin/composer` 경로로 이동합니다.
 
@@ -64,7 +64,7 @@ $ php -r "unlink('composer-setup.php');"
 $ sudo mv composer.phar /usr/local/bin/composer
 ```
 
-# #02. 설치 결과 확인
+## #02. 설치 결과 확인
 
 설치가 완료되면 아래의 명령어를 통해 컴포저 버전을 확인해 봅시다.
 

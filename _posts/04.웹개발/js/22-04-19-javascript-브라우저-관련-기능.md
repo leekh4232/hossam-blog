@@ -1,26 +1,31 @@
 ---
-layout: post
-title: "[JS] 브라우저 관련 기능"
-date: 2022-04-19
-banner_image: index-js.png
-tags: [Javascript]
+title: "Javascript 브라우저 관련 기능"
+description: ""
+categories: [Web Develpment,Frontend,Javascript]
+date: 2022-04-19 11:33:00 +0900
+author: Hossam
+image: /images/index-js.png
+tags: [Web Develpment,Frontend,Javascript]
+pin: true
+math: true
+mermaid: true
 ---
 
 HTML 태그외에 웹 브라우저와 직접적으로 연관되는 기능들
 
 
 
-# window 내장 객체
+## window 내장 객체
 
 브라우저의 새창,팝업 열기/닫기 기능 제공
 
-## a.html을 새 창(새 탭)으로 열기
+### a.html을 새 창(새 탭)으로 열기
 
 ```javascript
 window.open('a.html');
 ```
 
-## a.html을 팝업으로 열기
+### a.html을 팝업으로 열기
 
 ```javascript
 // window.open('URL', '창이름', '옵션');
@@ -38,7 +43,7 @@ window.open('a.html','mywin','width=500, height=300, scrollbars=no,
 		- location의 경우 피싱 사이트 방지를 위해서 동작하지 않음.
 
 
-## 현재 창 닫기
+### 현재 창 닫기
 
 ```javascript
 window.close();
@@ -48,7 +53,7 @@ self.close();
 
 
 
-# navigator 내장객체
+## navigator 내장객체
 
 웹 브라우저의 정보 조회 기능.
 

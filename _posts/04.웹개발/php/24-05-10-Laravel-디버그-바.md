@@ -11,7 +11,7 @@ math: true
 mermaid: true
 ---
 
-# #01. Laravel Debugbar
+## #01. Laravel Debugbar
 
 Laravel Debugbar는 라라벨 프레임워크를 사용하여 어플리케이션을 구성할 때 Query, View, Event 등 개발자에게 도움이 되는 다양한 정보를 화면상에 표시해주는 패키지다.
 
@@ -19,13 +19,13 @@ Laravel Debugbar는 라라벨 프레임워크를 사용하여 어플리케이션
 
 > https://github.com/barryvdh/laravel-debugbar
 
-## [1] Laravel Debugbar 설치
+### [1] Laravel Debugbar 설치
 
 ```shell
 $ composer require barryvdh/laravel-debugbar
 ```
 
-##### 출력결과
+###### 출력결과
 
 ```shell
 ./composer.json has been updated
@@ -68,7 +68,7 @@ No security vulnerability advisories found.
 Using version ^3.13 for barryvdh/laravel-debugbar
 ```
 
-## [2] 설정값을 프로젝트로 복사
+### [2] 설정값을 프로젝트로 복사
 
 이후 프로젝트 디렉토리에서 터미널을 열고 아래 명령을 수행하면 기본 설정값이 프로젝트 내에 복사된다.
 
@@ -80,9 +80,9 @@ $ php artisan vendor:publish
 
 ![img](/images/2024/0510/lb01.png)
 
-# #02. 디버그바 사용하기
+## #02. 디버그바 사용하기
 
-## [1] 브라우저를 통한 결과 확인
+### [1] 브라우저를 통한 결과 확인
 
 브라우저를 새로고침 하면 화면 하단에 디버그바가 표시된다.
 
@@ -90,11 +90,11 @@ $ php artisan vendor:publish
 
 ![img](/images/2024/0510/lb02.png)
 
-## [2] 디버그 ON/OFF
+### [2] 디버그 ON/OFF
 
 `/.env` 파일에서 `APP_DEBUG`값을 `false`로 변경하면 디버그바가 더 이상 표시되지 않는다. (쩐다...)
 
-## [3] 디버그 메시지 사용
+### [3] 디버그 메시지 사용
 
 `Debugbar::info()`, `Debugbar::error()` 같이 로그 레벨에 따라 파사드를 호출할 수도 있지만, 가장 많이 사용하게 될 함수는 단순하게 값을 덤프할 수 있는 `debug()`함수이다.
 
@@ -121,7 +121,7 @@ Route::get('/', function () {
 ![img](/images/2024/0510/lb03.png)
 
 
-## [3] 설정파일 확인
+### [3] 설정파일 확인
 
 이후 아래와 같이 기본 설정 내용들이 셋팅된 `/config/debugbar.php` 파일이 생성된다.
 
