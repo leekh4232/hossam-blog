@@ -3,7 +3,7 @@ title:  "[CSS] CSS Flex"
 description: "flexbox는 float나 inline-block의 단점을 보완하여 레이아웃 배치 전용 기능으로 고안된 CSS의 새로운 display 특성으로 컨테이너에 적용하는 속성과 아이템에 적용하는 속성으로 나누어 집니다. flexbox를 사용하면 레이아웃 구성에 많은 편의성이 보장되지만 IE는 지원하지 않기 때문에 IE를 고려해야 하는 프로젝트에서는 사용해서는 안됩니다."
 categories: [05.Frontend,HTML&CSS]
 tags: [Web Development,Frontend,CSS]
-image: /images/index-webdevelopment.jpg
+image: /images/index-webdevelopment.png
 date: 2022-03-20 13:01:28 +0900
 author: Hossam
 pin: true

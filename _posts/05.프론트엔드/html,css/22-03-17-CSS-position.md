@@ -3,7 +3,7 @@ title:  "[CSS] position 속성"
 description: "Position 속성은 요소의 배치 방법을 결정하는 속성으로 `relative`(상대좌표), `absolute`(절대좌표), `fixed`(고정좌표), `sticky(유동좌표)` 방식이 있습니다. 각 방식에 따라 좌표가 설정되는 기준이 달라집니다."
 categories: [05.Frontend,HTML&CSS]
 tags: [Web Development,Frontend,CSS]
-image: /images/index-webdevelopment.jpg
+image: /images/index-webdevelopment.png
 date: 2022-03-17 13:01:28 +0900
 author: Hossam
 pin: true

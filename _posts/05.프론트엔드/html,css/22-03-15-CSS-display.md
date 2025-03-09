@@ -3,7 +3,7 @@ title:  "[CSS] display 속성"
 description: "display속성은 요소를 어떻게 보여줄지를 결정하는 속성으로 block-level과 inline-level의 특징을 결정짓는 속성이기도 합니다. block-level과 inline-level이 각각 다른 기본값을 갖고 있기 때문에 이를 잘 구별하여 사용해야 합니다."
 categories: [05.Frontend,HTML&CSS]
 tags: [Web Development,Frontend,CSS]
-image: /images/index-webdevelopment.jpg
+image: /images/index-webdevelopment.png
 date: 2022-03-14 13:01:28 +0900
 author: Hossam
 pin: true
