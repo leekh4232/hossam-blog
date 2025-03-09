@@ -1,11 +1,11 @@
 ---
 title: "Javascript 정규표현식"
 description: ""
-categories: [Web Develpment,Frontend,Javascript]
+categories: [Frontend,Javascript]
 date: 2022-04-09 11:33:00 +0900
 author: Hossam
 image: /images/index-js.png
-tags: [Web Develpment,Frontend,Javascript]
+tags: [Web Development,Frontend,Javascript]
 pin: true
 math: true
 mermaid: true

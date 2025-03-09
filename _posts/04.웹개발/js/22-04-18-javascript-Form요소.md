@@ -1,11 +1,11 @@
 ---
 title: "Javascript로 Form 요소 제어하기"
 description: ""
-categories: [Web Develpment,Frontend,Javascript]
+categories: [Frontend,Javascript]
 date: 2022-04-18 11:33:00 +0900
 author: Hossam
 image: /images/index-js.png
-tags: [Web Develpment,Frontend,Javascript]
+tags: [Web Development,Frontend,Javascript]
 pin: true
 math: true
 mermaid: true

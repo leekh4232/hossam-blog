@@ -1,10 +1,10 @@
 ---
 title:  "[jQuery] HTML 요소 제어"
 description: "우리가 HTML태그의 속성이라고 부르는 것을 Javascript에서는 값을 갖는 속성의 경우 `attribute`, 값을 갖지 않고 속성 이름만 지정하는 경우 `property`라고 합니다. `attribute`는 `img`태그의 `src`속성과 같은 것이 있고 `property`는 `disabled`, `readonly`, `checked` 등의 속성이 있습니다."
-categories: [Web Develpment,Frontend,jQuery]
+categories: [Web Development,Frontend,jQuery]
 date:   2022-05-03 11:33:00 +0900
 image: /images/index-jquery.png
-tags: [Web Develpment,Frontend,jQuery]
+tags: [Web Development,Frontend,jQuery]
 ---
 
 ## #01. 요소의 판별
@@ -158,16 +158,16 @@ $("#bar").toggleClass('클래스이름  클래스이름 ...');
 
 ### 요소의 숨김,표시 처리
 
-| 함수 | 설명 |
-|-----|-----|
-| show([time, [function]]) | 요소를 표시한다. |
-| hide([time, [function]]) | 요소를 숨긴다. |
-| toggle([time, [function]]) | 요소의 숨김과 표시를 자동 반복한다. |
-| fadeIn([time, [function]]) | 패이드 효과를 적용하여 요소를 표시한다. |
-| fadeOut([time, [function]]) | 패이드 효과를 적용하여 요소를 숨긴다. |
-| fadeToggle([time, [function]]) | 패이드 효과를 적용하여 요소의 숨김과 표시를 자동 반복한다. |
-| slideDown([time, [function]]) | 요소를 아래로 펼쳐서 표시한다. |
-| slideUp([time, [function]]) | 요소를 위로 접어서 요소를 숨긴다. |
+| 함수                            | 설명                                                                      |
+| ------------------------------- | ------------------------------------------------------------------------- |
+| show([time, [function]])        | 요소를 표시한다.                                                          |
+| hide([time, [function]])        | 요소를 숨긴다.                                                            |
+| toggle([time, [function]])      | 요소의 숨김과 표시를 자동 반복한다.                                       |
+| fadeIn([time, [function]])      | 패이드 효과를 적용하여 요소를 표시한다.                                   |
+| fadeOut([time, [function]])     | 패이드 효과를 적용하여 요소를 숨긴다.                                     |
+| fadeToggle([time, [function]])  | 패이드 효과를 적용하여 요소의 숨김과 표시를 자동 반복한다.                |
+| slideDown([time, [function]])   | 요소를 아래로 펼쳐서 표시한다.                                            |
+| slideUp([time, [function]])     | 요소를 위로 접어서 요소를 숨긴다.                                         |
 | slideToggle([time, [function]]) | 요소를 위,아래로 접고 펼치는 효과를 사용하여 숨김과 표시를 자동 반복한다. |
 
 - 시간값은 1/1000초 단위로 지정한다.

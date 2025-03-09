@@ -1,11 +1,11 @@
 ---
 title: "JsonServer를 활용한 테스트용 백엔드서버"
 description: ""
-categories: [Web Develpment,Frontend,Javascript]
+categories: [Frontend,Javascript]
 date: 2022-04-20 11:33:00 +0900
 author: Hossam
 image: /images/index-js.png
-tags: [Web Develpment,Frontend,Javascript]
+tags: [Web Development,Frontend,Javascript]
 pin: true
 math: true
 mermaid: true
@@ -62,13 +62,13 @@ json-server --watch 데이터파일경로 [--port 3001]
 
 아래와 같은 형식으로 URL접근이 가능
 
-| Method | 설명 | URL |
-|--|--|--|
-| GET | 목록(전체)보기 | http://localhost:포트번호/테이블이름  |
-| GET | 특정항목(상세)보기 | http://localhost:포트번호/테이블이름/id |
-| POST | id를 제외한 항목을 전송하여 데이터 추가 | http://localhost:포트번호/테이블이름 |
-| PUT | id를 제외한 항목을 전송하여 데이터 수정 | http://localhost:포트번호/테이블이름/id |
-| DELETE | 데이터 삭제 | http://localhost:포트번호/테이블이름/id |
+| Method | 설명                                    | URL                                     |
+| ------ | --------------------------------------- | --------------------------------------- |
+| GET    | 목록(전체)보기                          | http://localhost:포트번호/테이블이름    |
+| GET    | 특정항목(상세)보기                      | http://localhost:포트번호/테이블이름/id |
+| POST   | id를 제외한 항목을 전송하여 데이터 추가 | http://localhost:포트번호/테이블이름    |
+| PUT    | id를 제외한 항목을 전송하여 데이터 수정 | http://localhost:포트번호/테이블이름/id |
+| DELETE | 데이터 삭제                             | http://localhost:포트번호/테이블이름/id |
 
 ### 3) public 디렉토리 구성
 

@@ -1,7 +1,7 @@
 ---
 title:  "[CSS] background 속성"
 description: "배경 관련 속성은 특정 HTML요소에 배경 색상이나 배경 이미지를 설정하는 속성입니다. 자칫 단순해 보이는 이 기능을 잘 활용하면 웹 페이지의 로딩속도를 향상시키는데 도움이 됩니다."
-categories: [Web Development,Frontend,HTML&CSS]
+categories: [Frontend,HTML&CSS]
 tags: [Web Development,Frontend,CSS]
 image: /images/index-webdevelopment.jpg
 date: 2022-03-18 13:01:28 +0900

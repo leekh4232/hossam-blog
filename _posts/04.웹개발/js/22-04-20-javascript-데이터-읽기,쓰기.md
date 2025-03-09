@@ -1,11 +1,11 @@
 ---
 title: "Javascript 데이터 읽기,쓰기"
 description: ""
-categories: [Web Develpment,Frontend,Javascript]
+categories: [Frontend,Javascript]
 date: 2022-04-20 11:33:00 +0900
 author: Hossam
 image: /images/index-js.png
-tags: [Web Develpment,Frontend,Javascript]
+tags: [Web Development,Frontend,Javascript]
 pin: true
 math: true
 mermaid: true
@@ -68,10 +68,10 @@ Javascript는 웹 브라우저에 사용자 데이터를 저장할 수 있습니
 - 웹스토리지는 클라이언트에 대한 정보를 저장.
 - 웹스토리지는 로컬에만 정보를 저장, 쿠키는 서버와 로컬에 정보를 저장.
 
-| 종류 | 특징 | 사용 예 |
-|--|--|
-| ​로컬스토리지 | 클라이언트에 대한 정보를 영구적으로 저장 | 자동 로그인 저장 |
-| 세션스토리지 | 세션 종료 시(브라우저 닫을 경우) 클라이언트에 대한 정보 삭제 | 입력 폼 정보 저장, 비로그인 장바구니 |
+| 종류          | 특징                                                         | 사용 예                              |
+| ------------- | ------------------------------------------------------------ |
+| ​로컬스토리지 | 클라이언트에 대한 정보를 영구적으로 저장                     | 자동 로그인 저장                     |
+| 세션스토리지  | 세션 종료 시(브라우저 닫을 경우) 클라이언트에 대한 정보 삭제 | 입력 폼 정보 저장, 비로그인 장바구니 |
 
 ### 장점
 

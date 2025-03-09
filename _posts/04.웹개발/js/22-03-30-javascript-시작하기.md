@@ -3,11 +3,11 @@ title:  "Javascript 시작하기"
 description: "Javascript는 웹 페이지에 생동감을 불어 넣을 수 있는 프로그래밍 언어로서 웹 페이지(HTML) 안에 포함되는 형태로 작성되어 웹 페이지가 브라우저에 의해 열릴 때 자동으로 실행됩니다.
 
 웹 브라우저 밖의 환경에서 자바스크립트를 해석할 수 있는 V8 엔진이 등장한 이후 V8이 설치된 모든 장치에서 실행 가능하기 때문에 현재는 웹 프로그래밍 뿐만 아니라 백엔드(Node.js), 게임(Unity3D), 머신러닝(Tensorflow.js), 모바일 App(React Native), PC용 응용 프로그램 등 다양하게 사용하는 것이 가능해져서 오늘날 가장 많이 사용되는 프로그래밍 언어중 하나로 자리매김 하였습니다."
-categories: [Web Develpment,Frontend,Javascript]
+categories: [Frontend,Javascript]
 date:   2022-03-30 11:33:00 +0900
 author: Hossam
 image: /images/index-js.png
-tags: [Web Develpment,Frontend,Javascript]
+tags: [Web Development,Frontend,Javascript]
 pin: true
 math: true
 mermaid: true

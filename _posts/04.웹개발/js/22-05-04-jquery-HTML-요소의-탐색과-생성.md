@@ -1,10 +1,10 @@
 ---
 title:  "[jQuery] HTML 요소의 탐색과 생성"
 description: "지금까지의 내용은 `body`태그 안에 미리 코딩해 놓은 HTML 요소에 대한 제어였다면 이제는 `body`안에 없는 새로운 요소를 jQuery로 생성하고 화면 어딘가에 생성된 요소를 추가할 차례 입니다."
-categories: [Web Develpment,Frontend,jQuery]
+categories: [Web Development,Frontend,jQuery]
 date:   2022-05-04 11:33:00 +0900
 image: /images/index-jquery.png
-tags: [Web Develpment,Frontend,jQuery]
+tags: [Web Development,Frontend,jQuery]
 ---
 
 
@@ -24,13 +24,13 @@ $("#foo").attr(key, value)
 
 ### 주변 요소 탐색하기
 
-| 함수 | 설명 |
-|-----|-----|
-| prev() | 이전 요소를 리턴한다. |
-| next() | 다음 요소를 리턴한다. |
-| parent() | 상위 요소를 리턴한다. |
+| 함수       | 설명                      |
+| ---------- | ------------------------- |
+| prev()     | 이전 요소를 리턴한다.     |
+| next()     | 다음 요소를 리턴한다.     |
+| parent()   | 상위 요소를 리턴한다.     |
 | children() | 하위 요소(들)을 리턴한다. |
-| eq(n) | n번째 요소를 리턴한다. |
+| eq(n)      | n번째 요소를 리턴한다.    |
 
 ### 부모 요소 얻기
 
@@ -88,16 +88,16 @@ obj.attr('id', 'helloworld');
 
 ### 2) 동적으로 생성된 요소를 HTML 문서에 삽입하기
 
-| 함수 | 설명 |
-|-----|-----|
-| A.html(B) | A의 시작태그와 끝태그 사이의 내용을 B로 대체한다. |
-| A.append(B) | A에 B를 추가한다. 기존의 내용을 유지하면서 맨 뒤에 추가한다. |
-| B.appendTo(A) | B를 A에 추가한다. 기존의 내용을 유지하면서 맨 뒤에 추가한다. |
-| A.prepend(B) | A에 B를 추가한다. 기존의 내용을 유지하면서 맨 앞에 추가한다. |
-| B.prependTo(A) | B를 A에 추가한다. 기존의 내용을 유지하면서 맨 앞에 추가한다. |
-| A.insertBefore(B) | A를 B의 직전에 삽입한다. |
-| A.insertAfter(B) | A를 B의 직후에 삽입한다. |
-| A.empty() | A의 모든 내용을 비운다. |
+| 함수              | 설명                                                         |
+| ----------------- | ------------------------------------------------------------ |
+| A.html(B)         | A의 시작태그와 끝태그 사이의 내용을 B로 대체한다.            |
+| A.append(B)       | A에 B를 추가한다. 기존의 내용을 유지하면서 맨 뒤에 추가한다. |
+| B.appendTo(A)     | B를 A에 추가한다. 기존의 내용을 유지하면서 맨 뒤에 추가한다. |
+| A.prepend(B)      | A에 B를 추가한다. 기존의 내용을 유지하면서 맨 앞에 추가한다. |
+| B.prependTo(A)    | B를 A에 추가한다. 기존의 내용을 유지하면서 맨 앞에 추가한다. |
+| A.insertBefore(B) | A를 B의 직전에 삽입한다.                                     |
+| A.insertAfter(B)  | A를 B의 직후에 삽입한다.                                     |
+| A.empty()         | A의 모든 내용을 비운다.                                      |
 
 
 

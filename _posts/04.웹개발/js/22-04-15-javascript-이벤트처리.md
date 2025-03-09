@@ -1,11 +1,11 @@
 ---
 title: "Javascript 이벤트 처리"
 description: ""
-categories: [Web Develpment,Frontend,Javascript]
+categories: [Frontend,Javascript]
 date: 2022-04-15 11:33:00 +0900
 author: Hossam
 image: /images/index-js.png
-tags: [Web Develpment,Frontend,Javascript]
+tags: [Web Development,Frontend,Javascript]
 pin: true
 math: true
 mermaid: true
@@ -54,16 +54,16 @@ Javascript가 고도화 됨에 따라 HTML과 Javascript 코드를 분리하는 
 
 자주 사용되는 이벤트만 이번 단원에서 정리
 
-| 이벤트    | 이벤트 핸들러 | 설 명                                 |
-| --------- | ------------- | ------------------------------- |
-| click     | OnClick       | 대상을 클릭했을 경우                 |
-| dblclick  | OnDblClick    | 대상을 더블클릭했을 경우              |
+| 이벤트    | 이벤트 핸들러 | 설 명                                  |
+| --------- | ------------- | -------------------------------------- |
+| click     | OnClick       | 대상을 클릭했을 경우                   |
+| dblclick  | OnDblClick    | 대상을 더블클릭했을 경우               |
 | mousedown | OnMouseDown   | 마우스 버튼을 누르고 있는 동안         |
-| mouseup   | OnMouseUp     | 마우스 버튼을 누르고 있다가 땐 경우     |
-| mousemove | OnMouseMove   | 마우스를 움직였을 경우               |
-| mouseout  | OnMouseOut    | 대상에서 마우스 포인터가 벗어났을 경우   |
-| mouseover | OnMouseOver   | 대상에 마우스 포인터가 위치했을 경우     |
-| dragdrop  | OnDragDrop    | 대상을 클릭한 상태에서 이동했을 경우     |
+| mouseup   | OnMouseUp     | 마우스 버튼을 누르고 있다가 땐 경우    |
+| mousemove | OnMouseMove   | 마우스를 움직였을 경우                 |
+| mouseout  | OnMouseOut    | 대상에서 마우스 포인터가 벗어났을 경우 |
+| mouseover | OnMouseOver   | 대상에 마우스 포인터가 위치했을 경우   |
+| dragdrop  | OnDragDrop    | 대상을 클릭한 상태에서 이동했을 경우   |
 
 #### 2) 키보드 관련
 

@@ -1,7 +1,7 @@
 ---
 title:  "Laravel 프로젝트 생성"
 description: "나는 Docker등의 가상환경보다는 로컬 환경에서 직접 개발하는 것을 선호한다. 그러다 보니 Laravel도 Docker환경보다는 로컬에 직접 프로젝트를 생성하고 DBMS도 로컬에서 직접 구동시키는 과정을 시도해 보았다."
-categories: [Web Develpment,Backend,PHP]
+categories: [Backend,PHP]
 date:   2024-05-09 11:33:00 +0900
 author: Hossam
 image: /images/index-laravel.jpg

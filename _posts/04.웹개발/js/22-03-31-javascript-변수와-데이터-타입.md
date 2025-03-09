@@ -1,11 +1,11 @@
 ---
 title:  "Javascript 변수와 데이터 타입"
 description: "변수란 데이터를 저장할 수 있는 메모리 상의 공간을 말합니다."
-categories: [Web Develpment,Frontend,Javascript]
+categories: [Frontend,Javascript]
 date:   2022-03-31 11:33:00 +0900
 author: Hossam
 image: /images/index-js.png
-tags: [Web Develpment,Frontend,Javascript]
+tags: [Web Development,Frontend,Javascript]
 pin: true
 math: true
 mermaid: true
@@ -156,12 +156,12 @@ console.log(typeof a);
 
 형식 문자가 사용되는 이유는, 같은 데이터라도 해석하는 방향에 따라 다른 문자가 될 수 있기 때문이다. 예로, 'a'라는 알파벳 소문자 데이터는 글자로 인식하는 경우(%c) a를 출력하지만, 정수로 인식하는 경우(%d) 97을 출력할 수 있다.
 
-| 형식문자 | 설명 |
-|---|---|
-| `%d` | 모든 종류의 숫자 |
-| `%s` | 글자, 문장 |
-| `%o` | 객체. Javascript의 모든 데이터는 객체로서 존재하기 때문에 사실상 모든 종류의 값에 적용 가능 |
-| `%j` | JSON객체. JSON역시 객체의 한 종류이므로 사실상 모든 종류의 값에 적용 가능 |
+| 형식문자 | 설명                                                                                        |
+| -------- | ------------------------------------------------------------------------------------------- |
+| `%d`     | 모든 종류의 숫자                                                                            |
+| `%s`     | 글자, 문장                                                                                  |
+| `%o`     | 객체. Javascript의 모든 데이터는 객체로서 존재하기 때문에 사실상 모든 종류의 값에 적용 가능 |
+| `%j`     | JSON객체. JSON역시 객체의 한 종류이므로 사실상 모든 종류의 값에 적용 가능                   |
 
 ```javascript
 console.log("%s %d", "Hello", 123);

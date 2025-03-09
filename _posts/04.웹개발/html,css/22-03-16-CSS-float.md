@@ -1,7 +1,7 @@
 ---
 title:  "[CSS] float 속성"
 description: "float 속성은 박스를 부모의 왼쪽이나 오른쪽에 고정시키고 문장을 그 옆으로 흐르도록 하기 위한 속성입니다."
-categories: [Web Development,Frontend,HTML&CSS]
+categories: [Frontend,HTML&CSS]
 tags: [Web Development,Frontend,CSS]
 image: /images/index-webdevelopment.jpg
 date: 2022-03-16 13:01:28 +0900

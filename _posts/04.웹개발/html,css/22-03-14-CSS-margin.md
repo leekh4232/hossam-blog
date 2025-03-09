@@ -1,7 +1,7 @@
 ---
 title:  "[CSS] Margin 속성"
 description: "margin은 바깥 여백을 의미하는 속성입니다. 사람이 벽에 기대어 있는 상태에서 벽을 밀 경우 사람이 밀려나게 되듯이 박스의 바깥에 여백을 형성하면 그 여백의 크기만큼 박스가 밀려나게 됩니다. padding은 박스의 크기에 관여하는 속성이지만 margin은 박스의 위치에 관여하는 속성입니다."
-categories: [Web Development,Frontend,HTML&CSS]
+categories: [Frontend,HTML&CSS]
 tags: [Web Development,Frontend,CSS]
 image: /images/index-webdevelopment.jpg
 date: 2022-03-14 13:01:28 +0900

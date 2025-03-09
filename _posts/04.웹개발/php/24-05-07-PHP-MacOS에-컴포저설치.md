@@ -1,7 +1,7 @@
 ---
 title:  "MacOS에 컴포저 설치 (8.3.2)"
 description: "Laravel, Codeigniter 등의 PHP프레임워크들이나 PHP 패키지들 의존성을 관리한다던지 PHP클래스파일을 로딩할때 쓰인다. 컴포저는 Packagist라는 PHP 패키지 저장소와 연동되어 있는데, 설치를 원하는 패키지에 대한 composer.json 파일을 작성하고 터미널 창에서 composer.json 파일이 있는 디렉토리로 이동한 후, 알맞은 실행 명령을 입력하면 해당 파일에 기술된 패키지를 자동으로 다운로드받는다. composer.json 파일의 내용과 실행 명령어는 각 벤더 측에서 제공하고 있으니 자세한 것은 그곳을 찾아보면 된다. (출처: 위키백과, https://namu.wiki/w/%EC%BB%B4%ED%8F%AC%EC%A0%80)"
-categories: [Web Develpment,Backend,PHP]
+categories: [Backend,PHP]
 date:   2024-05-07 11:33:00 +0900
 author: Hossam
 image: /images/index-mac.jpg

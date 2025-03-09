@@ -1,7 +1,7 @@
 ---
 title:  "Laravel 디버그 바"
 description: "라라벨 디버그바를 사용하면 프로그램의 디버그가 손쉬워 진다. PHP가 이런것도 되다니... 세상 참 좋아졌다."
-categories: [Web Develpment,Backend,PHP]
+categories: [Backend,PHP]
 date:   2024-05-10 11:33:00 +0900
 author: Hossam
 image: /images/index-laravel.jpg
