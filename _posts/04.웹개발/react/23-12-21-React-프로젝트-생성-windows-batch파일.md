@@ -12,7 +12,7 @@ math: true
 mermaid: true
 ---
 
-# Batch 파일이 수행하는 작업
+## Batch 파일이 수행하는 작업
 
 수행하는 작업은 다음과 같다.
 
@@ -23,13 +23,13 @@ mermaid: true
 5. `.git` 폴더와 `.gitignore` 파일 삭제
 6. 프로젝트 가동
 
-# 사용 방법
+## 사용 방법
 
 ```batch
 react-app 프로젝트이름
 ```
 
-# batch 파일 소스코드
+## batch 파일 소스코드
 
 ```shell
 @echo off
