@@ -1,7 +1,7 @@
 ---
 title:  "Windows기반 Jekyll Server 구성"
 description: "Github Page에 블로그 포스팅을 push하고 결과를 확인하는 과정을 반복하면 github에서 변환되는 시간이 매우 길게 느껴져서 불편합니다. 그래서 자신의 컴퓨터에서 Jekyll이 직접적으로 작동할 수 있도록 로컬 환경을 구성하고 글을 작성하는 동안은 내 컴퓨터에서 바로 확인한 후 최종적으로 완료되었을 경우에만 github에 push하는 것이 여러모로 편리합니다."
-categories: [컴퓨터활용,Jekyll]
+categories: [99.컴퓨터활용,Jekyll]
 date:   2024-02-19 15:26:00 +0900
 author: Hossam
 image: /images/photo/study-cafe.png

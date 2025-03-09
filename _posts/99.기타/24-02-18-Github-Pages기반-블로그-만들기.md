@@ -1,7 +1,7 @@
 ---
 title:  "Github Pages 기반 블로그 만들기"
 description: "수업을 진행하면서 자신의 학습 과정을 블로그로 정리하라는 말을 자주 합니다. 자신의 학습 과정이 쌓이면 그것도 하나의 포트폴리오가 될 수 있기 때문입니다. 하지만 정작 블로그를 처음 시작하는 경우 어떤 플랫폼에서 시작해야 할지 선듯 결정하기 어려운 경우가 있습니다. Velog나 Tistory등과 같이 완성형 서비스를 사용하는것도 방법이 되겠지만 Github-Pages를 활용하면 하나하나 내가 직접 꾸미는 재미를 느낄 수 있습니다. 하지만 어느정도의 HTML,CSS,JS에 대한 배경지식이 필요한 것은 사실입니다."
-categories: [컴퓨터활용,Jekyll]
+categories: [99.컴퓨터활용,Jekyll]
 date:   2024-02-18 15:26:00 +0900
 author: Hossam
 image: /images/photo/study-cafe.png

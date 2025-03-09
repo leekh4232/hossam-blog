@@ -1,7 +1,7 @@
 ---
 title:  "ChatGPT Prompt Pattern"
 description: "노마드코더 영상을 보다가 ChatGPT 활용팁이 소개되어 내용을 정리해 본다."
-categories: [컴퓨터활용,ChatGPT]
+categories: [99.컴퓨터활용,ChatGPT]
 date:   2024-06-02 15:26:00 +0900
 author: Hossam
 image: /images/photo/study-cafe.png
