@@ -5,7 +5,7 @@ categories: [02.Operating System,Mac]
 date:   2023-07-13 13:26:00 +0900
 author: Hossam
 image: /images/index-mac.jpg
-tags: [컴퓨터활용,Operating System,Mac,OpenJDK,JAVA]
+tags: [컴퓨터활용,Operating System,Mac,OpenJDK,Java]
 pin: true
 math: true
 mermaid: true
