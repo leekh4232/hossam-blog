@@ -11,7 +11,7 @@ math: true
 mermaid: true
 ---
 
-# 구문형식
+## 구문형식
 
 ```sql
 SELECT CONCAT('private ', if(DATA_TYPE = 'int', 'int ', 'String '), LOWER(COLUMN_NAME), ';', if(COLUMN_COMMENT='', '', concat(' \t // ', COLUMN_COMMENT))) AS `value`
@@ -19,7 +19,7 @@ FROM information_schema.columns
 WHERE table_schema = 'DB이름' AND table_name = '테이블이름';
 ```
 
-# 사용예시
+## 사용예시
 
 ```sql
 SELECT CONCAT('private ', if(DATA_TYPE = 'int', 'int ', 'String '), LOWER(COLUMN_NAME), ';', if(COLUMN_COMMENT='', '', concat(' \t // ', COLUMN_COMMENT))) AS `value`
@@ -27,7 +27,7 @@ FROM information_schema.columns
 WHERE table_schema = 'myschool' AND table_name = 'student';
 ```
 
-# 결과
+## 결과
 
 ```
 +--------------------------------------------------+
