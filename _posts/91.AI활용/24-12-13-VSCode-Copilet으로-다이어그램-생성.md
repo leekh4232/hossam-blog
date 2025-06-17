@@ -1,11 +1,11 @@
 ---
 title:  "VSCode에서 Copilet으로 다이어그램 생성하기"
 description: SpringBoot 프로젝트 수업을 진행하면서 클래스 다이어그램과 시퀀스 다이어그램을 소개하고자 했는데, IntelliJ의 다이어그램 생성기능이 무료 버전에서는 마음에 들지 않아 시도해 본 방법이다. 결과물은 꽤나 마음에 든다.
-categories: [99.컴퓨터활용,VSCode]
+categories: [91.AI활용,Copilet]
 date:   2024-12-13 23:13:00 +0900
 author: Hossam
 image: /images/photo/study-cafe.png
-tags: [tip & tach,vscode,copilet]
+tags: [AI,vscode,copilet]
 pin: true
 math: true
 mermaid: true
