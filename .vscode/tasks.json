@@ -59,6 +59,15 @@
         "kind": "build"
       },
       "detail": "Runs both the Jekyll server with live reload and build JS files in watch mode."
+    }, 
+    {
+      "label": "Git Pull On Startup",
+      "type": "shell",
+      "command": "git pull",
+      "problemMatcher": [],
+      "runOptions": {
+        "runOn": "folderOpen"
+      }
     }
   ]
 }
