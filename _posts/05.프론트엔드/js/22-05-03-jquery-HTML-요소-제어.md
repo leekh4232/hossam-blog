@@ -26,24 +26,6 @@ tags: [Web Development,Frontend,jQuery]
 </script>
 ```
 
-### `$(e.currentTarget)`
-
-복수 요소에 대한 이벤트에 전달된 콜백함수 안에서 이벤트가 발생한 주체를 의미하는 객체
-
-```html
-<button class='btn'>button1</button>
-<button class='btn'>button1</button>
-<button class='btn'>button1</button>
-
-<script>
-    // `btn`이라는 클래스를 갖는 모든 요소에 대해서 일괄적으로 적용되는 이벤트
-    $('.btn').on("click", (e) => {
-        // 버튼은 한번에 하나씩만 누를 수 있다.
-        // 이 안에서 $(e.currentTarget)는 클릭된 주체를 의미한다.
-    });
-</script>
-```
-
 ## #02. HTML 요소의 속성 제어
 
 ### 특정 요소에 적용되어 있는 속성값 조회하기
