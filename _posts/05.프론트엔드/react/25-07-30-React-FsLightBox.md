@@ -4,7 +4,7 @@ description: "어떤 요소를 클릭했을 때 지정된 이미지나 영상 �
 categories: [05.Frontend,React]
 tags: [Web Development,Frontend,React,Windows,Batch]
 image: /images/index-react.png
-date:2025-07-30 10:00:22
+date: 2025-07-30 10:00:22
 author: Hossam
 pin: true
 math: true
