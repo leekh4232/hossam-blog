@@ -1,5 +1,5 @@
 ---
-title:  "React 프로젝트 생성 windows 배치 파일"
+title:  "[React] 프로젝트 생성 windows 배치 파일"
 description: "React 강의를 진행하면서 단원별로 React Project를 생성하고 yarn berry로 패키지 관리자의 버전을 변경하고, 그 밖에 여러가지 기본 패키지들을 설치하는 반복작업은 무척 시간 낭비가 심하다.
 그래서 수업시에 사용하고자 프로젝트 초기화 batch 파일을 작성했다."
 categories: [05.Frontend,React]
