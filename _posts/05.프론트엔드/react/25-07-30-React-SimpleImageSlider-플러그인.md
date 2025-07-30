@@ -82,6 +82,62 @@ const images = [
 />
 ```
 
+### 3. 기본 사용 방법이 적용된 간단한 샘플 코드
+
+```jsx
+/**
+ * React Simple Image Slider
+ *
+ * https://github.com/kimcoder/react-simple-image-slider#readme
+ *
+ * yarn add react-simple-image-slider
+ */
+
+import React, {memo} from 'react';
+
+import styled from 'styled-components';
+
+import ImageSlider from "react-simple-image-slider";
+
+import slide1 from '../../assets/img/slide1.jpg';
+import slide2 from '../../assets/img/slide2.jpg';
+import slide3 from '../../assets/img/slide3.jpg';
+import slide4 from '../../assets/img/slide4.jpg';
+
+const SliderExContainer = styled.div`
+
+`;
+
+const SliderEx = memo(() => {
+    const images = [
+        { url: slide1 },
+        { url: slide2 },
+        { url: slide3 },
+        { url: slide4 }
+    ];
+
+    return (
+        <SliderExContainer>
+            <h2>SliderEx</h2>
+
+            <ImageSlider
+                width="100%"
+                height={480}
+                images={images}
+                showBullets={true}
+                showNavs={true}
+                autoPlay={true}
+                autoPlayDelay={2.0}
+                loop={true} />
+
+        </SliderExContainer>
+    );
+});
+
+export default SliderEx;
+```
+
+
 ## #04. ImageSlider 주요 속성
 
 ### 1. 필수 속성
@@ -262,136 +318,9 @@ const StyledSliderComponent = () => (
 );
 ```
 
-## #06. 실용적인 팁과 주의사항
-
-### 1. 성능 최적화
-
-#### 이미지 최적화
-```jsx
-// 이미지 크기 최적화
-const optimizedImages = [
-    { url: '/images/slider/slide1-800x400.webp' },  // WebP 형식 사용
-    { url: '/images/slider/slide2-800x400.webp' },
-    { url: '/images/slider/slide3-800x400.webp' },
-];
-
-// 이미지 미리로딩
-const preloadImages = (imageUrls) => {
-    imageUrls.forEach(({ url }) => {
-        const img = new Image();
-        img.src = url;
-    });
-};
-
-useEffect(() => {
-    preloadImages(optimizedImages);
-}, []);
-```
-
-#### 메모리 관리
-```jsx
-const MemoizedSlider = memo(({ images, autoPlay = false }) => {
-    return (
-        <ImageSlider
-            images={images}
-            width="100%"
-            height={400}
-            autoPlay={autoPlay}
-            useGPURender={true}  // GPU 렌더링 활성화
-        />
-    );
-});
-```
-
-### 2. 접근성 (Accessibility) 개선
-
-```jsx
-// 접근성을 고려한 슬라이더
-const AccessibleSlider = () => {
-    const [currentSlide, setCurrentSlide] = useState(0);
-
-    return (
-        <div>
-            <h3 id="slider-title">이미지 갤러리</h3>
-            <div
-                role="region"
-                aria-labelledby="slider-title"
-                aria-live="polite"
-            >
-                <ImageSlider
-                    images={images}
-                    width="100%"
-                    height={400}
-                    showBullets={true}
-                    showNavs={true}
-                    autoPlay={false}  // 접근성을 위해 자동재생 비활성화
-                />
-            </div>
-            <p className="sr-only">
-                {images.length}개의 이미지 중 {currentSlide + 1}번째 이미지
-            </p>
-        </div>
-    );
-};
-```
-
-### 3. 에러 처리
-
-```jsx
-const SafeSlider = () => {
-    const [imageError, setImageError] = useState(false);
-
-    const handleImageError = () => {
-        setImageError(true);
-    };
-
-    // 이미지 로드 실패 시 대체 이미지 제공
-    const safeImages = images.map(img => ({
-        ...img,
-        url: img.url || '/images/placeholder.jpg'
-    }));
-
-    if (imageError) {
-        return <div>이미지를 불러올 수 없습니다.</div>;
-    }
-
-    return (
-        <ImageSlider
-            images={safeImages}
-            width="100%"
-            height={400}
-            onError={handleImageError}
-        />
-    );
-};
-```
-
-### 4. 레이아웃 조정
-
-```jsx
-// body 태그의 패딩을 고려한 마진 조정
-const LayoutAdjustedSlider = styled.div`
-    margin-left: -50px;  // body 패딩만큼 마진 조정
-    margin-right: -50px;
-
-    @media (max-width: 768px) {
-        margin-left: -20px;
-        margin-right: -20px;
-    }
-`;
-```
-
 ## #07. 전체 소스코드
 
 ```jsx
-/**
- * React Simple Image Slider
- * 간단하고 가벼운 React 이미지 슬라이더 컴포넌트
- *
- * GitHub: https://github.com/kimcoder/react-simple-image-slider
- * 설치: yarn add react-simple-image-slider
- */
-
 import React, {memo, useState, useEffect} from 'react';
 import styled from 'styled-components';
 import ImageSlider from "react-simple-image-slider";
@@ -547,5 +476,3 @@ const SliderEx = memo(() => {
 
 export default SliderEx;
 ```
-
-이 포스팅을 통해 React Simple Image Slider의 모든 기능을 활용하여 다양한 형태의 이미지 슬라이더를 구현할 수 있습니다. 반응형 디자인, 접근성, 성능 최적화까지 고려한 실무에서 바로 사용 가능한 코드들을 제공합니다.
