@@ -55,7 +55,7 @@ const [singleToggler, setSingleToggler] = useState(false);
 
 `<FsLightbox>` 컴포넌트에 설정된 `toggler` 프로퍼티의 값이 `true`인 경우 모달창이 표시되고 `false`인 경우 모달창이 사라진다. 이 부분을 상태변수로 제어하는 것이다.
 
-```javascript
+```jsx
 <button className="btn" onClick={e => { setSingleToggler(!singleToggler) }}>
     <img src={img1} width={150} alt="img1" />
 </button>
@@ -85,7 +85,7 @@ const [multiToggler, setMultiToggler] = useState({
 
 주의할 점은 `slides`가 $1$ 부터 시작된다는 점이다.
 
-```javascript
+```jsx
 <button className="btn" onClick={e => { setMultiToggler({open: !multiToggler.open, index: 1}) }}>
     <img src={img1} width={150} alt="img1" />
 </button>
@@ -137,7 +137,7 @@ const [youtubeToggler, setYoutubeToggler] = useState(false);
 
 `<FsLightbox>` 컴포넌트의 `sources` 프로퍼티에 Youtube 영상 주소를 지정하면 된다.
 
-```javascript
+```jsx
 <button className="btn" onClick={e => setYoutubeToggler(!youtubeToggler)}>
     <img src='https://img.youtube.com/vi/pssTvN-X4VY/hqdefault.jpg' width="150" alt="img1" />
 </button>
@@ -182,28 +182,7 @@ const [youtubeMultiToggler, setYoutubeMultiToggler] = useState({
 
 ## 전체 소스코드
 
-```javascript
-/**
- * FsLightBoxEx
- *  어떤 요소(img, button, a 등)를 클릭했을 때
- *  지정된 이미지, 영상 등을 모달 팝업으로 표시하는 기능
- *
- * https://fslightbox.com/
- *
- * yarn add fslightbox-react
- *
- * [Youtube 썸네일]
- * - 동영상 배경 썸네일(480x360): https://img.youtube.com/vi/영상코드/0.jpg
- * - 동영상 시작지점 썸네일(120x90): https://img.youtube.com/vi/영상코드/1.jpg
- * - 동영상 중간지점 썸네일(120x90): https://img.youtube.com/vi/영상코드/2.jpg
- * - 동영상 끝지점 썸네일(120x90): https://img.youtube.com/vi/영상코드/3.jpg
- * - 고해상도 썸네일(1280x720): https://img.youtube.com/vi/영상코드/maxresdefault.jpg
- * - 중간해상도 썸네일(640x480): https://img.youtube.com/vi/영상코드/sddefault.jpg
- * - 고품질 썸네일(480x360): https://img.youtube.com/vi/영상코드/hqdefault.jpg
- * - 중간품질 썸네일(320x180): https://img.youtube.com/vi/영상코드/mqdefault.jpg
- * - 보통품질 썸네일(120x90):  https://img.youtube.com/vi/영상코드/default.jpg
- */
-
+```jsx
 import React, {memo, useState} from 'react';
 
 import styled from 'styled-components';
