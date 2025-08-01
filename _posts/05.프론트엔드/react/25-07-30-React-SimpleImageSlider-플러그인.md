@@ -53,7 +53,7 @@ const images = [
 ];
 ```
 
-![슬라이더 데모](/images/2025/0703/slider-demo.png)
+![슬라이더 데모](/images/2025/0730/slider-demo.png)
 
 ## #03. 기본 사용 방법
 
