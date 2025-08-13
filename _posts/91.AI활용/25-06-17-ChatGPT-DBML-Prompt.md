@@ -1,7 +1,7 @@
 ---
 title:  "ChatGPT DBML Prompt"
 description: SpringBoot 프로젝트 수업을 진행하면서 데이터베이스 ERD를 DBML로 생성하기 위한 프롬프트를 작성하여 학생들에게 배포했다. 결과물은 꽤 마움에 든다.
-categories: [91.AI활용,ChatGPT]
+categories: [91.AI활용]
 date:   2025-06-17 17:09:00 +0900
 author: Hossam
 image: /images/photo/study-cafe.png

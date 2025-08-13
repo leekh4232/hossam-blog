@@ -2,7 +2,7 @@
 title: "Go 언어로 구축하는 REST API 서버"
 description: "Go의 표준 라이브러리만을 사용하여 CRUD(Create, Read, Update, Delete) 기능을 갖춘 RESTful API 서버를 구축하는 방법을 학습함."
 categories: [03.Coding,Golang]
-date:   2025-08-13 12:04:00 +0900
+date:   2024-11-10 12:04:00 +0900
 author: Hossam
 image: /images/indexs/golang.webp
 tags: [Programming,Golang,REST,API,CRUD,JSON,HTTP]
