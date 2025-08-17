@@ -143,4 +143,11 @@
   site.analytics[platform].id and site.analytics[platform].id != empty %} {%
   include analytics/{{ platform }}.html %} {% endif %} {% endfor %} {% endif %}
   {% include metadata-hook.html %}
+
+    <!-- 옵션: 툴바 표시 -->
+    <script>
+    window.markmap = { autoLoader: { toolbar: true } };
+    </script>
+    <!-- markmap 자동 로더: 페이지 내 code fence를 자동 탐지 -->
+    <script src="https://cdn.jsdelivr.net/npm/markmap-autoloader@latest"></script>
 </head>

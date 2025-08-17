@@ -3,7 +3,7 @@ layout: post
 title: "Go언어와 Spring Boot를 활용한 Web3 로그인 시스템 구축"
 date: 2024-11-13 09:00:00 +0900
 categories: [Go, Project]
-tags: [go, springboot, Web3, authentication, microservice]
+tags: [go, SpringBoot, Web3, authentication, microservice]
 ---
 
 # Go언어와 Spring Boot를 활용한 Web3 로그인 시스템 구축

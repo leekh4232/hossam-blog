@@ -147,7 +147,7 @@ MyRestExceptionHandler --> Actor: JSON 에러 응답
 ### 3. Swagger를 위한 어노테이션 자동 생성
 
 ```
-이 프로젝트는 springboot로 진행중이며 Swagger로 WEB-UI를 만들도록 설정되어 있습니다.
+이 프로젝트는 SpringBoot로 진행중이며 Swagger로 WEB-UI를 만들도록 설정되어 있습니다.
 
 다음에 유의하여 kr.hossam.myshop.controllers.apis 패키지 하위의 모든 클래스에 Swagger에 필요한 @Operation,  @Parameters,  @ApiResponses를 추가해 주세요.
 
