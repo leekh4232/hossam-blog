@@ -13,6 +13,12 @@ timezone: Asia/Seoul
 # Allow future-dated posts to be published
 future: true
 
+# ===== Markmap Jekyll 플러그인용 핵심 설정 =====
+markdown: kramdown        # Kramdown 사용 명시
+highlighter: rouge        # Rouge로 코드 fence 클래스 부여
+safe: false               # 로컬/Actions 빌드에서 커스텀 플러그인 허용
+plugins_dir: _plugins     # (선택) 기본값 명시
+
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # ↓ --------------------------
 
@@ -157,6 +163,7 @@ baseurl: ""
 # ------------ The following options are not recommended to be modified ------------------
 
 kramdown:
+  input: GFM              # GitHub Flavored Markdown: fenced code block 안정화
   footnote_backlink: "&#8617;&#xfe0e;"
   syntax_highlighter: rouge
   syntax_highlighter_opts: # Rouge Options › https://github.com/jneen/rouge#full-options
