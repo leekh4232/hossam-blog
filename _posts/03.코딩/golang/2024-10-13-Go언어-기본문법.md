@@ -270,13 +270,47 @@ func main() {
 }
 ```
 
-Go의 제어문은 Java와 매우 유사하지만, 소괄호`()`를 생략하는 등 더 간결하다. 중괄호는 필수.
+## 5. if문
 
-## 5. if-else
+Go의 제어문은 Java와 매우 유사하지만, 소괄호`()`를 생략하는 등 더 간결하다. 중괄호는 필수.
 
 Go의 `if`문은 조건식에 소괄호를 사용하지 않음.
 
 또한, `if`문 내에서만 사용할 수 있는 짧은 변수 선언을 지원하여 코드를 깔끔하게 유지할 수 있음.
+
+### 구문 형식
+
+#### `if` 문
+
+```go
+if 조건 {
+
+}
+```
+
+#### `if ~ else` 문
+
+```go
+if 조건 {
+
+} else {
+
+}
+```
+
+#### `if ~ else if ~ else` 문
+
+```go
+if 조건1 {
+
+} else if 조건2 {
+
+} else if 조건3 {
+
+} else {
+
+}
+```
 
 ### 실습 5: 캐릭터 레벨에 따른 상태 출력
 
@@ -318,7 +352,6 @@ Go에는 `for`문만 존재하며, Java의 `for`, `while`, `for-each`를 모두 
 | 기본 for문 | `for i := 0; i < 5; i++` | `for (int i = 0; i < 5; i++)` |
 | while처럼 | `for 조건 {}` | `while (조건) {}` |
 | 무한 루프 | `for {}` | `for (;;) {}` 또는 `while (true) {}` |
-| for-range | `for index, value := range collection` | `for (Type value : collection)` |
 
 ### 실습 6: 아이템 목록 출력하기
 
@@ -344,16 +377,7 @@ func main() {
         count++
     }
 
-    // 6.3 `for-range`문 (Java의 향상된 for문 `for (Type item : collection)`과 유사)
-    // 배열, 슬라이스, 맵, 문자열, 채널 등을 순회할 때 사용한다.
-    // 슬라이스/배열/문자열의 경우 `index`와 `value`를 반환한다.
-    fmt.Println("--- for-range문 ---")
-    items := []string{"물약", "검", "방패"} // 문자열 슬라이스 선언
-    for index, item := range items { // `index`는 요소의 인덱스, `item`은 요소의 값
-        fmt.Printf("%d: %s\n", index, item)
-    }
-
-    // 6.4 무한 루프 (Java의 `while (true)` 또는 `for (;;)`)와 동일
+    // 6.3 무한 루프 (Java의 `while (true)` 또는 `for (;;)`)와 동일
     // `for {}` 형태로 사용한다.
     // for {
     //     fmt.Println("무한 루프!")
