@@ -1,7 +1,7 @@
 ---
 title:  "VSCode에서 HTML의 Path값을 thymeleaf 형식으로 변환하기 위한 정규표현식"
 description: 순수 HTML 환경에서 작업한 프로토타입을 SpringBoot MVC 패턴의 View에 적용하는 과정에서 `href="..."`나 `src="..."` 속성에 사용되는 Path값을 `th:href="@{...}`, `th:src="@{...}` 형태로 변환해야 한다. 일일이 처리하는 것은 매우 번거롭기 때문에 VSCode의 replace 기능에 정규표현식을 적용하면 쉽게 처리할 수 있다
-categories: [99.컴퓨터활용,VSCode]
+categories: [90.기타,미분류]
 date:   2024-11-01 23:13:00 +0900
 author: Hossam
 image: /images/photo/study-cafe.png

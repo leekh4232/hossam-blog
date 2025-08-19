@@ -1,7 +1,7 @@
 ---
 title:  "GitHub에서 Fork 한 저장소 동기화 하기"
 description: GitHub에서 다른 계정의 저장소를 내 계정으로 복사하는 것을 Fork라고 합니다. Fork를 하게 되면 원본 저장소의 변경사항이 자동으로 반영되지 않습니다. 원본 저장소와의 동기화를 위해서는 적절한 과정을 거쳐야 하며, 오픈소스 기여와 협업에서 중요한 개념입니다.
-categories: [99.컴퓨터활용, Git]
+categories: [90.기타,미분류]
 date:   2022-02-15 15:26:00 +0900
 author: Hossam
 image: /images/indexs/computing.png

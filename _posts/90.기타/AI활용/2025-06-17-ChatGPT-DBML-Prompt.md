@@ -5,7 +5,7 @@ categories: [91.AI활용]
 date:   2025-06-17 17:09:00 +0900
 author: Hossam
 image: /images/photo/study-cafe.png
-tags: [AI,GhatGPT]
+categories: [90.기타,AI활용]
 pin: true
 math: true
 mermaid: true

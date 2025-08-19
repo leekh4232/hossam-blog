@@ -1,7 +1,7 @@
 ---
 title:  "GitHub Pages 블로그 완전 가이드 (2025년)"
 description: "개발자를 위한 GitHub Pages 기반 블로그 구축 완전 가이드입니다. Jekyll 테마 선택부터 GitHub Actions를 통한 자동 배포, 커스텀 도메인 설정, SEO 최적화까지 다룹니다. 2025년 최신 Jekyll 4.3과 GitHub Actions 워크플로우를 포함하여 전문적인 개발자 블로그를 구축하는 방법을 제시합니다."
-categories: [99.컴퓨터활용,Jekyll]
+categories: [90.기타,미분류]
 date:   2024-02-18 15:26:00 +0900
 author: Hossam
 image: /images/photo/study-cafe.png

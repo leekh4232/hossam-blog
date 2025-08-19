@@ -1,11 +1,11 @@
 ---
 title:  "데이터베이스 테이블을 JSON으로 저장하기"
 description: "작업중에 필요해서 만든 코드"
-categories: [03.Coding,Python]
+categories: [90.기타,유틸리티]
 date: 2025-05-23 12:39:33
 author: Hossam
 image: /images/indexs/python.jpg
-tags: [Programming,Coding,Python,JSON]
+tags: [Programming,Coding,Python,Utility]
 pin: true
 math: true
 mermaid: true
