@@ -2,7 +2,7 @@
 title:  "[React] React Simple Image Slider 플러그인 사용법"
 description: "간단하고 가벼운 React 이미지 슬라이더 컴포넌트로 자동재생, 네비게이션, 인디케이터 등 다양한 기능 지원"
 categories: [05.Frontend,React]
-tags: [Web Development,Frontend,React,Slider,Carousel]
+tags: [Web Development,Frontend,React,Slider,Carousel,Plugin]
 image: /images/indexs/react.png
 date: 2025-07-30 11:00:22 +0900
 author: Hossam

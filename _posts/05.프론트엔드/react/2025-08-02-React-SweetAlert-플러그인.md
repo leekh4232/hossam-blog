@@ -2,7 +2,7 @@
 title:  "[React] SweetAlert2 플러그인 사용법"
 description: "아름답고 반응형인 팝업 메시지 박스를 제공하는 SweetAlert2 플러그인으로 사용자 친화적인 알림 구현"
 categories: [05.Frontend,React]
-tags: [Web Development,Frontend,React,Alert,Modal,Popup]
+tags: [Web Development,Frontend,React,Alert,Modal,Popup,Plugin]
 image: /images/indexs/react.png
 date: 2025-08-02 14:30:22 +0900
 author: Hossam

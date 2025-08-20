@@ -2,7 +2,7 @@
 title:  "[React] Chart.js 플러그인 사용법"
 description: "React Chart.js 를 활용한 다양한 차트 구현 - 막대, 선, 산점도, 파이, 레이더 차트 완벽 가이드"
 categories: [05.Frontend,React]
-tags: [Web Development,Frontend,React,Chart,Visualization,Data]
+tags: [Web Development,Frontend,React,Chart,Visualization,Data,Plugin]
 image: /images/indexs/react.png
 date: 2025-08-03 16:30:22 +0900
 author: Hossam

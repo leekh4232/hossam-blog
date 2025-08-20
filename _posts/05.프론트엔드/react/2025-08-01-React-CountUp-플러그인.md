@@ -2,7 +2,7 @@
 title:  "[React] React CountUp 플러그인 사용법"
 description: "숫자 카운팅 애니메이션을 제공하는 React CountUp 플러그인으로 스크롤에 반응하는 동적 효과 구현"
 categories: [05.Frontend,React]
-tags: [Web Development,Frontend,React,Animation,CountUp]
+tags: [Web Development,Frontend,React,Animation,CountUp,Plugin]
 image: /images/indexs/react.png
 date: 2025-08-01 15:30:22 +0900
 author: Hossam

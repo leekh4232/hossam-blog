@@ -2,7 +2,7 @@
 title:  "[React] FsLightbox 플러그인 사용법"
 description: "어떤 요소를 클릭했을 때 지정된 이미지나 영상 등을 모달창으로 띄울 수 있게 하는 플러그인"
 categories: [05.Frontend,React]
-tags: [Web Development,Frontend,React]
+tags: [Web Development,Frontend,React,Plugin]
 image: /images/indexs/react.png
 date: 2025-07-30 10:00:22 +0900
 author: Hossam
