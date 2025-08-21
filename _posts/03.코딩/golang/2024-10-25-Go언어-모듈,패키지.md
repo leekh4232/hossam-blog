@@ -29,7 +29,7 @@ Java 개발자라면 Maven의 `pom.xml`이나 Gradle의 `build.gradle` 파일과
 
 프로젝트를 모듈로 만들기 위해서는 `go mod init {모듈이름}` 명령어를 사용해야 함.
 
-**실습: `08-패키지,모듈`**
+**실습: `08-모듈,패키지`**
 
 단원 폴더 위치에서 명령프롬프트를 열고 아래의 명령어를 수행
 
@@ -40,7 +40,7 @@ go mod init hello-go
 
 위 명령을 실행하면 해당 폴더에 `go.mod` 파일이 생성됨.
 
-**파일: `08-패키지,모듈/go.mod`**
+**파일: `08-모듈,패키지/go.mod`**
 
 ```mod
 module hello-go
@@ -83,7 +83,7 @@ graph TD
 
 #### 1. myapp 패키지 생성
 
-**실습 파일: `08-패키지,모듈/myapp/mymath.go`**
+**실습 파일: `08-모듈,패키지/myapp/mymath.go`**
 
 Go 언어는 함수 단위이기 때문에 같은 패키지 안에 속한 모든 파일이 하나의 패키지 단위로 포함됨
 
@@ -105,7 +105,7 @@ func subtract(a int, b int) int {
 
 #### 2. main 패키지에서 myapp 패키지 사용
 
-**실습 파일: `08-패키지,모듈/main.go`**
+**실습 파일: `08-모듈,패키지/main.go`**
 
 ```go
 package main
