@@ -80,7 +80,25 @@ graph TD
 
 서버의 상태를 관리하고 API 요청/응답에 사용될 데이터 구조를 먼저 정의함.
 
+**실습 파일: `20-최종프로젝트/main.go (step1)`**
+
 ```go
+package main
+
+import (
+	"crypto/ecdsa"
+	"crypto/elliptic"
+	"crypto/rand"
+	"crypto/sha256"
+	"encoding/hex"
+	"encoding/json"
+	"fmt"
+	"log"
+	"net/http"
+	"sync"
+	"time"
+)
+
 // Message는 사용자가 서명할 데이터의 구조를 정의합니다.
 type Message struct {
 	Content   string    `json:"content"`
@@ -113,6 +131,8 @@ var (
 
 이 핸들러는 서버의 핵심 두뇌로, 클라이언트가 보낸 서명을 검증함.
 
+**실습 파일: `20-최종프로젝트/main.go (step2)`**
+
 ```go
 func handleSubmit(w http.ResponseWriter, r *http.Request) {
 	// ... 요청 파싱 및 메시지 재구성 로직 ...
@@ -140,6 +160,8 @@ func handleSubmit(w http.ResponseWriter, r *http.Request) {
 
 #### `handleGetMessages`: 저장된 메시지 조회
 
+**실습 파일: `20-최종프로젝트/main.go (step3)`**
+
 ```go
 func handleGetMessages(w http.ResponseWriter, r *http.Request) {
 	mu.Lock() // 데이터를 읽는 동안 다른 고루틴이 쓰는 것을 방지하기 위해 잠금을 획득합니다.
@@ -159,6 +181,8 @@ func handleGetMessages(w http.ResponseWriter, r *http.Request) {
 ### 3.3. 암호화 로직: `verify` 함수
 
 서명의 유효성을 검증하는 `verify` 함수는 정확한 키 처리가 매우 중요함.
+
+**실습 파일: `20-최종프로젝트/main.go (step4)`**
 
 ```go
 func verify(publicKeyHex string, signatureHex string, data []byte) bool {
@@ -189,6 +213,10 @@ func verify(publicKeyHex string, signatureHex string, data []byte) bool {
 (주의: 이 예제는 Go 서버가 `http://localhost:8080`에서 실행 중이라고 가정합니다. 만약 브라우저 콘솔에 CORS 오류가 발생한다면, Go 서버 측에서 CORS 헤더를 허용하는 로직을 추가해야 합니다.)
 
 ### `test.html` 전체 코드
+
+**실습 파일: `20-최종프로젝트/test.html`**
+
+> vscode의 live-server를 통해서 실행하세요.
 
 ```html
 <!DOCTYPE html>
@@ -317,6 +345,8 @@ func verify(publicKeyHex string, signatureHex string, data []byte) bool {
 이것으로 Go 언어 학습 시리즈를 마무리함. 이 과정을 통해 Go의 간결함과 강력한 동시성, 그리고 시스템 프로그래밍의 즐거움을 충분히 느꼈기를 바람. 이제 여러분은 Go로 어떤 종류의 애플리케이션이든 만들 수 있는 튼튼한 기초를 갖추게 되었음.
 
 ## 6. 전체 소스 코드 (main.go)
+
+**실습 파일: `20-최종프로젝트/main.go (final)`**
 
 아래는 동시성 문제가 해결된 최종 `main.go` 파일의 전체 코드입니다.
 

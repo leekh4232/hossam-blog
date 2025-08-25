@@ -59,7 +59,7 @@ sequenceDiagram
     Server-->>Client: HTTP 200 OK (Body: JSON 배열)
 ```
 
-**실습 파일: `18-REST-API/01-기본-API-구조/main.go`**
+**실습 파일: `19-REST-API/01-기본-API-구조/main.go`**
 
 ```go
 package main
@@ -146,7 +146,7 @@ sequenceDiagram
     Server-->>Client: HTTP 201 Created (Body: 생성된 Todo 객체)
 ```
 
-**실습 파일: `18-REST-API/02-POST-새-항목-추가/main.go`**
+**실습 파일: `19-REST-API/02-POST-새-항목-추가/main.go`**
 
 ```go
 // (이전 실습의 Todo 구조체, todos 슬라이스는 동일)
@@ -224,7 +224,7 @@ sequenceDiagram
     Server-->>Client: HTTP 200 OK (Body: 수정된 Todo)
 ```
 
-**실습 파일: `18-REST-API/03-PUT-DELETE-항목-수정-삭제/main.go`**
+**실습 파일: `19-REST-API/03-PUT-DELETE-항목-수정-삭제/main.go`**
 
 ```go
 // ... (이전 코드와 거의 동일)
