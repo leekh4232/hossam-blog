@@ -4,7 +4,7 @@ description: "노마드코더 영상을 보다가 ChatGPT 활용팁이 소개되
 categories: [91.AI활용]
 date:   2024-06-02 15:26:00 +0900
 author: Hossam
-image: /images/photo/study-cafe.png
+image: /images/indexs/study-cafe.png
 categories: [90.기타,AI활용]
 pin: true
 math: true

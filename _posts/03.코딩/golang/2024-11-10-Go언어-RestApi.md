@@ -153,6 +153,16 @@ sequenceDiagram
 /** 6. PK역할을 수행할 ID변수 */
 var nextID = 3
 
+/** 1. Todo 자원을 나타내는 구조체 정의 */
+type Todo struct {
+	// ... (이전 실습과 동일)
+}
+
+/** 2. 데이터베이스를 대신할 인메모리 슬라이스 */
+var todos = []Todo{
+	// ... (이전 실습과 동일)
+}
+
 /** 3. /todos 경로의 요청을 처리하는 핸들러 */
 func todosHandler(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {

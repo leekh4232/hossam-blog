@@ -4,7 +4,7 @@ description: 순수 HTML 환경에서 작업한 프로토타입을 SpringBoot MV
 categories: [90.기타,미분류]
 date:   2024-11-01 23:13:00 +0900
 author: Hossam
-image: /images/photo/study-cafe.png
+image: /images/indexs/study-cafe.png
 tags: [tip & tach,vscode,정규표현식]
 pin: true
 math: true
