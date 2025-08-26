@@ -59,7 +59,11 @@ sequenceDiagram
     Server-->>Client: HTTP 200 OK (Body: JSON 배열)
 ```
 
-**실습 파일: `19-REST-API/01-기본-API-구조/main.go`**
+**실습 파일: `17-REST-API/main.go`**
+
+> 코드 실행 후 VSCode의 ThunderClient 익스텐션으로 테스트 가능
+
+> 서버의 가동을 중지하기 위해서는 VSCode에서 `F1`키를 누르고 `Stop Code Run` 명령을 선택해서 실행한다.
 
 ```go
 package main
@@ -71,23 +75,23 @@ import (
 	"net/http"
 )
 
-// 1. Todo 자원을 나타내는 구조체 정의
+/** 1. Todo 자원을 나타내는 구조체 정의 */
 type Todo struct {
 	ID        int    `json:"id"`
 	Title     string `json:"title"`
 	Completed bool   `json:"completed"`
 }
 
-// 2. 데이터베이스를 대신할 인메모리 슬라이스
+/** 2. 데이터베이스를 대신할 인메모리 슬라이스 */
 var todos = []Todo{
 	{ID: 1, Title: "Learn Go", Completed: false},
 	{ID: 2, Title: "Build REST API", Completed: false},
 }
 
-// 3. /todos 경로의 요청을 처리하는 핸들러
+/** 3. /todos 경로의 요청을 처리하는 핸들러 */
 func todosHandler(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
-	// 4. GET 요청 처리
+	/** 4. GET 요청 처리 */
 	case http.MethodGet:
 		jsonBytes, err := json.Marshal(todos)
 		if err != nil {
@@ -95,6 +99,7 @@ func todosHandler(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
 		w.Write(jsonBytes)
 	default:
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
@@ -102,18 +107,12 @@ func todosHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	http.HandleFunc("/todos", todosHandler)
+	// `/todos` 라고만 적용할 경우 todos 이후의 path 파라미터를 받지 못하고 404 에러가 발생함
+	http.HandleFunc("/todos/", todosHandler)
 	fmt.Println("Server starting on port 8080...")
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
 ```
-
-**코드 해설**
-
-1.  `Todo` 구조체: API가 다룰 자원을 Go의 구조체로 모델링함. `json:...` 형태의 태그는 `encoding/json` 패키지가 이 구조체를 JSON으로 변환하거나 JSON에서 구조체로 변환할 때 사용할 필드 이름을 지정함.
-2.  `var todos`: 실제 데이터베이스를 대신하여 할 일 목록을 저장하는 슬라이스. 서버가 시작될 때 두 개의 초기 데이터가 추가됨.
-3.  `todosHandler`: `/todos` 경로로 들어오는 모든 HTTP 요청을 처리하는 함수.
-4.  `switch r.Method`: 요청의 HTTP 메서드(`r.Method`)에 따라 다른 로직을 수행함. `case http.MethodGet`은 `GET` 요청만을 처리하도록 분기함. `json.Marshal`을 사용해 `todos` 슬라이스를 JSON 바이트 배열로 변환하고, `w.Write`를 통해 클라이언트에 응답함.
 
 ---
 
@@ -146,51 +145,59 @@ sequenceDiagram
     Server-->>Client: HTTP 201 Created (Body: 생성된 Todo 객체)
 ```
 
-**실습 파일: `19-REST-API/02-POST-새-항목-추가/main.go`**
+**실습 파일: `17-REST-API/main.go`**
+
+> 기존 코드에 내용 추가
 
 ```go
-// (이전 실습의 Todo 구조체, todos 슬라이스는 동일)
-// ...
+/** 6. PK역할을 수행할 ID변수 */
 var nextID = 3
 
+/** 3. /todos 경로의 요청을 처리하는 핸들러 */
 func todosHandler(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
+	/** 4. GET 요청 처리 */
 	case http.MethodGet:
 		// ... (이전 실습과 동일)
 
-	// 1. POST 요청 처리
+	/** 6. POST 요청 처리 */
 	case http.MethodPost:
-		var newTodo Todo
-		// 2. 요청 본문의 JSON을 newTodo 구조체로 디코딩
-		if err := json.NewDecoder(r.Body).Decode(&newTodo); err != nil {
-			http.Error(w, err.Error(), http.StatusBadRequest)
+		// 폼 데이터 파싱
+		if err := r.ParseForm(); err != nil {
+			http.Error(w, "Failed to parse form", http.StatusBadRequest)
 			return
 		}
-		// 3. 새 ID를 할당하고 전역 ID 값을 1 증가
-		newTodo.ID = nextID
+
+		// 폼 값 추출
+		title := r.PostFormValue("title")
+		if title == "" {
+			http.Error(w, "Title is required", http.StatusBadRequest)
+			return
+		}
+		// "true"가 아니면 모두 false로 처리
+		completed := r.PostFormValue("completed") == "true"
+
+		// 새 Todo 객체 생성
+		newTodo := Todo{
+			ID:        nextID,
+			Title:     title,
+			Completed: completed,
+		}
 		nextID++
-		// 4. 새 Todo를 슬라이스에 추가
+
+		// 새 Todo를 슬라이스에 추가
 		todos = append(todos, newTodo)
 
-		// 5. 성공 응답 전송
+		// 성공 응답 전송
 		w.Header().Set("Content-Type", "application/json")
-		w.WriteHeader(http.StatusCreated)
+		w.WriteHeader(http.StatusOK)
 		json.NewEncoder(w).Encode(newTodo)
 
 	default:
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
 	}
 }
-// ...
 ```
-
-**코드 해설**
-
-1.  `case http.MethodPost`: `todosHandler`의 `switch` 문에 `POST` 메서드를 처리하는 `case`를 추가함.
-2.  `json.NewDecoder(r.Body).Decode(&newTodo)`: 요청의 본문(`r.Body`)으로부터 JSON 데이터를 읽어 `newTodo` 구조체 인스턴스에 채워넣음(디코딩). `r.Body`는 `io.Reader`이므로 `NewDecoder`의 인자로 사용될 수 있음.
-3.  `newTodo.ID = nextID`: 새로운 할 일 항목의 ID를 서버에서 직접 할당함. `nextID`는 마지막으로 사용된 ID를 추적하는 간단한 카운터.
-4.  `todos = append(todos, newTodo)`: 완성된 `newTodo`를 `todos` 슬라이스에 추가하여 데이터를 저장함.
-5.  `w.WriteHeader(http.StatusCreated)`: REST API 규칙에 따라, 새로운 리소스가 성공적으로 생성되었음을 알리는 `201 Created` 상태 코드를 응답 헤더에 씀. 그 후 `json.NewEncoder(w).Encode(newTodo)`를 통해 생성된 객체를 다시 클라이언트에게 응답으로 보내줌.
 
 ---
 
@@ -224,39 +231,78 @@ sequenceDiagram
     Server-->>Client: HTTP 200 OK (Body: 수정된 Todo)
 ```
 
-**실습 파일: `19-REST-API/03-PUT-DELETE-항목-수정-삭제/main.go`**
+**실습 파일: `17-REST-API/main.go`**
+
+기존 코드에 내용 추가
 
 ```go
-// ... (이전 코드와 거의 동일)
+import (
+	"encoding/json"
+	"fmt"
+	"log"
+	"net/http"
+	"strconv"   // <-- 추가
+	"strings"   // <-- 추가
+)
 
-// 1. /todos/{id} 경로를 처리할 핸들러
-func todoHandler(w http.ResponseWriter, r *http.Request) {
-	// 2. URL 경로에서 ID를 추출
-	idStr := strings.TrimPrefix(r.URL.Path, "/todos/")
-	id, err := strconv.Atoi(idStr)
-	if err != nil {
-		http.Error(w, "Invalid ID", http.StatusBadRequest)
-		return
-	}
+// ...
 
+/** 3. /todos 경로의 요청을 처리하는 핸들러 */
+func todosHandler(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
-	// 3. PUT 요청 처리 (수정)
+	/** 4. GET 요청 처리 */
+	case http.MethodGet:
+		// ... (이전 실습과 동일)
+
+	/** 6. POST 요청 처리 */
+	case http.MethodPost:
+		// ... (이전 실습과 동일)
+
+	/** 7. PUT 요청 처리 */
 	case http.MethodPut:
-		// ... (요청 Body 디코딩)
+		// URL 경로에서 ID 추출
+		idStr := strings.TrimPrefix(r.URL.Path, "/todos/")
+		id, err := strconv.Atoi(idStr)
+		if err != nil {
+			http.Error(w, "Invalid ID", http.StatusBadRequest)
+			return
+		}
+
+		// 요청 파라미터인 title, completed 추출
+		title := r.PostFormValue("title")
+		completed := r.PostFormValue("completed") == "true"
+
 		for i := range todos {
 			if todos[i].ID == id {
-				// ... (항목 업데이트)
+				todos[i].Title = title
+				todos[i].Completed = completed
+
+				// 성공 응답 전송
+				w.Header().Set("Content-Type", "application/json")
+				w.WriteHeader(http.StatusOK)
+				json.NewEncoder(w).Encode(todos[i])
 				return
 			}
 		}
 		http.Error(w, "Todo not found", http.StatusNotFound)
 
-	// 4. DELETE 요청 처리 (삭제)
+	/** 8. DELETE 요청 처리 (삭제) */
 	case http.MethodDelete:
+		// URL 경로에서 ID 추출
+		idStr := strings.TrimPrefix(r.URL.Path, "/todos/")
+		id, err := strconv.Atoi(idStr)
+		if err != nil {
+			http.Error(w, "Invalid ID", http.StatusBadRequest)
+			return
+		}
+
 		for i, t := range todos {
 			if t.ID == id {
 				todos = append(todos[:i], todos[i+1:]...)
-				w.WriteHeader(http.StatusNoContent)
+
+				// 성공 응답 전송
+				w.Header().Set("Content-Type", "application/json")
+				w.WriteHeader(http.StatusOK)
 				return
 			}
 		}
@@ -266,23 +312,4 @@ func todoHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
 	}
 }
-
-func main() {
-	http.HandleFunc("/todos", todosHandler)
-	// 5. /todos/ 경로에 대한 핸들러 등록
-	http.HandleFunc("/todos/", todoHandler)
-
-	fmt.Println("Server starting on port 8080...")
-	log.Fatal(http.ListenAndServe(":8080", nil))
-}
 ```
-
-**코드 해설**
-
-1.  `todoHandler`: `/todos/{id}` 형태의 경로를 전담하여 처리할 새로운 핸들러.
-2.  `strings.TrimPrefix`와 `strconv.Atoi`: URL `r.URL.Path` (예: `/todos/1`)에서 `/todos/` 부분을 제거하여 ID(`"1"`)를 얻고, 이를 정수로 변환함. 이는 표준 라이브러리만으로 경로 파라미터를 처리하는 간단한 방법임.
-3.  `case http.MethodPut`: `PUT` 요청을 처리. 요청 본문을 디코딩하여 `updatedTodo`를 만들고, `for` 루프를 돌며 ID가 일치하는 기존 항목을 찾아 필드 값을 업데이트함.
-4.  `case http.MethodDelete`: `DELETE` 요청을 처리. ID가 일치하는 항목을 찾은 뒤, `append(todos[:i], todos[i+1:]...)`라는 슬라이스 트릭을 사용하여 해당 요소를 슬라이스에서 제거함. 성공 시에는 본문이 없는 `204 No Content` 상태 코드를 반환함.
-5.  `http.HandleFunc("/todos/", ...)`: `/todos/`로 시작하는 모든 경로(예: `/todos/1`, `/todos/2/anything`)가 `todoHandler`로 전달되도록 등록함. 이 방식은 간단하지만, 더 복잡한 라우팅 규칙이 필요하다면 전용 라우터를 사용하는 것이 좋음.
-
-이제 Go 표준 라이브러리만으로 완전한 CRUD REST API가 완성되었음.
