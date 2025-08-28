@@ -168,6 +168,12 @@ func handleGetMessages(w http.ResponseWriter, r *http.Request) {
 	defer mu.Unlock() // 함수가 종료될 때 반드시 잠금이 해제되도록 defer 키워드를 사용합니다.
 
 	w.Header().Set("Content-Type", "application/json")
+
+    // CORS 접근 허용
+    w.Header().Set("Access-Control-Allow-Origin", "*")
+    w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE")
+    w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+
 	if len(verifiedMessages) == 0 {
 		w.Write([]byte("[]"))
 		return
@@ -460,6 +466,12 @@ func handleGetMessages(w http.ResponseWriter, r *http.Request) {
 	defer mu.Unlock()
 
 	w.Header().Set("Content-Type", "application/json")
+
+    // CORS 접근 허용
+    w.Header().Set("Access-Control-Allow-Origin", "*")
+    w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE")
+    w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+
 	// 슬라이스를 직접 인코딩하면 nil일 경우 'null'이 되므로, 빈 슬라이스를 만들어 처리합니다.
 	if len(verifiedMessages) == 0 {
 		w.Write([]byte("[]"))
