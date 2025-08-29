@@ -3,7 +3,7 @@ title:  "Ubuntu에 zsh쉘 설치하기"
 description: "쉘이란 명령어를 입력받아 실행시켜주는 명령어 해석기 입니다. 터미널에 탑재되어 실행되며 bash, bsh, csh 등 다양한 종류가 있습니다. 그 중에서 최근에는 여러가지 편의 기능을 위한 플러그인의 설치가 가능하고 테마도 적용할 수 있는 zsh 쉘이 널리 사용되고 있습니다."
 categories: [02.Operating System,Linux,Ubuntu]
 tags: [Operating System,Linux,Ubuntu,zsh]
-image: ./images/indexs/ubuntu.png
+image: /images/indexs/ubuntu.png
 date: 2022-09-06 10:04:19 +0900
 author: Hossam
 pin: true
@@ -11,6 +11,7 @@ math: true
 mermaid: true
 ---
 
+# Ubuntu에 zsh쉘 설치하기
 
 ## #01. 프로그램 설치
 
@@ -52,7 +53,7 @@ chsh -s $(which zsh)
 
 재로그인 후 아래와 같이 쉘 초기 설정에 대한 선택항목이 표시된다. 이후 과정에서 `oh-my-zsh`를 설치하여 설정을 진행할 것이므로 여기서는 `q`를 입력하여 아무런 설정도 진행하지 않음을 선택한다.
 
-![plugin1](./images/2022/0905/first.png)
+![plugin1](/images/2022/0905/first.png)
 
 ### 3. 재로그인 후 쉘 확인하기
 
@@ -69,7 +70,7 @@ $ echo $SHELL
 curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
 ```
 
-![oh-my-zsh 설치 완료시 화면](./images/2022/0905/oh-my-zsh.png)
+![oh-my-zsh 설치 완료시 화면](/images/2022/0905/oh-my-zsh.png)
 
 > 설치 완료 후 재로그인해야 적용된다.
 
@@ -81,7 +82,7 @@ curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | 
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 ```
 
-![plugin1](./images/2022/0905/plugin1.png)
+![plugin1](/images/2022/0905/plugin1.png)
 
 ### 2. 명령어 자동 완성 플러그인 설치
 
@@ -89,7 +90,7 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 git clone https://github.com/zsh-users/zsh-autosuggestions.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 ```
 
-![plugin2](./images/2022/0905/plugin2.png)
+![plugin2](/images/2022/0905/plugin2.png)
 
 
 ## #05. 초기화 파일 수정하기
@@ -104,7 +105,7 @@ vi ~/.zshrc
 
 아래와 같이 표시되는 곳을 찾아 사용하고자 하는 테마로 변경한다.
 
-![theme](./images/2022/0905/theme.png)
+![theme](/images/2022/0905/theme.png)
 
 #### 변경후
 
@@ -120,7 +121,7 @@ ZSH_THEME="af-magic"
 
 아래와 같이 표시되는 곳을 찾아 설치한 플러그인들의 이름을 추가한다.
 
-![plugin](./images/2022/0905/plugin.png)
+![plugin](/images/2022/0905/plugin.png)
 
 #### 변경 후
 
@@ -136,7 +137,7 @@ plugins=(
 
 `ESC`키를 눌러 명령어 모드로 전환한 후 `wq`를 입력하고 엔터를 누른다
 
-![save](./images/2022/0905/save.png)
+![save](/images/2022/0905/save.png)
 
 ## #06. 설정내용 반영하기
 

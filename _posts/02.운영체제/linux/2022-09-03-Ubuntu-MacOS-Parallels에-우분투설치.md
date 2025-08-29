@@ -15,6 +15,8 @@ math: true
 mermaid: true
 ---
 
+# MacOS에서 Parallels를 활용한 우분투 설치
+
 ## Parallels 사용하기 (Mac)
 
 ### 설치 방법 선택하기

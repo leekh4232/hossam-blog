@@ -11,6 +11,8 @@ math: true
 mermaid: true
 ---
 
+# Ubuntu의 SSH 서비스 설정
+
 ## #01. SSH의 이해
 
 ![ssh](/images/2022/0909/ssh.png)

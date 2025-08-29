@@ -13,6 +13,8 @@ math: true
 mermaid: true
 ---
 
+# Ubuntu에 MariaDB 설치
+
 ## #01. DBMS 설치하기
 
 ### 1) 패키지 업데이트

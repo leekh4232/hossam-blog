@@ -11,6 +11,7 @@ math: true
 mermaid: true
 ---
 
+# Ubuntu에 FTP 서비스 설치
 
 ## #01. FTP 서비스 개요
 
@@ -170,6 +171,8 @@ $ sudo ufw status
 
 
 ## #03. FTP 클라이언트를 사용하여 접속 확인하기
+
+이 부분은 리눅스 서버에 원격으로 접속하는 과정이므로 윈도우나 맥에서 진행합니다.
 
 ### 1. FileZilla 클라이언트 설치하기
 
