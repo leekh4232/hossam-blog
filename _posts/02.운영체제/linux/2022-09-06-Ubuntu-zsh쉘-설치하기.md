@@ -147,69 +147,7 @@ plugins=(
 source ~/.zshrc
 ```
 
-
-## #07. Powerlevel10k 테마 설치 (고급)
-
-### 1. Powerlevel10k 설치
-
-```bash
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-```
-
-### 2. 테마 적용
-
-```bash
-# ~/.zshrc 파일에서 테마 변경
-ZSH_THEME="powerlevel10k/powerlevel10k"
-```
-
-### 3. 폰트 설치 (선택사항)
-
-#### 폰트파일 내려받기
-
-```bash
-# Nerd Fonts 설치 (터미널에서 아이콘 표시용)
-wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/FiraCode.zip
-```
-
-#### 압축 해제
-
-```bash
-# 압축 해제 폴더 생성하기
-mkdir -p ~/.local/share/fonts
-
-# 폰트 압축 해제
-unzip FiraCode.zip -d ~/.local/share/fonts/
-```
-
-unzip 명령을 사용할 수 없을 경우 아래 명령으로 zip 명령어 설치
-
-```bash
-sudo apt-get install -y zip
-```
-
-#### 폰트 인식시키기
-
-```bash
-# 폰트 캐시(fontconfig cache)를 새로 생성/갱신
-fc-cache -fv
-```
-
-위 명령을 사용할 수 없을 경우 아래 명령을 실행하여 명령어를 설치해야 함
-
-```bash
-sudo apt update && sudo apt install fontconfig
-```
-
-### 4. Powerlevel10k 설정
-
-```bash
-# 설정 마법사 실행
-p10k configure
-```
-
-
-## #8. `.zshrc`에 추가할 수 있는 유용한 함수
+## #7. `.zshrc`에 추가할 수 있는 유용한 함수
 
 아래 내용 추가 후 각 함수를 명령어로 사용할 수 있다. `$1`은 명령어 뒤에 전달하는 파라미터임.
 
