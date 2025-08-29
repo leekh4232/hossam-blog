@@ -61,7 +61,7 @@ mermaid: true
 ### 1. 서비스 패키지 설치
 
 ```shell
-$ sudo apt-get install vsftpd
+$ sudo apt-get install -y vsftpd
 ```
 
 ![vsftpd](/images/2022/0908/vs1.png)
