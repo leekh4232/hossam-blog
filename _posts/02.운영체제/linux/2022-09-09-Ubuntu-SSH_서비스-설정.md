@@ -24,8 +24,10 @@ mermaid: true
 ### 1. SSH 서비스 동작 여부 확인하기
 
 ```shell
-$ sudo systemctl status sshd
+$ sudo systemctl status ssh
 ```
+
+> Ubuntu `22` 버전에서는 서비스 이름이 `sshd`였는데 `24`버전은 `ssh`로 변경되었습니다. 아래 스크린샷은 22버전에서 캡쳐한 것 입니다. 실제 명령어는 위에 제시한바와 같이 `ssd`로 진행하세요.
 
 ![sshd](/images/2022/0909/ssh-status.png)
 
@@ -34,8 +36,10 @@ $ sudo systemctl status sshd
 ### 2. 부팅시 자동 실행 여부 확인하기
 
 ```shell
-$ sudo systemctl list-unit-files | grep sshd
+$ sudo systemctl list-unit-files | grep ssh
 ```
+
+> Ubuntu `22` 버전에서는 서비스 이름이 `sshd`였는데 `24`버전은 `ssh`로 변경되었습니다. 아래 스크린샷은 22버전에서 캡쳐한 것 입니다. 실제 명령어는 위에 제시한바와 같이 `ssd`로 진행하세요.
 
 ![sshd](/images/2022/0909/ssh-list-unit-file.png)
 
@@ -50,7 +54,7 @@ $ sudo systemctl list-unit-files | grep sshd
 $ sudo vi /etc/ssh/sshd_config
 ```
 
-### 2. 환경설정파일에 아래의 내용 추가
+### 2. 환경설정파일에서 아래의 항목들에 대한 주석을 해제하고 값 수정
 
 > 대소문자 구분과 이름과 값 사이에 `=`표시가 없음에 주의한다.
 
@@ -60,10 +64,11 @@ Port 9901
 
 ## root 계정의 직접 로그인 차단
 PermitRootLogin no
+```
 
-# 프로토콜 버전 지정 (보안상 2만 사용)
-Protocol 2
+### 3. 아래의 항목은 설정파일 맨 밑에 직접 입력합니다.
 
+```bash
 # 최대 인증 시도 횟수 제한
 MaxAuthTries 3
 
@@ -98,15 +103,17 @@ AllowGroups ssh-users
 ### 3. SSH 서비스 재시작
 
 ```shell
-$ sudo systemctl restart sshd
+$ sudo systemctl restart ssh
 ```
+
+> Ubuntu `22` 버전에서는 서비스 이름이 `sshd`였는데 `24`버전은 `ssh`로 변경되었습니다.
 
 ### 4. 방화벽 포트 설정
 
 기본 포트로 사용중이던 22번을 삭제하고 새로 설정한 9901을 허용한다.
 
 ```shell
-$ sudo ufw delete allow 22
+$ sudo ufw delete allow 22/tcp
 $ sudo ufw allow 9901/tcp
 ```
 
