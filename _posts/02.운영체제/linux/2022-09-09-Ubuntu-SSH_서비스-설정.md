@@ -76,6 +76,18 @@ LoginGraceTime 60
 # TCP 포워딩 제한
 AllowTcpForwarding no
 
+# 빈 패스워드 로그인 차단
+PermitEmptyPasswords no
+
+# 특정 IP 주소에서만 접속 허용
+# Match Address 192.168.1.0/24
+#     PasswordAuthentication yes
+
+# TCP keepalive (접속 유지) 설정
+TCPKeepAlive yes
+ClientAliveInterval 60
+ClientAliveCountMax 3
+
 # 특정 사용자만 SSH 접속 허용 (필요시 기입)
 AllowUsers user1 user2
 
@@ -266,21 +278,6 @@ $ sudo vi /etc/ssh/sshd_config
 # 패스워드 인증 비활성화 (키 인증만 허용)
 PasswordAuthentication no
 
-# 빈 패스워드 로그인 차단
-PermitEmptyPasswords no
-
 # 공개키 인증 활성화
 PubkeyAuthentication yes
-
-# 특정 IP 주소에서만 접속 허용
-# Match Address 192.168.1.0/24
-#     PasswordAuthentication yes
-
-# TCP keepalive (접속 유지) 설정
-TCPKeepAlive yes
-ClientAliveInterval 60
-ClientAliveCountMax 3
-
-# DNS 조회 비활성화 (속도 향상)
-UseDNS no
 ```
