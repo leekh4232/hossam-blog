@@ -1,8 +1,6 @@
 ---
 title:  "Ubuntu에 MariaDB 설치"
-description: "MariaDB는 MySQL에서 파생된 오픈소스 RDBMS입니다. 오라클이 썬 마이크로 시스템스를 2010년에 72억 달러(약 8조)에 인수해가면서 썬 마이크로시스템즈에 속해 있던 MySQL 역시 오라클 것이 됨에 따라 상업적으로 MySQL을 이용할 시 사용료를 내도록 정책을 변경되었는데, 이 정책에 반발한 MySQL의 원 개발사의 핵심 창업자중 한 명이었던 몬티 와이드니어스가 2009년 동료들과 나와 MySQL의 소스코드를 기반으로한 오픈소스 RDBMS를 개발한 것이 지금의 MariaDB입니다.
-
-MySQL에서 파생된 것이기 때문에 기본적으로 MySQL과 사용방법이 동일하며 더 좋은 성능을 보여준다고 알려져 있습니다."
+description: "MariaDB는 MySQL에서 파생된 오픈소스 RDBMS입니다. 오라클이 썬 마이크로 시스템스를 2010년에 72억 달러(약 8조)에 인수해가면서 썬 마이크로시스템즈에 속해 있던 MySQL 역시 오라클 것이 됨에 따라 상업적으로 MySQL을 이용할 시 사용료를 내도록 정책을 변경되었는데, 이 정책에 반발한 MySQL의 원 개발사의 핵심 창업자중 한 명이었던 몬티 와이드니어스가 2009년 동료들과 나와 MySQL의 소스코드를 기반으로한 오픈소스 RDBMS를 개발한 것이 지금의 MariaDB입니다. MySQL에서 파생된 것이기 때문에 기본적으로 MySQL과 사용방법이 동일하며 더 좋은 성능을 보여준다고 알려져 있습니다."
 categories: [02.Operating System,Linux,Ubuntu]
 tags: [Operating System,Linux,Ubuntu,MariaDB]
 image: /images/indexs/ubuntu.png
@@ -115,7 +113,7 @@ $ mysql -uroot -p
 
 ![my10](/images/2022/0910/my10.png)
 
-> 정상 접속이 확인되면 이후 FTP를 통해 백업파일을 서버에 업로드 하고 데이터베이스 복구 및 사용자 계정 생성을 수행합니다.
+> 정상 접속이 확인되면 이후 FTP를 통해 백업파일을 서버에 업로드 하고 데이터베이스 복구 및 사용자 계정 생성을 수행한다.
 
 
 ## #03. MySchool Database 복구하기
@@ -146,7 +144,7 @@ $ mysql -uroot -p DATABASE이름 < 백업파일경로
 
 ## #04. 계정 설정
 
-### 1. 사용자 계정 생성하기
+### 1. 사용자 계정 관리
 
 다시 mysql에 root로 로그인 한 후 사용자 계정을 생성한다.
 
@@ -154,7 +152,11 @@ $ mysql -uroot -p DATABASE이름 < 백업파일경로
 sql> create user '아이디'@'접근허용호스트' identified by '비밀번호';
 ```
 
-<div style="page-break-after: always; visibility: hidden">\pagebreak</div>
+사용자 계정을 삭제해야 할 경우 데이터베이스의 root 계정으로 로그인 한 상태에서 아래의 명령을 사용한다.
+
+```sql
+sql> drop user '아이디'@'접근허용호스트';
+```
 
 #### 접근허용 호스트 구분
 

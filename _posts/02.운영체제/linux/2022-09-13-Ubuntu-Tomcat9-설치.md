@@ -33,6 +33,8 @@ $ sudo apt-cache search tomcat
 
 가장 최신 버전이 `tomcat9`으로 확인 됩니다. 설치 가능한 패키지 중에서 Tomcat 엔진 (`tomcat9`), 관리자 기능 (`tomcat9-admin`), 공통 파일(`tomcat9-common`)을 설치하도록 하겠습니다.
 
+> 포스팅 작성 시점에서 가장 최신 버전이 Tomcat9이었습니다. Tomcat10 버전이 확인된다면 Tomcat10 설치를 권장합니다. (Cafe24 동일 버전)
+
 ### 3) 설치하기
 
 Tomcat 엔진 (`tomcat9`), 관리자 기능 (`tomcat9-admin`), 공통 파일(`tomcat9-common`)을 일괄 설치하기 위해서 패키지 이름을 공백으로 구분한 설치 명령어를 입력합니다.
@@ -138,6 +140,8 @@ http://리눅스아이피주소:8080
 ![img](/images/2022/0913/tomcat6.png)
 
 ## #03. Tomcat Manager 접근을 위한 설정
+
+> 실제 상용 환경에서 Tomcat Manager를 사용하는 것은 권장하지 않습니다. 직접 FTP를 사용해서 war 파일을 업로드하고 서비스를 재가동하는 것이 보안에 더 안전합니다.
 
 ### 1) 사용자 계정 파일 설정
 
