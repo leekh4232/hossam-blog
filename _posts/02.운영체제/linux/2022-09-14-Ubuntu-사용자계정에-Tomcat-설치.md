@@ -157,3 +157,185 @@ $ sudo ufw reload
 # 방화벽 상태 확인
 $ sudo ufw status
 ```
+
+## #03. SpringBoot App을 Tomcat에 배포하기
+
+### 1. 업로드, 로그 디렉토리 생성
+
+파일이 업로드 될 폴더와 로그 파일이 저장될 폴더를 생성합니다.
+
+Tomcat이 현재 사용자 권한으로 실행되기 때문에 이미 소유자 권한을 갖고 있으므로 추가적인 퍼미션 처리는 필요 없습니다.
+
+```bash
+$ mkdir spring-upload
+$ mkdir spring-log
+```
+
+### 2. SpringBoot 코드 수정
+
+#### build.gradle
+
+```gradle
+plugins {
+    // ...
+    id 'war'    // <--- 추가 (위치 상관 없음)
+    // ...
+}
+
+// ...
+
+dependencies {
+	// ...
+
+    // WAR 배포를 위한 의존성 (위치 상관 없음)
+    providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+
+	// ...
+}
+
+// 추가
+war {
+    archiveFileName = "${archiveBaseName.get()}-${archiveVersion.get()}.${archiveExtension.get()}"
+}
+
+// ...
+```
+
+#### 메인클래스 (OOOOApplication.java)
+
+`SpringBootServletInitializer` 클래스에 대한 상속을 추가하고 `configure` 메서드를 재정의 합니다.
+
+```java
+package kr.hossam.myshop;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.actuate.autoconfigure.wavefront.WavefrontProperties.Application;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
+
+// import 구문 추가
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+
+@EnableScheduling
+@SpringBootApplication
+// SpringBootServletInitializer 클래스 상속 추가
+public class MyshopApplication extends SpringBootServletInitializer {
+
+    public static void main(String[] args) {
+        SpringApplication.run(MyshopApplication.class, args);
+    }
+
+    // WAR 배포를 위한 설정을 수행하는 메서드 재정의
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+        return application.sources(Application.class);
+    }
+}
+```
+
+#### logback-spring.xml
+
+로그 파일이 저장되는 경로를 앞서 생성한 디렉토리로 지정합니다.
+
+```xml
+<!-- ... 생략 ... -->
+
+<!-- log file path -->
+<property name="LOG_PATH" value="/home/leekh/spring-log" />
+
+<!-- ... 생략 ... -->
+```
+
+#### application.properties
+
+파일이 업로드 될 디렉토리의 경로를 앞서 생성한 디렉토리로 지정합니다.
+
+이 때 데이터베이스 접속 정보가 개발장비와 Linux서버가 서로 다르다면 Linux 서버에 맞춰 수정합니다.
+
+```properties
+spring.datasource.url=jdbc:log4jdbc:mariadb://127.0.0.1:3306/myschool?characterEncoding=UTF8
+spring.datasource.driver-class-name=net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+spring.datasource.username=myschool
+spring.datasource.password=1234
+
+# ... 생략 ...
+
+upload.dir=/home/leekh/study-springboot
+```
+
+#### FileHelper.java
+
+이 파일은 제가 진행하는 수업의 예제 코드에 해당하는 내용입니다.
+
+SpringBoot를 Tomcat에 배포할 경우 jar 파일의 이름으로 중간 경로가 생기는데 이를 ContextPath라고 합니다.
+
+업로드 된 파일의 URL을 생성할 때 ContextPath를 덧붙여 주는 처리를 추가합니다.
+
+```java
+package kr.hossam.myshop.helpers;
+
+// ... 생략 ...
+
+    // [추가] Request 객체 주입을 위한 import문
+import jakarta.servlet.http.HttpServletRequest;
+
+@Slf4j
+@Component
+@RequiredArgsConstructor
+public class FileHelper {
+
+    // [추가] Request 객체 주입
+    private final HttpServletRequest request;
+
+    // ... 생략 ...
+
+    public String getFileUrl(String filePath) throws Exception {
+        if (filePath == null || filePath.isEmpty()) {
+            return null;
+        }
+
+        // 파일이 존재하는지 확인
+        File file = new File(uploadDir, filePath);
+        if (!file.exists()) {
+            return null;
+        }
+
+        // [수정] 파일 URL 생성 --> 사이트 URL에 ContextPath 추가
+        String fileUrl = String.format("%s%s%s", request.getContextPath(), uploadUrl, filePath);
+        return fileUrl;
+    }
+}
+```
+
+### 3. SpringBoot 빌드하기
+
+프로젝트 루트 디렉토리 위치에서 터미널을 열고 아래의 명령을 수행합니다.
+
+> 개발PC에서 수행하세요.
+
+```bash
+$ gradlew bootWar
+```
+
+프로젝트 폴더내의 `/build/libs` 디렉토리 안에 `*.war`파일이 생성됩니다. 이 파일의 이름을 적절히 수정합니다.
+
+톰켓에 업로드 했을 때 `http://서버주소:포트번호/war파일이름` 으로 URL이 생성됩니다.
+
+### 4. war 파일 업로드
+
+FTP를 통해 리눅스에 접속합니다. 톰켓이 설치된 사용자 계정으로 접속하면 Tomcat의 디렉토리가 보입니다.
+
+톰켓 디렉토리 내의 `webapps` 폴더 안에 war 파일을 업로드 하고 톰켓을 재시작 합니다.
+
+```bash
+$ sudo systemctl restart tomcat10-leekh
+```
+
+이제 웹 브라우저로 접속하여 결과를 확인합니다.
+
+### 5. 수정된 war 파일을 재배포하기
+
+war 파일을 Tomcat의 webapps 디렉토리에 업로드하고 Tomcat을 재가동하면 war파일의 압축이 해제됩니다.
+
+FTP로 war파일과 압축이 해제된 폴더를 삭제한 후, 수정된 war파일을 다시 업로드하고 Tomcat을 재가동하면 재배포가 완료 됩니다.
