@@ -73,8 +73,8 @@ drwxr-xr-x  9 leekh leekh     4096  3월  3 12:35 apache-tomcat-10.1.44
 `systemctl` 명령으로 실행할 수 있는 서비스 설정 파일을 직접 생성해야 합니다.
 
 ```bash
-# vi /etc/systemd/system/생성할서비스이름.service
-$ vi /etc/systemd/system/tomcat10-leekh.service
+# sudo vi /etc/systemd/system/생성할서비스이름.service
+$ sudo vi /etc/systemd/system/tomcat10-leekh.service
 ```
 
 VI 에디터가 열리면 다음의 내용을 입력합니다.
@@ -229,7 +229,8 @@ public class MyshopApplication extends SpringBootServletInitializer {
     // WAR 배포를 위한 설정을 수행하는 메서드 재정의
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-        return application.sources(Application.class);
+        // return application.sources(클래스이름.class);
+        return application.sources(MyshopApplication.class);
     }
 }
 ```
