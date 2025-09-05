@@ -4,7 +4,7 @@ description: "Node.js를 시작하는데 필수적으로 알아야 하는 기본
 categories: [06.Backend,Node]
 date:   2025-08-28 09:00:00 +0900
 author: Hossam
-image: /images/indexs/node1.png
+image: /images/indexs/node2.png
 tags: [Web Development,Backend,Node]
 pin: true
 math: true
