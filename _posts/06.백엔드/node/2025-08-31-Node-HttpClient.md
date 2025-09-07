@@ -284,39 +284,34 @@ mermaid: true
 
 **`/helpers/FetchHelper.js`**
 ```javascript
+import logHelper from './LogHelper.js';
+
 const fetchHelper = {
     __setUrl: function (url) {
         if (url.constructor !== URL) {
-            // http나 https로 시작하지 않는다면?
-            if (!url.startsWith("http")) {
-                // url 문자열에 기본 URL을 추가 --> http://localhost:8080/
-                const baseUrl = window.location.origin; // 현재 페이지의 기본 URL
-                // URL 객체 생성 --> /api/my_calc, http://localhost:8080/
-                return new URL(url, baseUrl);
-            } else {
-                // URL 객체 생성
-                return new URL(url);
-            }
+            return new URL(url);
         }
-
         return url;
     },
-    __request: async function (url, method = "get", params = null) {
-        console.group("FetchHelper ::: %s", new Date().toLocaleString());
-
+    __request: async function (url, method = "get", params = null, headers = {}) {
         // 요청 URL이 URL객체가 아닌 경우 객체 생성
         url = this.__setUrl(url);
 
         // post, put, delete 방식에서 파라미터가 FormData 객체가 아닌 경우 객체 변환
         if (method.toLocaleLowerCase() !== "get" && params) {
-            if (params.constructor !== FormData) {
-                const tmp = structuredClone(params);
-                params = new FormData();
 
-                for (const t in tmp) {
-                    const value = tmp[t];
-                    if (value) {
-                        params.set(t, value);
+            if (headers?.["Content-Type"] === "application/json") {
+                params = JSON.stringify(params);
+            } else {
+                if (params.constructor !== FormData) {
+                    const tmp = structuredClone(params);
+                    params = new FormData();
+
+                    for (const t in tmp) {
+                        const value = tmp[t];
+                        if (value) {
+                            params.set(t, value);
+                        }
                     }
                 }
             }
@@ -329,25 +324,20 @@ const fetchHelper = {
             options = {
                 method: method,
                 cache: "no-cache",
-                headers: {},
+                headers: headers,
                 body: params,
             };
-
-            console.log(`options: %o`, options);
         }
 
         try {
             // 백엔드로부터의 응답 받기
-            console.log(`→ [${method}] ${url}`);
             const response = await fetch(url, options);
+            logHelper.info(`→ [${method}] ${url} >>> ${response.status} ${response.statusText}`);
 
             // 백엔드가 에러를 보내왔다면?
             if (parseInt(response.status / 100) != 2) {
                 let message = response.statusText;
                 let json = await response.json();
-
-                //console.log(response);
-                //console.log(json);
 
                 if (!message) {
                     message = json?.message ?? "서버에서 에러가 발생했습니다.";
@@ -362,17 +352,13 @@ const fetchHelper = {
             // 응답으로부터 JSON 데이터 추출
             result = await response.json();
         } catch (err) {
-            console.error(err);
-            console.groupEnd();
+            logHelper.error("FetchHelper Request Error", err);
             throw err;
         }
 
-        console.log("← %o", result);
-        console.groupEnd();
-
         return result;
     },
-    get: async function(urlString, params, loader) {
+    get: async function(urlString, params, headers = {}) {
         let url = this.__setUrl(urlString);
 
         // params를 url에 QueryString형태로 추가해야 함
@@ -394,19 +380,19 @@ const fetchHelper = {
             }
         }
 
-        return await this.__request(url, "get", null, loader);
+        return await this.__request(url, "get", null, headers);
     },
-    post: async function(urlString, params, loader) {
+    post: async function(urlString, params, headers = {}) {
         // params를 FormData객체 형태로 변환해야 함
-        return await this.__request(urlString, "post", params, loader);
+        return await this.__request(urlString, "post", params, headers);
     },
-    put: async function(urlString, params, loader) {
+    put: async function(urlString, params, headers = {}) {
         // params를 FormData객체 형태로 변환해야 함
-        return await this.__request(urlString, "put", params, loader);
+        return await this.__request(urlString, "put", params, headers);
     },
-    delete: async function(urlString, params, loader) {
+    delete: async function(urlString, params, headers = {}) {
         // params를 FormData객체 형태로 변환해야 함
-        return await this.__request(urlString, "delete", params, loader);
+        return await this.__request(urlString, "delete", params, headers);
     }
 }
 
