@@ -17,6 +17,17 @@ mermaid: true
 
 이번 시간에는 Node.js 백엔드 환경에서 가장 대표적인 LLM인 OpenAI의 API를 연동하는 방법을 학습합니다. 이를 통해 여러분의 백엔드 서비스에 강력한 AI 기능을 내장할 수 있게 될 것입니다.
 
+## OpenAI API는 유료 서비스입니다
+
+본격적인 학습에 앞서, **OpenAI API는 유료 서비스**라는 점을 명확히 인지해야 합니다. 비용은 API 요청 및 응답에 사용된 텍스트의 양, 즉 **토큰(Token)** 수를 기준으로 부과됩니다. 1,000 토큰은 대략 영어 단어 750개에 해당합니다.
+
+비용은 사용하는 모델에 따라 다르며, 이 포스팅에서 사용할 `gpt-3.5-turbo` 모델의 경우 2025년 9월 기준으로 다음과 같습니다.
+
+-   **입력(Input) 토큰**: 100만 토큰당 약 $0.50
+-   **출력(Output) 토큰**: 100만 토큰당 약 $1.50
+
+일반적으로 질문(입력)보다 답변(출력)의 텍스트 양이 많으므로 출력 비용이 더 높게 책정되어 있습니다. 다행히 OpenAI는 **신규 가입자에게 일정 기간 사용할 수 있는 무료 크레딧을 제공**하므로, 이를 활용하여 부담 없이 학습과 테스트를 진행할 수 있습니다. 하지만 실제 서비스를 운영할 때에는 예상치 못한 과도한 비용이 발생하지 않도록 사용량을 모니터링하고 제어하는 전략이 반드시 필요합니다.
+
 ## 주요 OpenAI API 엔드포인트
 
 OpenAI는 단순히 대화를 나누는 것 외에도 다양한 AI 기능을 API 형태로 제공합니다. 각 기능은 고유한 엔드포인트(Endpoint)를 통해 접근할 수 있습니다. 주요 엔드포인트와 그 용도는 다음과 같습니다.
@@ -81,88 +92,87 @@ OPENAI_API_KEY="여기에_발급받은_API_키를_붙여넣으세요"
 
 ## 1. 순수 HTTP 클라이언트로 API 연동하기
 
-먼저 `node-fetch`를 사용하여 OpenAI의 `chat/completions` API를 직접 호출하는 예제입니다. `FetchHelper` 대신 `node-fetch`를 사용한 이유는 `FetchHelper`가 브라우저 환경의 `FormData`를 기준으로 설계되어 있어, JSON 기반의 API 연동에는 `node-fetch`가 더 직관적이기 때문입니다.
+먼저 `node-fetch` 기반으로 직접 구현한 `FetchHelper`를 사용하여 OpenAI의 `chat/completions` API를 직접 호출하는 예제입니다. 이 방법을 통해 API 통신의 기본적인 구조를 이해할 수 있습니다.
 
-### 실습 코드
-
-**`/06-OpenAIClient/01-use_fetch_helper.js`**
+### 실습 코드 (**`/06-OpenAIClient/01-use_fetch_helper.js`**)
 ```javascript
-import logHelper from '../helpers/LogHelper.js';
-import fetch from 'node-fetch';
-import dotenv from 'dotenv';
+import logHelper from "../helpers/LogHelper.js";
+import fetchHelper from "../helpers/FetchHelper.js";
+import dotenv from "dotenv";
 
-dotenv.config({ path: '../.env' });
+dotenv.config();
 
-const API_URL = 'https://api.openai.com/v1/chat/completions';
+const API_URL = "https://api.openai.com/v1/chat/completions";
 const API_KEY = process.env.OPENAI_API_KEY;
 
 if (!API_KEY) {
-    logHelper.error('OPENAI_API_KEY is not set in .env file');
+    logHelper.error("OPENAI_API_KEY is not set in .env file");
     process.exit(1);
 }
 
 (async () => {
-    logHelper.info('--- OpenAI API with node-fetch ---');
+    const params = {
+        model: "gpt-3.5-turbo",
+        messages: [
+            { role: "system", content: "You are a helpful assistant." },
+            { role: "user", content: "Node.js에서 파일 시스템을 다루는 방법에 대해 설명해줘." },
+        ],
+        max_tokens: 1000,
+        temperature: 0.7,
+    };
 
-    const messages = [
-        { role: 'system', content: 'You are a helpful assistant.' },
-        { role: 'user', content: 'Node.js에서 파일 시스템을 다루는 방법에 대해 설명해줘.' },
-    ];
+    const headers = {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${API_KEY}`,
+    };
+
+    let json = null;
 
     try {
-        const response = await fetch(API_URL, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${API_KEY}`,
-            },
-            body: JSON.stringify({
-                model: 'gpt-3.5-turbo',
-                messages: messages,
-                temperature: 0.7,
-            }),
-        });
+        json = await fetchHelper.post(API_URL, params, headers);
+    } catch (err) {
+        logHelper.error(`Error during fetch: ${err.message}`);
+        return;
+    }
 
-        if (!response.ok) {
-            const errorBody = await response.json();
-            logHelper.error(`HTTP Error: ${response.status} ${response.statusText}`, errorBody);
-            return;
-        }
+    logHelper.debug("응답 데이터: ", json);
 
-        const data = await response.json();
-
-        logHelper.debug('API Response:', data);
-
-        if (data.choices && data.choices.length > 0) {
-            const assistantMessage = data.choices[0].message.content;
-            logHelper.info('Assistant:', assistantMessage);
-        } else {
-            logHelper.warn('No choices returned from API.');
-        }
-
-    } catch (error) {
-        logHelper.error('Error fetching from OpenAI API:', error);
+    if (json?.choices?.length > 0) {
+        const message = json.choices[0].message;
+        logHelper.debug(`OpenAI Response: ${message.content}`);
+    } else {
+        logHelper.warn("응답결과 없음!!!");
     }
 })();
 ```
 
 ### 코드 분석
 
--   `dotenv.config()`: `.env` 파일에 저장된 `OPENAI_API_KEY`를 `process.env` 객체로 불러옵니다.
--   `fetch(API_URL, options)`: `fetch` 함수를 사용하여 `POST` 요청을 보냅니다.
--   `headers`:
-    -   `Content-Type: 'application/json'`: 요청 본문이 JSON 형식임을 명시합니다.
-    -   `Authorization: 'Bearer ${API_KEY}'`: API 키를 Bearer 토큰 방식으로 헤더에 포함하여 인증을 수행합니다.
--   `body`:
-    -   `JSON.stringify()`: JavaScript 객체를 JSON 문자열로 변환하여 전송합니다.
-    -   `model`: 사용할 LLM 모델을 지정합니다. (예: `gpt-3.5-turbo`, `gpt-4`)
-    -   `messages`: 대화 내용을 배열 형태로 전달합니다. `role`은 `system`(AI의 역할 정의), `user`(사용자 질문), `assistant`(AI의 이전 답변) 등으로 구성됩니다.
--   `response.ok`: 응답 상태 코드가 2xx가 아닐 경우 에러를 처리합니다.
--   `data.choices[0].message.content`: API 응답에서 실제 AI가 생성한 답변 텍스트가 담겨있는 경로입니다.
+-   **`import`**: `logHelper` (로그 출력), `fetchHelper` (HTTP 통신), `dotenv` (환경변수 관리) 모듈을 가져옵니다.
+-   **`dotenv.config()`**: `.env` 파일에 정의된 환경변수(`OPENAI_API_KEY`)를 `process.env` 객체로 로드하여 코드에서 사용할 수 있게 합니다.
+-   **`API_URL`**: API 요청을 보낼 목표 주소, 즉 OpenAI의 `chat/completions` 엔드포인트 URL을 상수로 정의합니다.
+-   **`API_KEY`**: `process.env`에서 API 키 값을 가져옵니다. 이 키는 API 인증에 사용됩니다.
+-   **`if (!API_KEY)`**: API 키가 설정되지 않았을 경우, 에러를 출력하고 프로세스를 즉시 종료합니다. 이는 민감한 키 정보가 누락된 상태에서 코드가 실행되는 것을 방지하는 중요한 방어 로직입니다.
+-   **`params` (요청 본문 객체)**: API에 전달할 주요 파라미터를 정의하는 JavaScript 객체입니다.
+    -   `model`: 사용할 AI 모델을 지정합니다. `gpt-3.5-turbo`는 비용과 성능의 균형이 좋은 모델입니다.
+    -   `messages`: 대화의 흐름을 담는 배열입니다.
+        -   `role: "system"`: AI의 역할이나 정체성을 정의합니다. (예: "당신은 친절한 도우미입니다.")
+        -   `role: "user"`: 사용자가 AI에게 전달하는 질문이나 명령입니다.
+    -   `max_tokens`: AI가 생성할 답변의 최대 길이를 토큰 단위로 제한합니다. 예상치 못한 긴 답변으로 과도한 비용이 발생하는 것을 막아줍니다.
+    -   `temperature`: 답변의 창의성 수준을 조절합니다. 0에 가까울수록 결정론적이고 일관된 답변을, 1에 가까울수록 다양하고 창의적인 답변을 생성합니다. (0.7은 약간의 창의성을 부여한 상태)
+-   **`headers` (요청 헤더 객체)**: HTTP 요청에 포함될 헤더 정보를 정의합니다.
+    -   `"Content-Type": "application/json"`: 요청 본문(`params`)의 데이터 형식이 JSON임을 서버에 알립니다.
+    -   `Authorization: `Bearer ${API_KEY}``: API 키를 `Bearer` 토큰 인증 방식에 따라 헤더에 포함시켜 요청의 소유자를 인증합니다.
+-   **`try...catch` 블록**: 네트워크 통신과 같이 실패 가능성이 있는 작업을 처리합니다.
+    -   `await fetchHelper.post(API_URL, params, headers)`: `fetchHelper`를 사용해 `API_URL`에 `params`와 `headers`를 담아 `POST` 요청을 보냅니다. `fetchHelper` 내부에서는 `params` 객체를 JSON 문자열로 변환(`JSON.stringify`)하여 전송합니다.
+    -   `catch (err)`: 요청 실패 시(네트워크 오류, 서버 에러 등), 에러 메시지를 로그로 남기고 함수 실행을 중단합니다.
+-   **`if (json?.choices?.length > 0)`**: API 응답이 성공적으로 수신되었는지, 그리고 그 안에 `choices` 배열이 비어있지 않은지 확인합니다. `?.` (Optional Chaining) 연산자는 `json`이나 `json.choices`가 `null` 또는 `undefined`일 경우 에러를 발생시키지 않고 `undefined`를 반환하여 코드를 안정적으로 만듭니다.
+-   **`const message = json.choices[0].message`**: `choices` 배열의 첫 번째 요소(`[0]`)에 AI의 답변 정보가 담겨 있습니다. 이 `message` 객체 안에는 `role`과 `content`가 포함됩니다.
+-   **`logHelper.debug(`OpenAI Response: ${message.content}`)`**: `message` 객체에서 실제 답변 텍스트인 `content`를 추출하여 로그로 출력합니다.
 
 ## 2. `openai` 공식 SDK로 API 연동하기
 
-이번에는 `openai` 패키지를 사용하여 동일한 기능을 훨씬 간결하게 구현하는 예제입니다.
+이번에는 `openai` 패키지를 사용하여 동일한 기능을 훨씬 간결하게 구현하는 예제입니다. SDK를 사용하면 복잡한 HTTP 요청 과정을 추상화하고, 마치 일반적인 함수를 호출하듯 API를 사용할 수 있습니다.
 
 ### 관련 패키지 설치
 
@@ -170,54 +180,58 @@ if (!API_KEY) {
 $ yarn add openai
 ```
 
-### 실습 코드
+### 실습 코드 (**`/06-OpenAIClient/02-use_openai_package.js`**)
 
-**`/06-OpenAIClient/02-use_openai_package.js`**
 ```javascript
-import logHelper from '../helpers/LogHelper.js';
-import OpenAI from 'openai';
-import dotenv from 'dotenv';
+import logHelper from "../helpers/LogHelper.js";
+import OpenAI from "openai";
+import dotenv from "dotenv";
 
-dotenv.config({ path: '../.env' });
+dotenv.config();
 
 const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
 });
 
 (async () => {
-    logHelper.info('--- OpenAI API with openai package ---');
-
-    const messages = [
-        { role: 'system', content: 'You are a helpful assistant.' },
-        { role: 'user', content: 'Node.js에서 HTTP 클라이언트를 만드는 방법에 대해 설명해줘.' },
-    ];
+    let json = null;
 
     try {
-        const chatCompletion = await openai.chat.completions.create({
-            model: 'gpt-3.5-turbo',
-            messages: messages,
+        json = await openai.chat.completions.create({
+            model: "gpt-3.5-turbo",
+            messages: [
+                { role: "system", content: "You are a helpful assistant." },
+                { role: "user", content: "Node.js에서 HTTP 클라이언트를 만드는 방법에 대해 설명해줘." },
+            ],
             temperature: 0.7,
         });
-
-        logHelper.debug('API Response:', chatCompletion);
-
-        const assistantMessage = chatCompletion.choices[0].message.content;
-        logHelper.info('Assistant:', assistantMessage);
-
     } catch (error) {
-        logHelper.error('Error fetching from OpenAI API:', error);
+        logHelper.error("OpenAI API Error:", error);
+        return;
+    }
+
+    if (json?.choices?.length > 0) {
+        const message = json.choices[0].message;
+        logHelper.debug(`OpenAI Response: ${message.content}`);
+    } else {
+        logHelper.warn("응답결과 없음!!!");
     }
 })();
 ```
 
 ### 코드 분석
 
--   `new OpenAI({ apiKey: ... })`: API 키를 전달하여 `OpenAI` 클라이언트 객체를 생성합니다.
--   `openai.chat.completions.create({ ... })`: 이 메서드 하나로 채팅 API 호출이 끝납니다.
-    -   인자로 전달하는 객체는 `fetch` 방식의 `body`에 있던 내용과 거의 동일합니다.
-    -   HTTP 헤더 설정, `JSON.stringify` 등의 번거로운 과정이 모두 추상화되어 있습니다.
--   `chatCompletion.choices[0].message.content`: 응답 객체의 구조는 SDK가 API 응답을 그대로 객체화해주므로, `fetch` 방식과 동일한 경로로 결과에 접근할 수 있습니다.
+-   **`import OpenAI from "openai"`**: `openai` 패키지에서 `OpenAI` 클래스를 가져옵니다.
+-   **`const openai = new OpenAI({ apiKey: ... })`**: 가져온 `OpenAI` 클래스를 인스턴스화하여 클라이언트 객체를 생성합니다. 이때, 생성자의 인자로 API 키를 전달하여 인증 정보를 설정합니다. 이 `openai` 객체가 앞으로 API와 통신하는 역할을 담당합니다.
+-   **`try...catch` 블록**:
+    -   **`await openai.chat.completions.create({ ... })`**: API를 호출하는 핵심 부분입니다.
+        -   `chat.completions.create` 메서드는 `v1/chat/completions` 엔드포인트에 대한 요청을 추상화한 것입니다.
+        -   메서드의 인자로 전달하는 객체는 순수 HTTP 방식에서 `params`로 정의했던 내용과 거의 동일합니다. (`model`, `messages` 등)
+        -   **SDK의 장점**: `Content-Type`이나 `Authorization` 헤더를 직접 설정하거나, 요청 본문을 `JSON.stringify`로 변환하는 등의 번거로운 작업이 전혀 필요 없습니다. SDK가 이 모든 과정을 내부적으로 처리해줍니다.
+    -   `catch (error)`: API 호출 중 발생하는 모든 에러(인증 실패, 잘못된 파라미터, 서버 오류 등)를 잡아 상세한 에러 정보를 로그로 남깁니다. SDK는 에러 발생 시 유용한 정보를 담은 에러 객체를 반환합니다.
+-   **결과 처리**:
+    -   `if (json?.choices?.length > 0)`: SDK가 반환하는 응답 객체(`json`)의 구조는 순수 HTTP 요청 시와 동일합니다. 따라서 결과를 확인하고 데이터에 접근하는 방식도 완전히 같습니다.
+    -   `const message = json.choices[0].message`: `choices` 배열의 첫 번째 요소에서 `message` 객체를 가져옵니다.
+    -   `logHelper.debug(`OpenAI Response: ${message.content}`)`: `message` 객체의 `content` 속성에서 최종 답변 텍스트를 추출하여 출력합니다.
 
-두 코드를 비교해 보면, `openai` 패키지를 사용했을 때 코드가 훨씬 단순하고 의도가 명확하게 드러나는 것을 확인할 수 있습니다.
-
-이처럼 공식 SDK를 사용하면 비즈니스 로직에 더 집중할 수 있으므로, 특별한 경우가 아니라면 SDK 사용을 적극 권장합니다.
+두 코드를 비교해 보면, `openai` 패키지를 사용했을 때 코드가 훨씬 단순하고 의도가 명확하게 드러나는 것을 확인할 수 있습니다. 이는 개발자가 비즈니스 로직에 더 집중할 수 있게 해주므로, 특별한 경우가 아니라면 공식 SDK 사용을 적극 권장합니다.
