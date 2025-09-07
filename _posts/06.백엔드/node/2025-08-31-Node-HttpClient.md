@@ -30,9 +30,8 @@ mermaid: true
 - `response.ok`: HTTP 상태 코드가 200-299 범위에 있는지 여부를 나타내는 boolean 값입니다.
 - `response.json()`: 응답 본문(body)을 JSON으로 파싱하여 JavaScript 객체로 변환합니다. 이 과정 역시 Promise를 반환합니다.
 
-### 실습: 기본적인 GET 요청
+### 실습: 기본적인 GET 요청 (`/05-HttpClient/01-simple_get.js`)
 
-**`/05-HttpClient/01-simple_get.js`**
 ```javascript
 // 1. 비동기 처리를 위한 즉시 실행 함수
 (async () => {
@@ -82,9 +81,8 @@ mermaid: true
 ### 주요 개념
 - `URLSearchParams`: URL의 쿼리 문자열을 쉽게 다룰 수 있도록 도와주는 내장 객체입니다. 객체를 `key=value&key=value` 형태의 문자열로 쉽게 변환할 수 있습니다.
 
-### 실습: GET 파라미터 전송하기
+### 실습: GET 파라미터 전송하기 (`/05-HttpClient/02-get_with_params.js`)
 
-**`/05-HttpClient/02-get_with_params.js`**
 ```javascript
 // 1. 비동기 처리를 위한 즉시 실행 함수
 (async () => {
@@ -128,9 +126,8 @@ mermaid: true
 - `headers`: HTTP 요청 헤더를 설정합니다. `Content-Type` 헤더를 통해 서버에 보내는 데이터의 형식을 알려주는 것이 중요합니다.
 - `body`: 요청 본문에 담아 보낼 데이터를 지정합니다. `JSON.stringify()`를 사용하여 JavaScript 객체를 JSON 문자열로 변환해야 합니다.
 
-### 실습: POST 요청으로 데이터 생성하기
+### 실습: POST 요청으로 데이터 생성하기 (`/05-HttpClient/03-simple_post.js`)
 
-**`/05-HttpClient/03-simple_post.js`**
 ```javascript
 // 1. 비동기 처리를 위한 즉시 실행 함수
 (async () => {
@@ -218,7 +215,69 @@ mermaid: true
 })();
 ```
 
-## 5. 에러 처리
+## 5. Header 전송
+
+HTTP 헤더는 클라이언트와 서버가 요청 또는 응답에 대한 부가적인 정보를 전달할 수 있도록 해줍니다. 예를 들어, `Content-Type` 헤더는 요청/응답 본문의 데이터 형식을 명시하고, `Authorization` 헤더는 API 인증을 위한 토큰을 전달하는 데 사용됩니다.
+
+`fetch` API에서는 `options` 객체의 `headers` 속성을 통해 헤더를 설정할 수 있습니다.
+
+### 주요 개념
+- `headers`: `fetch` 요청에 포함될 헤더 정보를 담는 객체입니다. JavaScript 객체 리터럴 또는 `Headers` 객체를 사용하여 설정할 수 있습니다.
+
+### 실습: 요청 헤더에 인증 토큰 추가하기 (**`/05-HttpClient/04-request_with_header.js`**)
+
+API 중에는 특정 사용자만 접근할 수 있도록 인증 토큰을 요구하는 경우가 많습니다. `Authorization` 헤더에 `Bearer` 토큰을 담아 전송하는 예제입니다.
+
+```javascript
+// 1. 비동기 처리를 위한 즉시 실행 함수
+(async () => {
+    // 2. 데이터를 요청할 URL
+    // httpbin.org/headers는 요청한 header를 그대로 응답해주는 테스트용 URL 입니다.
+    const url = 'https://httpbin.org/headers';
+
+    // 3. 전송할 인증 토큰 (실제로는 로그인 과정 등을 통해 발급받음)
+    const authToken = 'your-super-secret-auth-token';
+
+    // 4. fetch() 함수에 대한 옵션 설정
+    const options = {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',     // 요청 본문이 있다면 명시
+            'Authorization': `${authToken}`,        // 인증 토큰을 추가
+            'X-Custom-Header': 'MyCustomValue'      // 직접 정의한 커스텀 헤더
+        }
+    };
+
+    // 5. 데이터 요청
+    let response;
+    try {
+        // httpbin.org/headers는 실제 동작하는 API이므로 정상 응답을 수신합니다.
+        // 헤더 설정 방법을 확인하는 데 초점을 맞춥니다.
+        console.log('--- 요청 정보 ---');
+        console.log('URL:', url);
+        console.log('Options:', JSON.stringify(options, null, 2));
+        response = await fetch(url, options);
+    } catch (err) {
+        console.error('네트워크 에러', err);
+        return;
+    }
+
+    // 6. 실제 응답 처리 (API가 존재한다면)
+    if (response && response.ok) {
+        const data = await response.json();
+        console.log('--- 응답 결과 ---');
+        console.log(data);
+    } else if(response) {
+        console.error(`--- HTTP 에러: ${response.status} ---`);
+        const errorText = await response.text();
+        console.error(errorText);
+    }
+})();
+```
+
+위 예제에서는 `Authorization` 헤더 외에도 `X-Custom-Header`라는 사용자 정의 헤더를 추가했습니다. 이처럼 필요한 경우 표준 헤더 외의 커스텀 헤더를 자유롭게 추가하여 서버와 정보를 교환할 수 있습니다.
+
+## 6. 에러 처리
 
 네트워크 문제나 서버의 HTTP 에러(4xx, 5xx) 등 요청 과정에서 발생할 수 있는 다양한 에러를 처리하는 방법을 학습합니다. `try...catch`와 `response.ok` 속성을 활용한 견고한 에러 처리 방법을 익힙니다.
 
@@ -269,20 +328,33 @@ mermaid: true
 })();
 ```
 
-## 6. FetchHelper 모듈을 활용한 실무 적용
+## 7. FetchHelper 모듈을 활용한 실무 적용
 
 실무에서는 반복적인 `fetch` 코드를 매번 작성하는 대신, 이를 클래스나 모듈로 만들어 재사용합니다. 직접 제작한 `FetchHelper` 모듈을 사용하여 코드의 중복을 줄이고 유지보수성을 높이는 방법을 학습합니다.
 
-### 1) FetchHelper 모듈 코드
+### 1) FetchHelper 모듈 코드 (**`/helpers/FetchHelper.js`**)
 
-먼저, `helpers` 폴더에 위치한 `FetchHelper.js` 모듈의 구조를 살펴봅니다. 이 모듈은 다음과 같은 특징을 가집니다.
+먼저, `helpers` 폴더에 위치한 `FetchHelper.js` 모듈의 구조를 살펴봅니다. 이 모듈은 반복적인 `fetch` 호출을 간소화하고, 중앙화된 에러 처리 및 데이터 변환을 제공합니다. 주요 기능은 다음과 같습니다.
 
-- **URL 자동 처리**: `http`로 시작하지 않는 URL의 경우, 현재 페이지의 기본 URL을 자동으로 붙여줍니다. (Node.js 환경에서는 `window` 객체가 없으므로 이 부분은 실행 환경에 맞게 수정이 필요할 수 있습니다.)
-- **FormData 자동 변환**: `POST`, `PUT`, `DELETE` 요청 시 일반 JavaScript 객체를 `FormData` 객체로 자동 변환하여 전송합니다.
-- **중앙화된 에러 처리**: `__request` 메서드 내에서 네트워크 에러와 HTTP 에러를 모두 감지하고, 일관된 형식의 에러 객체를 `throw`하여 호출한 쪽에서 쉽게 처리할 수 있도록 합니다.
-- **상세한 로그**: `console.group`을 사용하여 각 요청의 시작과 끝, 전송 데이터와 응답 결과를 그룹으로 묶어 보여주므로 디버깅에 용이합니다.
+- **`__request(url, method, params, headers)`: 핵심 Private 메서드**
+    - **파라미터 처리**:
+        - `GET` 방식이 아닌 경우(`POST`, `PUT`, `DELETE`), `headers`의 `Content-Type`을 확인합니다.
+        - `Content-Type`이 `application/json`이면, `params` 객체를 JSON 문자열로 변환합니다 (`JSON.stringify`).
+        - 그렇지 않으면, `params`가 `FormData` 객체가 아닌 경우, 자동으로 `FormData` 객체로 변환합니다. 이 과정에서 `structuredClone`을 사용하여 원본 파라미터 객체가 변경되지 않도록 보장합니다.
+    - **중앙화된 에러 처리**:
+        - `fetch` 요청 후, 응답 상태 코드가 2xx 범위가 아니면 HTTP 에러로 간주합니다.
+        - 에러 발생 시, `response.status`와 서버가 보낸 에러 메시지(`response.statusText` 또는 JSON 응답 내의 `message`)를 포함한 `Error` 객체를 생성하여 `throw`합니다.
+        - 네트워크 장애와 같은 `fetch` 자체의 실패도 `catch`하여 동일하게 `throw`하므로, 호출하는 쪽에서는 한 곳에서 모든 종류의 에러를 처리할 수 있습니다.
+    - **로깅**: `logHelper`를 사용하여 모든 요청과 응답 상태를 기록하여 디버깅을 돕습니다.
 
-**`/helpers/FetchHelper.js`**
+- **`get(urlString, params, headers)`: GET 요청 메서드**
+    - 전달된 `params` 객체(일반 객체 또는 `FormData`)의 각 속성을 URL의 쿼리 파라미터(`?key=value&...`)로 자동 변환하여 URL에 추가합니다.
+    - 최종적으로 `__request` 메서드를 호출하여 데이터를 요청합니다.
+
+- **`post`, `put`, `delete`: 데이터 변경 메서드**
+    - 각각 `POST`, `PUT`, `DELETE` HTTP 메서드를 사용하여 `__request`를 내부적으로 호출합니다.
+    - `params`로 전달된 데이터는 `__request` 메서드의 로직에 따라 `JSON` 또는 `FormData`로 처리되어 서버에 전송됩니다.
+
 ```javascript
 import logHelper from './LogHelper.js';
 
@@ -399,11 +471,10 @@ const fetchHelper = {
 export default fetchHelper;
 ```
 
-### 2) FetchHelper 모듈 사용하기
+### 2) FetchHelper 모듈 사용하기 (**`/05-HttpClient/05-use_fetch_helper.js`**)
 
 이제 `FetchHelper` 모듈을 가져와서 사용하는 예제입니다. 복잡한 로직이 모두 모듈 내부에 캡슐화되어, 사용하는 쪽의 코드가 매우 간결하고 직관적으로 변한 것을 확인할 수 있습니다.
 
-**`/05-HttpClient/05-use_fetch_helper.js`**
 ```javascript
 // 1. FetchHelper 모듈 가져오기
 // -> `helpers` 폴더에 위치하므로 경로에 주의
@@ -433,7 +504,7 @@ import fetchHelper from '../helpers/FetchHelper.js';
 })();
 ```
 
-## 7. 실전 예제: 영화진흥위원회 일일 박스오피스 순위 조회
+## 8. 실전 예제: 영화진흥위원회 일일 박스오피스 순위 조회
 
 지금까지 학습한 내용을 바탕으로, 영화진흥위원회에서 제공하는 오픈 API를 사용하여 특정 날짜의 박스오피스 순위를 조회하는 실전 예제를 만들어 보겠습니다. 이 예제는 `FetchHelper` 모듈을 활용하여 간결하게 구현합니다.
 
