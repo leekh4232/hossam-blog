@@ -390,21 +390,20 @@ const fetchHelper = {
         }
 
         let result = null;      // Ajax 연동 결과가 저장될 객체
-        let options = null;     // post, put, delete에서 사용할 옵션 변수
-
-        if (method.toLocaleLowerCase() !== "get") {
-            options = {
+        let options = {
                 method: method,
                 cache: "no-cache",
-                headers: headers,
-                body: params,
+                headers: headers
             };
+
+        if (method.toLocaleLowerCase() !== "get") {
+            options.body = params;
         }
 
         try {
             // 백엔드로부터의 응답 받기
             const response = await fetch(url, options);
-            logHelper.info(`→ [${method}] ${url} >>> ${response.status} ${response.statusText}`);
+            logHelper.http(`Request [${method.toUpperCase()}][${response.status}-${response.statusText}] ${url}`);
 
             // 백엔드가 에러를 보내왔다면?
             if (parseInt(response.status / 100) != 2) {
