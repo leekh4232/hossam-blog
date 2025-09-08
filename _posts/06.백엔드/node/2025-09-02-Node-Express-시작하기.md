@@ -92,7 +92,7 @@ router.get('/hello', (req, res, next) => {
      * res.send()는 클라이언트에게 응답을 보낸다.
      * 인자로 전달된 내용이 클라이언트의 브라우저에 출력된다.
      */
-    res.send('Hello World');
+    res.send('<h1>Hello World</h1>');
 });
 
 router.get('/world', (req, res, next) => {
