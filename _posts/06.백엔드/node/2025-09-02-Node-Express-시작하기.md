@@ -1,5 +1,5 @@
 ---
-title: Node.js Express 시작하기
+title: Node.js - Express 시작하기
 description: "Node.js 환경에서 Express.js 프레임워크를 사용하여 웹 애플리케이션을 구축하는 방법을 학습합니다."
 categories: [06.Backend,Node]
 date:   2025-09-02 09:00:00 +0900
@@ -10,6 +10,8 @@ pin: true
 math: true
 mermaid: true
 ---
+
+# Node.js - Express 시작하기
 
 Node.js는 웹 서버를 구축하는 데 강력한 기반을 제공하지만, HTTP 요청을 처리하고, 라우팅을 관리하며, 응답을 구성하는 등의 작업을 처음부터 구현하는 것은 복잡하고 시간이 많이 소요될 수 있습니다. Express.js는 이러한 과정을 간소화하여 개발자가 비즈니스 로직에 더 집중할 수 있도록 돕는 Node.js의 대표적인 웹 프레임워크입니다.
 
@@ -42,11 +44,24 @@ Node.js 프로젝트를 시작하기 위해 Express를 설치해야 합니다.
 $ yarn add express
 ```
 
-### 실습: Hello, Express!
+### Hello, Express!
 
 가장 기본적인 Express 서버는 몇 줄의 코드로 만들 수 있습니다. 다음은 8080 포트에서 "Hello World"를 응답하는 간단한 웹 서버 예제입니다.
 
-**`/07-express/app.js`**
+**실습: `./env`**
+
+```env
+#-----------------------------------------------
+# 07-express 단원 예제용
+#-----------------------------------------------
+# 기본 설정 -> 개발모드(테스트모드) = development | 상용모드=production
+NODE_ENV=development
+
+# 서버 가동 포트 번호
+PORT=8080
+```
+
+**실습: `/07-express/app.js`**
 
 ```javascript
 /*----------------------------------------------------------
@@ -70,6 +85,15 @@ import express from 'express';  // Express 모듈 가져오기
 // express() 함수는 애플리케이션 함수이며, 이 함수를 호출하여 app이라는 객체를 생성한다.
 // app 객체는 서버의 전반적인 설정을 관리한다.
 const app = express();
+
+// JSON, URL-encoded 데이터 처리 설정
+// 클라이언트에서 서버로 요청할 때 JSON 또는 URL-encoded 형식의 데이터를 보낼 수 있다.
+app.use(express.json());
+
+// URL-encoded 데이터의 경우 확장된 문법을 사용할지 여부를 설정한다.
+// true로 설정하면 qs 모듈을 사용하여 중첩된 객체 표현을 허용한다.
+// false로 설정하면 querystring 모듈을 사용하여 단순한 객체 표현만 허용한다.
+app.use(express.urlencoded({extended: true}));
 
 
 /*----------------------------------------------------------
@@ -107,7 +131,7 @@ router.get('/world', (req, res, next) => {
 /*----------------------------------------------------------
  * 5) 설정한 내용을 기반으로 서버 구동 시작
  *----------------------------------------------------------*/
-const port = process.env.HTTP_PORT || 8080;
+const port = process.env.PORT || 8080;
 const myip = utilHelper.myip();
 
 app.listen(port, () => {
