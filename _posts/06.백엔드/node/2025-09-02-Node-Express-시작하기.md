@@ -48,7 +48,7 @@ $ yarn add express
 
 가장 기본적인 Express 서버는 몇 줄의 코드로 만들 수 있습니다. 다음은 8080 포트에서 "Hello World"를 응답하는 간단한 웹 서버 예제입니다.
 
-**실습: `./env`**
+**실습: `/.env`**
 
 ```env
 #-----------------------------------------------
@@ -61,7 +61,9 @@ NODE_ENV=development
 PORT=8080
 ```
 
-**실습: `/07-express/app.js`**
+**실습: `/app.js`**
+
+> `app.js`는 백엔드 서버의 진입점(Entry Point)입니다. 그러므로 프로젝트의 최상위 경로에 위치시킵니다. 앞으로 매 포스팅에서 이 파일을 지속적으로 발전시켜 나가게 됩니다.
 
 ```javascript
 /*----------------------------------------------------------
@@ -74,8 +76,8 @@ dotenv.config();  // .env 파일의 내용을 process.env에 로드
 /*----------------------------------------------------------
  * 2) 필요한 모듈 로드
  *----------------------------------------------------------*/
-import logger from '../helpers/LogHelper.js';
-import utilHelper from '../helpers/UtilHelper.js';
+import logger from './helpers/LogHelper.js';
+import utilHelper from './helpers/UtilHelper.js';
 import express from 'express';  // Express 모듈 가져오기
 
 

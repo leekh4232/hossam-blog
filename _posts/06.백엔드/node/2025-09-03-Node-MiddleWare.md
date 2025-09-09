@@ -32,7 +32,7 @@ yarn add serve-favicon
 
 `serve-favicon` 미들웨어는 파비콘 파일의 경로를 인자로 받습니다. 일반적으로 애플리케이션의 최상위 레벨에서 한 번만 호출하면 됩니다.
 
-**source\08-middleware\app.js**
+**실습: `/app.js**
 
 ```javascript
 /*----------------------------------------------------------
@@ -45,8 +45,8 @@ dotenv.config();  // .env 파일의 내용을 process.env에 로드
 /*----------------------------------------------------------
  * 2) 필요한 모듈 로드
  *----------------------------------------------------------*/
-import logger from '../helpers/LogHelper.js';
-import utilHelper from '../helpers/UtilHelper.js';
+import logger from './helpers/LogHelper.js';
+import utilHelper from './helpers/UtilHelper.js';
 import express from 'express';  // Express 모듈 가져오기
 
 // 미들웨어로 사용할 모듈 불러오기
@@ -63,7 +63,7 @@ const app = express();
 
 /** 미들웨어 설정 */
 // 1) Favicon 설정
-app.use(serveFavicon(process.env.FAVICON_PATH));
+app.use(serveFavicon(process.env.FAVICON_PATH || 'favicon.png'));
 
 // ... 생략 ...
 ```
@@ -88,14 +88,14 @@ yarn add serve-static
 
 `express.static()` 미들웨어는 정적 파일이 위치한 디렉토리의 경로를 인자로 받습니다.
 
-**source\08-middleware\app.js**
+**실습: `/app.js`**
 
 ```javascript
 /*----------------------------------------------------------
  * 2) 필요한 모듈 로드
  *----------------------------------------------------------*/
-import logger from '../helpers/LogHelper.js';
-import utilHelper from '../helpers/UtilHelper.js';
+import logger from './helpers/LogHelper.js';
+import utilHelper from './helpers/UtilHelper.js';
 import express from 'express';  // Express 모듈 가져오기
 
 // 미들웨어로 사용할 모듈 불러오기
@@ -117,7 +117,7 @@ const app = express();
 // 2) 정적 파일(Static File) 설정
 // 정적 파일이란 HTML, CSS, JS, 이미지, 동영상 등과 같이 서버에서 클라이언트로 별도의 처리 없이
 // 그대로 전달되는 파일을 말한다. 이러한 파일들은 미들웨어를 이용하여 제공할 수 있다.
-app.use("/", serveStatic(process.env.PUBLIC_PATH));
+app.use("/", serveStatic(process.env.PUBLIC_PATH || "public"));
 
 // ... 이하 생략 ...
 ```
@@ -142,14 +142,14 @@ yarn add method-override
 
 `method-override`는 주로 폼 필드의 `_method` 파라미터를 확인하여 요청 메서드를 변경합니다.
 
-**app.js에 미들웨어 추가**
+**실습: `/app.js`**
 
 ```javascript
 /*----------------------------------------------------------
  * 2) 필요한 모듈 로드
  *----------------------------------------------------------*/
-import logger from "../helpers/LogHelper.js";
-import utilHelper from "../helpers/UtilHelper.js";
+import logger from "./helpers/LogHelper.js";
+import utilHelper from "./helpers/UtilHelper.js";
 import express from "express"; // Express 모듈 가져오기
 
 // 미들웨어로 사용할 모듈 불러오기
@@ -211,7 +211,7 @@ yarn add express-useragent
 
 `express-useragent`를 미들웨어로 등록하면, `req` 객체에 `useragent` 속성이 추가됩니다.
 
-**app.js에 미들웨어 추가 및 라우터 설정**
+**실습: `/app.js`**
 
 ```javascript
 /*----------------------------------------------------------
@@ -276,13 +276,13 @@ yarn add express-winston
 
 `express-winston`은 로깅을 위한 `logger`와 에러 처리를 위한 `errorLogger` 두 가지 형태로 사용할 수 있습니다. 여기서는 `logger`를 적용하여 모든 HTTP 요청을 로그로 남겨보겠습니다.
 
-**app.js에 미들웨어 추가**
+**실습: `/app.js`**
 
 ```javascript
 /*----------------------------------------------------------
  * 2) 필요한 모듈 로드
  *----------------------------------------------------------*/
-import logger from "../helpers/LogHelper.js";
+import logger from "./helpers/LogHelper.js";
 
 // ... 생략 ...
 
@@ -361,7 +361,7 @@ FAVICON_PATH=favicon.png
 PUBLIC_PATH=public
 ```
 
-### `/08-middleware/app.js`
+### `/app.js`
 
 **07-express/app.js** 파일을 **08-middleware/app.js**로 복사한 후, 위에서 설명한 미들웨어들을 추가하여 완성합니다.
 
@@ -375,8 +375,8 @@ dotenv.config(); // .env 파일의 내용을 process.env에 로드
 /*----------------------------------------------------------
  * 2) 필요한 모듈 로드
  *----------------------------------------------------------*/
-import logger from "../helpers/LogHelper.js";
-import utilHelper from "../helpers/UtilHelper.js";
+import logger from "./helpers/LogHelper.js";
+import utilHelper from "./helpers/UtilHelper.js";
 import express from "express"; // Express 모듈 가져오기
 
 // 미들웨어로 사용할 모듈 불러오기
@@ -404,12 +404,12 @@ app.use(express.urlencoded({ extended: true }));
 
 /** 미들웨어 설정 */
 // 1) Favicon 설정
-app.use(serveFavicon(process.env.FAVICON_PATH));
+app.use(serveFavicon(process.env.FAVICON_PATH || 'favicon.png'));
 
 // 2) 정적 파일(Static File) 설정
 // 정적 파일이란 HTML, CSS, JS, 이미지, 동영상 등과 같이 서버에서 클라이언트로 별도의 처리 없이
 // 그대로 전달되는 파일을 말한다. 이러한 파일들은 미들웨어를 이용하여 제공할 수 있다.
-app.use("/", serveStatic(process.env.PUBLIC_PATH));
+app.use("/", serveStatic(process.env.PUBLIC_PATH || "public"));
 
 // 3) HTTP Method Override 설정
 // PUT, DELETE 등의 메서드를 지원하지 않는 클라이언트(예: HTML Form)에서
