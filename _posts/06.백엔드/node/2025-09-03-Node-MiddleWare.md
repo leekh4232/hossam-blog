@@ -14,15 +14,6 @@ mermaid: true
 
 Express의 가장 강력한 기능 중 하나는 **미들웨어(Middleware)** 입니다. 미들웨어는 요청(request)과 응답(response) 객체 사이에서 작동하는 함수들로, Express 애플리케이션의 핵심을 이룹니다.
 
-미들웨어 함수는 다음과 같은 작업을 수행할 수 있습니다.
-
-- 모든 코드를 실행합니다.
-- 요청 및 응답 객체를 변경합니다.
-- 요청-응답 주기를 종료합니다.
-- 스택의 다음 미들웨어 함수를 호출합니다.
-
-현재 미들웨어 함수가 요청-응답 주기를 종료하지 않는 경우에는 `next()`를 호출하여 다음 미들웨어 함수에 제어를 전달해야 합니다. 그렇지 않으면 해당 요청은 응답을 받지 못한 상태로 대기하게 됩니다.
-
 이 단원에서는 자주 사용되는 몇 가지 필수 미들웨어를 Express 애플리케이션에 적용하는 방법을 학습합니다.
 
 ## 1. serve-favicon
@@ -84,6 +75,14 @@ app.use(serveFavicon(process.env.FAVICON_PATH));
 ## 2. serve-static
 
 `serve-static`은 HTML, CSS, JavaScript, 이미지와 같은 정적 파일(static files)을 제공하는 미들웨어입니다. Express에 내장되어 있어 별도의 설치가 필요 없으며, `express.static()` 메서드로 사용할 수 있습니다.
+
+### 설치
+
+먼저, 패키지를 설치해야 합니다.
+
+```bash
+yarn add serve-static
+```
 
 ### 적용하기
 
