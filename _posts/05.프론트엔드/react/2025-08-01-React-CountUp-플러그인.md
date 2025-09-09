@@ -11,6 +11,8 @@ math: true
 mermaid: true
 ---
 
+# [React] React CountUp 플러그인 사용법
+
 ## #01. 플러그인 설치
 
 https://www.npmjs.com/package/react-countup 에서 자세한 내용을 확인할 수 있다.

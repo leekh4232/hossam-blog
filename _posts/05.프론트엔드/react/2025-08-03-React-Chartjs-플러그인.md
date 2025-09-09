@@ -11,6 +11,8 @@ math: true
 mermaid: true
 ---
 
+# [React] Chart.js 플러그인 사용법
+
 ## #01. Chart.js 소개
 
 Chart.js는 HTML5 Canvas를 기반으로 한 강력한 차트 라이브러리입니다. React Chart.js는 이를 React에서 쉽게 사용할 수 있도록 래핑한 라이브러리입니다.
