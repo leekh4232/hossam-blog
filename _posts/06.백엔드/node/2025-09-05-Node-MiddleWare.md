@@ -279,6 +279,7 @@ yarn add express-winston
 
 **실습: `/app.js`**
 
+{% raw %}
 ```javascript
 /*----------------------------------------------------------
  * 2) 필요한 모듈 로드
@@ -315,6 +316,7 @@ app.use(
 
 // ... 생략 ...
 ```
+{% endraw %}
 
 ### 소스코드 설명
 
@@ -366,6 +368,7 @@ PUBLIC_PATH=public
 
 **07-express/app.js** 파일을 **08-middleware/app.js**로 복사한 후, 위에서 설명한 미들웨어들을 추가하여 완성합니다.
 
+{% raw %}
 ```javascript
 /*----------------------------------------------------------
  * 1) 환경설정 파일 로드
@@ -501,3 +504,4 @@ process.on("exit", function () {
     logger.info("Server is shutdown");
 });
 ```
+{% endraw %}
