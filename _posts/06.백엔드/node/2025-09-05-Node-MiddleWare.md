@@ -2,7 +2,7 @@
 title: Node.js - Express Middleware
 description: "Node.js 환경에서 Express.js 프레임워크의 미들웨어 개념을 이해하고, 다양한 미들웨어를 활용하여 웹 애플리케이션을 구축하는 방법을 학습합니다."
 categories: [06.Backend,Node]
-date:   2025-09-02 09:00:00 +0900
+date:   2025-09-05 09:00:00 +0900
 author: Hossam
 image: /images/indexs/node1.png
 tags: [Web Development,Backend,Node,Express]
@@ -10,6 +10,7 @@ pin: true
 math: true
 mermaid: true
 ---
+
 # Node.js - Express Middleware
 
 Express의 가장 강력한 기능 중 하나는 **미들웨어(Middleware)** 입니다. 미들웨어는 요청(request)과 응답(response) 객체 사이에서 작동하는 함수들로, Express 애플리케이션의 핵심을 이룹니다.
