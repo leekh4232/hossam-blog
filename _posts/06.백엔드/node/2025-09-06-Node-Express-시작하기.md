@@ -2,7 +2,7 @@
 title: Node.js - Express 시작하기
 description: "Node.js 환경에서 Express.js 프레임워크를 사용하여 웹 애플리케이션을 구축하는 방법을 학습합니다."
 categories: [06.Backend,Node]
-date:   2025-09-04 09:00:00 +0900
+date:   2025-09-06 09:00:00 +0900
 author: Hossam
 image: /images/indexs/node1.png
 tags: [Web Development,Backend,Node,Express]
@@ -51,9 +51,8 @@ $ yarn add express
 **실습: `/.env`**
 
 ```env
-#-----------------------------------------------
-# 07-express 단원 예제용
-#-----------------------------------------------
+# ... 이전 내용 생략 ...
+
 # 기본 설정 -> 개발모드(테스트모드) = development | 상용모드=production
 NODE_ENV=development
 

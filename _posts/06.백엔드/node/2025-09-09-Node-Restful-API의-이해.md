@@ -2,7 +2,7 @@
 title: Node.js - Restful API의 이해와 CRUD
 description: "RESTful API의 개념과 CRUD(생성, 조회, 수정, 삭제) 작업을 HTTP 메서드와 매핑하여 이해하는 방법을 학습합니다."
 categories: [06.Backend,Node]
-date:   2025-09-07 09:00:00 +0900
+date:   2025-09-09 09:00:00 +0900
 author: Hossam
 image: /images/indexs/restapi.png
 tags: [Web Development,Backend,Node,Express,Router,Controller,Restful,CRUD]
