@@ -40,6 +40,19 @@ $ yarn add mybatis-mapper
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="DepartmentMapper">
 
+    <!-- 전체 데이터 수 조회 -->
+    <select id="selectCountAll" resultType="int">
+        SELECT COUNT(*) AS cnt FROM departments
+        <where>
+            <if test="dname != null and dname != ''">
+                dname LIKE CONCAT('%', #{dname}, '%')
+            </if>
+            <if test="loc != null and loc != ''">
+                AND loc LIKE CONCAT('%', #{loc}, '%')
+            </if>
+        </where>
+    </select>
+
     <!-- 단일 학과 조회 -->
     <select id="selectItem" resultType="map">
         SELECT id, dname, loc, phone, email, established, homepage
@@ -60,10 +73,8 @@ $ yarn add mybatis-mapper
             </if>
         </where>
         ORDER BY id DESC
-
-        <!-- #이 아닌 $를 사용함에 주의 -->
         <if test="limit != null and limit > 0">
-            LIMIT ${limit}
+            LIMIT 0, ${limit}
         </if>
     </select>
 
@@ -91,19 +102,6 @@ $ yarn add mybatis-mapper
     <delete id="deleteItem">
         DELETE FROM departments WHERE id = #{id}
     </delete>
-
-    <!-- 전체 데이터 수 조회 -->
-    <select id="selectCountAll" resultType="int">
-        SELECT COUNT(*) AS cnt FROM departments
-        <where>
-            <if test="dname != null and dname != ''">
-                dname LIKE CONCAT('%', #{dname}, '%')
-            </if>
-            <if test="loc != null and loc != ''">
-                AND loc LIKE CONCAT('%', #{loc}, '%')
-            </if>
-        </where>
-    </select>
 </mapper>
 ```
 
@@ -111,6 +109,7 @@ $ yarn add mybatis-mapper
 - **`<select>`, `<insert>`, `<update>`, `<delete>`**: 각 SQL 작업을 정의하는 태그입니다.
 - **`id` 속성**: 각 쿼리를 식별하는 고유한 ID입니다. `namespace`와 `id`를 조합하여 `DepartmentMapper.selectItem`과 같이 사용합니다.
 - **`#{...}`**: 파라미터를 받는 변수 플레이스홀더입니다. `mybatis-mapper`가 이 부분을 `?`로 변환하고 값을 바인딩합니다.
+- **`${...}`**: 파라미터를 문자열로 직접 삽입합니다. 주로 `LIMIT` 절과 같이 숫자나 식별자에 사용됩니다.
 - **`<if test="...">`**: 동적 쿼리를 생성하는 조건문입니다. 파라미터가 존재하고 비어있지 않을 경우에만 해당 SQL 조각을 포함시킵니다.
 
 ### 2) MyBatis 초기화 설정
@@ -151,7 +150,7 @@ MyBatis를 사용하는 기본 흐름은 다음과 같습니다.
 **실습: `/08-MyBatis/01_select.js`**
 
 ```javascript
-import DBHelper from '../helpers/DBHelper.js';
+import dbHelper from '../helpers/DBHelper.js';
 import mybatisMapper from 'mybatis-mapper';
 
 // 프로젝트 root 기준 상대경로 지정
@@ -159,48 +158,47 @@ mybatisMapper.createMapper(['mappers/DepartmentMapper.xml']);
 
 (async () => {
     try {
-        await DBHelper.connect();
+        await dbHelper.connect();
 
         // 1. 전체 데이터 수 조회
         console.log('1. 전체 데이터 수 조회');
         let params = { /* 파라미터 없음 */ };
         let sql = mybatisMapper.getStatement('DepartmentMapper', 'selectCountAll', params);
-        let result = await DBHelper.query(sql);
+        let result = await dbHelper.query(sql);
         console.log(`- 전체 데이터 수: ${result[0].cnt}`);
+
+        // 1. 단일행 조회
+        console.log('\n5. 101번 학과 정보 조회');
+        params = { id: 101 };
+        sql = mybatisMapper.getStatement('DepartmentMapper', 'selectItem', params);
+        result = await dbHelper.query(sql, Object.values(params));
+        console.log('- 101번 학과:', result[0]);
 
         // 2. 조건에 따른 데이터 수 조회 (동적 SQL)
         console.log('\n2. "공학관" 위치의 데이터 수 조회');
         params = { loc: '공학관' };
         sql = mybatisMapper.getStatement('DepartmentMapper', 'selectCountAll', params);
-        result = await DBHelper.query(sql, Object.values(params));
+        result = await dbHelper.query(sql, Object.values(params));
         console.log(`- "공학관" 데이터 수: ${result[0].cnt}`);
 
         // 3. 전체 목록 조회
         console.log('\n3. 전체 목록 조회');
         params = { /* 파라미터 없음 */ };
         sql = mybatisMapper.getStatement('DepartmentMapper', 'selectList', params);
-        result = await DBHelper.query(sql);
+        result = await dbHelper.query(sql);
         console.log('- 전체 목록:', result);
 
         // 4. 조건에 따른 목록 조회 (동적 SQL)
         console.log('\n4. "컴퓨터" 키워드를 포함하는 학과 목록 조회');
         params = { dname: '컴퓨터' };
         sql = mybatisMapper.getStatement('DepartmentMapper', 'selectList', params);
-        result = await DBHelper.query(sql, Object.values(params));
+        result = await dbHelper.query(sql, Object.values(params));
         console.log('- "컴퓨터" 검색 결과:', result);
-
-        // 5. 단일행 조회
-        console.log('\n5. 101번 학과 정보 조회');
-        params = { id: 101 };
-        sql = mybatisMapper.getStatement('DepartmentMapper', 'selectItem', params);
-        result = await DBHelper.query(sql, Object.values(params));
-        console.log('- 101번 학과:', result[0]);
-
     } catch (e) {
         console.error("MyBatis 예제 실행에 실패했습니다.");
         console.error(e);
     } finally {
-        await DBHelper.close();
+        await dbHelper.close();
     }
 })();
 ```
@@ -212,14 +210,14 @@ mybatisMapper.createMapper(['mappers/DepartmentMapper.xml']);
 **실습: `/08-MyBatis/02_insert.js`**
 
 ```javascript
-import DBHelper from '../helpers/DBHelper.js';
+import dbHelper from '../helpers/DBHelper.js';
 import mybatisMapper from 'mybatis-mapper';
 
 mybatisMapper.createMapper(['mappers/DepartmentMapper.xml']);
 
 (async () => {
     try {
-        await DBHelper.connect();
+        await dbHelper.connect();
 
         console.log('학과 정보 추가');
 
@@ -233,7 +231,7 @@ mybatisMapper.createMapper(['mappers/DepartmentMapper.xml']);
         };
 
         const sql = mybatisMapper.getStatement('DepartmentMapper', 'insertItem', params);
-        const result = await DBHelper.query(sql, Object.values(params));
+        const result = await dbHelper.query(sql, Object.values(params));
 
         console.log('INSERT 결과:', result);
         console.log(`새로 추가된 데이터의 ID: ${result.insertId}`);
@@ -242,7 +240,7 @@ mybatisMapper.createMapper(['mappers/DepartmentMapper.xml']);
         console.error("MyBatis 예제 실행에 실패했습니다.");
         console.error(e);
     } finally {
-        await DBHelper.close();
+        await dbHelper.close();
     }
 })();
 ```
@@ -254,14 +252,14 @@ mybatisMapper.createMapper(['mappers/DepartmentMapper.xml']);
 **실습: `/08-MyBatis/03_update.js`**
 
 ```javascript
-import DBHelper from '../helpers/DBHelper.js';
+import dbHelper from '../helpers/DBHelper.js';
 import mybatisMapper from 'mybatis-mapper';
 
 mybatisMapper.createMapper(['mappers/DepartmentMapper.xml']);
 
 (async () => {
     try {
-        await DBHelper.connect();
+        await dbHelper.connect();
 
         console.log('학과 정보 수정');
 
@@ -273,7 +271,7 @@ mybatisMapper.createMapper(['mappers/DepartmentMapper.xml']);
         };
 
         const sql = mybatisMapper.getStatement('DepartmentMapper', 'updateItem', params);
-        const result = await DBHelper.query(sql, Object.values(params));
+        const result = await dbHelper.query(sql, Object.values(params));
 
         console.log('UPDATE 결과:', result);
         console.log(`영향받은 행 수: ${result.affectedRows}`);
@@ -282,7 +280,7 @@ mybatisMapper.createMapper(['mappers/DepartmentMapper.xml']);
         console.error("MyBatis 예제 실행에 실패했습니다.");
         console.error(e);
     } finally {
-        await DBHelper.close();
+        await dbHelper.close();
     }
 })();
 ```
@@ -294,14 +292,14 @@ mybatisMapper.createMapper(['mappers/DepartmentMapper.xml']);
 **실습: `/08-MyBatis/04_delete.js`**
 
 ```javascript
-import DBHelper from '../helpers/DBHelper.js';
+import dbHelper from '../helpers/DBHelper.js';
 import mybatisMapper from 'mybatis-mapper';
 
 mybatisMapper.createMapper(['mappers/DepartmentMapper.xml']);
 
 (async () => {
     try {
-        await DBHelper.connect();
+        await dbHelper.connect();
 
         console.log('학과 정보 삭제');
 
@@ -311,7 +309,7 @@ mybatisMapper.createMapper(['mappers/DepartmentMapper.xml']);
         };
 
         const sql = mybatisMapper.getStatement('DepartmentMapper', 'deleteItem', params);
-        const result = await DBHelper.query(sql, Object.values(params));
+        const result = await dbHelper.query(sql, Object.values(params));
 
         console.log('DELETE 결과:', result);
         console.log(`삭제된 행 수: ${result.affectedRows}`);
@@ -320,7 +318,7 @@ mybatisMapper.createMapper(['mappers/DepartmentMapper.xml']);
         console.error("MyBatis 예제 실행에 실패했습니다.");
         console.error(e);
     } finally {
-        await DBHelper.close();
+        await dbHelper.close();
     }
 })();
 ```
