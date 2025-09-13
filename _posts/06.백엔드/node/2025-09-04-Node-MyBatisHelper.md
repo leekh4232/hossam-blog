@@ -4,7 +4,7 @@ description: "MyBatis와 DBHelper를 통합 관리하는 헬퍼 클래스를 만
 categories: [06.Backend,Node]
 date:   2025-09-04 09:00:00 +0900
 author: Hossam
-image: /images/indexs/node2.png
+image: /images/indexs/database.jpg
 tags: [Web Development,Backend,Node,Database,MySQL,MyBatis,Helper,Refactoring]
 pin: true
 math: true
