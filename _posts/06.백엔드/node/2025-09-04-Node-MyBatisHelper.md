@@ -265,8 +265,7 @@ import mybatisHelper from '../helpers/MybatisHelper.js';
 
 (async () => {
     try {
-        console.log('=== MyBatis Helper 종합 예제 ===
-');
+        console.log('=== MyBatis Helper 종합 예제 ===');
 
         // 1. 전체 데이터 수 조회
         console.log('1. 전체 데이터 수 조회');
@@ -274,32 +273,27 @@ import mybatisHelper from '../helpers/MybatisHelper.js';
         console.log(`- 전체 데이터 수: ${result[0].cnt}`);
 
         // 2. 조건에 따른 데이터 수 조회 (동적 SQL)
-        console.log('
-2. "공학관" 위치의 데이터 수 조회');
+        console.log('2. "공학관" 위치의 데이터 수 조회');
         result = await mybatisHelper.execute('DepartmentMapper.selectCountAll', { loc: '공학관' });
         console.log(`- "공학관" 데이터 수: ${result[0].cnt}`);
 
         // 3. 전체 목록 조회
-        console.log('
-3. 전체 목록 조회 (상위 5개)');
+        console.log('3. 전체 목록 조회 (상위 5개)');
         result = await mybatisHelper.execute('DepartmentMapper.selectList', { limit: 5 });
         console.log('- 상위 5개 목록:', result);
 
         // 4. 조건에 따른 목록 조회 (동적 SQL)
-        console.log('
-4. "컴퓨터" 키워드를 포함하는 학과 목록 조회');
+        console.log('4. "컴퓨터" 키워드를 포함하는 학과 목록 조회');
         result = await mybatisHelper.execute('DepartmentMapper.selectList', { dname: '컴퓨터' });
         console.log('- "컴퓨터" 검색 결과:', result);
 
         // 5. 단일행 조회
-        console.log('
-5. 101번 학과 정보 조회');
+        console.log('5. 101번 학과 정보 조회');
         result = await mybatisHelper.execute('DepartmentMapper.selectItem', { id: 101 });
         console.log('- 101번 학과:', result[0]);
 
         // 6. INSERT 예제
-        console.log('
-6. 새 학과 정보 추가');
+        console.log('6. 새 학과 정보 추가');
         const insertId = await mybatisHelper.execute('DepartmentMapper.insertItem', {
             dname: 'MyBatis테스트학과',
             loc: 'IT관'
@@ -307,8 +301,7 @@ import mybatisHelper from '../helpers/MybatisHelper.js';
         console.log(`- 새 학과 추가 완료. ID: ${insertId}`);
 
         // 7. UPDATE 예제
-        console.log('
-8. 학과 정보 수정');
+        console.log('8. 학과 정보 수정');
         const updatedRows = await mybatisHelper.execute('DepartmentMapper.updateItem', {
             id: insertId,
             dname: 'MyBatis업데이트학과',
@@ -317,14 +310,12 @@ import mybatisHelper from '../helpers/MybatisHelper.js';
         console.log(`- 수정된 행 수: ${updatedRows}`);
 
         // 8. DELETE 예제
-        console.log('
-10. 학과 정보 삭제');
+        console.log('10. 학과 정보 삭제');
         const deletedRows = await mybatisHelper.execute('DepartmentMapper.deleteItem', { id: insertId });
         console.log(`- 삭제된 행 수: ${deletedRows}`);
 
         // 9. 트랜잭션 예제
-        console.log('
-12. 트랜잭션 예제 (배치 작업)');
+        console.log('12. 트랜잭션 예제 (배치 작업)');
         const transactionResult = await mybatisHelper.transaction(async (execute) => {
             const insert1 = await execute('DepartmentMapper.insertItem', { dname: '트랜잭션1', loc: 'TX관' });
             const insert2 = await execute('DepartmentMapper.insertItem', { dname: '트랜잭션2', loc: 'TX관' });
@@ -340,8 +331,7 @@ import mybatisHelper from '../helpers/MybatisHelper.js';
         console.error(e);
     } finally {
         mybatisHelper.close();
-        console.log('
-=== MyBatis Helper 예제 완료 ===');
+        console.log('=== MyBatis Helper 예제 완료 ===');
     }
 })();
 ```
