@@ -154,7 +154,7 @@ class MybatisHelper {
             await this.#dbHelper.connect();
 
             // SQL문 실행
-            const queryResult = await this.#dbHelper.query(sql, Object.values(params));
+            const queryResult = await this.#dbHelper.query(sql);
 
             // 실행 결과를 종류별로 가공
             if (Array.isArray(queryResult)) {
