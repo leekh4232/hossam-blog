@@ -4,7 +4,7 @@ description: "margin은 바깥 여백을 의미하는 속성입니다. 사람이
 categories: [05.Frontend,HTML&CSS]
 tags: [Web Development,Frontend,CSS]
 image: /images/indexs/webdevelopment.png
-date: 2022-03-14 13:01:28 +0900
+date: 2022-03-15 13:01:28 +0900
 author: Hossam
 pin: true
 math: true

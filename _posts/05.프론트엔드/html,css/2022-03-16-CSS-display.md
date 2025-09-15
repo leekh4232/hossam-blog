@@ -4,7 +4,7 @@ description: "display속성은 요소를 어떻게 보여줄지를 결정하는 
 categories: [05.Frontend,HTML&CSS]
 tags: [Web Development,Frontend,CSS]
 image: /images/indexs/webdevelopment.png
-date: 2022-03-14 13:01:28 +0900
+date: 2022-03-16 13:01:28 +0900
 author: Hossam
 pin: true
 math: true

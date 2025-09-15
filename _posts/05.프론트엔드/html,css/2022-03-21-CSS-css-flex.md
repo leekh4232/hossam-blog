@@ -4,7 +4,7 @@ description: "flexbox는 float나 inline-block의 단점을 보완하여 레이�
 categories: [05.Frontend,HTML&CSS]
 tags: [Web Development,Frontend,CSS]
 image: /images/indexs/webdevelopment.png
-date: 2022-03-20 13:01:28 +0900
+date: 2022-03-21 13:01:28 +0900
 author: Hossam
 pin: true
 math: true
