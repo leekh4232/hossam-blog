@@ -11,172 +11,750 @@ math: true
 mermaid: true
 ---
 
-## #01. 메인축(main-axis)과 교차축(cross-axis)
+# [CSS] Flexbox
 
-| 용어   | 설명                        |
-| ------ | --------------------------- |
-| 메인축 | 아이템들이 배치된 방향의 축 |
-| 교차축 | 메인축과 수직인 축          |
+`flexbox`는 CSS의 레이아웃 배치 전용 기능으로, 기존의 `float`나 `inline-block`이 가진 한계를 극복하기 위해 설계되었습니다. `flexbox`를 사용하면 복잡한 레이아웃도 손쉽게 구성할 수 있지만, IE(Internet Explorer)에서는 지원되지 않으므로 프로젝트의 브라우저 호환성 요구사항을 반드시 확인해야 합니다.
 
-![img](/images/2022/0320/03.jpeg)
+`flexbox`의 속성은 **컨테이너(부모 요소)**에 적용하는 것과 **아이템(자식 요소)**에 적용하는 것으로 나뉩니다.
 
-![img](/images/2022/0320/04-1.jpeg)
+## #01. 컨테이너(부모)에 적용하는 속성
 
+### 1. `display: flex` (중요)
 
-## #02. 컨테이너(부모)에 적용하는 속성
+`flex` 레이아웃을 시작하려면, 부모 요소의 `display` 속성을 `flex` 또는 `inline-flex`로 설정해야 합니다.
 
-### 1) display 속성
+| 값 | 설명 |
+|--|--|
+| `flex` | - 컨테이너는 **Block 요소**처럼 동작하여 부모의 가로폭을 가득 채웁니다.<br/>- 아이템들은 가로 방향으로 배치되며, 각 아이템은 자신의 내용만큼의 넓이만 차지합니다.<br/>- 아이템의 높이는 컨테이너의 높이만큼 자동으로 늘어납니다. |
+| `inline-flex` | - 컨테이너가 **Inline 요소**처럼 동작하여, 자신이 포함하는 아이템들의 넓이만큼만 가로폭을 차지합니다.<br/>- 그 외의 특징은 `flex`와 동일합니다. |
 
-| 값          | 설명                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| flex        | - 컨테이너 내의 아이템들을 가로로 배치함.<br/>- **컨테이너 자체의 넓이는 block의 특성을 유지함.**<br/>- 아이템들은 자신이 가진 내용물의 width 만큼만 넓이를 차지함.<br/>- height는 컨테이너의 높이만큼 늘어남. (내용의 높이가 아닌 부모의 높이만큼 설정됨)<br/>- height가 알아서 늘어나는 특징은 컬럼 레이아웃을 만들 때 편리<br/>- 정렬 속성을 통해 height를 어떻게 처리할지도 조정할 수 있음.<br/>- 내용만큼의 높이를 설정하고 싶다면 컨테이너에게 높이를 지정하지 않아야 함. |
-| inline-flex | - 컨테이너의 넓이가 아이템들(내용)만큼만 설정됨.<br/>- 부모에게 높이가 설정되어 있다면 동작하지 않음.<br/>- 그 외의 특성은 `flex`와 동일함                                                                                                                                                                                                                                                                                                                                      |
+아래 실습에서 `.container1`은 `display: flex`가 적용되어 부모 요소를 가득 채우고, `.container2`는 `display: inline-flex`가 적용되어 내용만큼의 넓이만 차지하는 것을 확인할 수 있습니다.
 
-![img](/images/2022/0320/07-1.jpeg)
+- `.container1`: `display: flex`가 적용되어 컨테이너는 block 요소처럼 동작하여 가로 전체를 차지합니다.
+- `.container2`: `display: inline-flex`가 적용되어 컨테이너는 inline 요소처럼 자신의 내용만큼의 너비만 가집니다.
+- 두 컨테이너의 자식 요소들은 모두 가로로 배치됩니다.
 
-![img](/images/2022/0320/08-1.jpeg)
+**실습: `/14-CSS-Display(2)-Flex/01-1-flex.html`**
 
-### 2) 배치방향 설정 - flex-direction
+```html
+<!DOCTYPE html>
+<html lang="ko" translate="no">
 
-| 값             | 설명                             |
-| -------------- | -------------------------------- |
-| row            | 가로배치, 왼쪽정렬, 순서배치     |
-| row-reverse    | 가로배치, 오른쪽 정렬, 역순 배치 |
-| column         | 세로배치, 상단정렬, 순서배치     |
-| column-reverse | 세로배치, 하단정렬, 역순배치     |
+<head>
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01-1-flex</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
 
-![img](/images/2022/0320/05-1.jpeg)
+        .container {
+            border: 2px dotted #06f;
+            padding: 10px;
+            height: 300px;
 
-### 3) 줄바꿈 속성 : flex-wrap
+            .item {
+                border: 2px solid #f0f;
+                padding: 10px;
+                margin: 5px;
+                width: 300px;
+            }
 
-| 값           | 설명                                                                |
-| ------------ | ------------------------------------------------------------------- |
-| nowrap       | 줄바꿈을 하지 않고 아이템의 크기가 컨테이너에 맞게 강제로 축소된다. |
-| wrap         | 줄바꿈을 한다. float나 inline-block과 비슷하게 동작한다.            |
-| wrap-reverse | 줄바꿈을 하지만 아이템의 행을 역순으로 배치한다.                    |
+            &.container1 {
+                /* 스스로의 넓이는 부모를 가득 채우고 자식요소를 가로배치 */
+                display: flex;
+            }
 
-### 4) flex-flow
+            &.container2 {
+                /* 스스로의 넓이를 자식요소의 크기 합으로 고정하고 자식요소를 가로배치 */
+                display: inline-flex;
+            }
+        }
+    </style>
+</head>
 
-`flext-direction`속성과 `flex-wrap`을 일괄지정하기 위한 단축 속성
+<body>
+    <h1>flex</h1>
+    <div class="container container1">
+        <div class="item">A</div>
+        <div class="item">B</div>
+        <div class="item">C</div>
+    </div>
 
-flex-direction, flex-wrap의 순으로 한 칸 떼고 명시한다.
+    <h1>inline-flex</h1>
+    <div class="container container2">
+        <div class="item">A</div>
+        <div class="item">B</div>
+        <div class="item">C</div>
+    </div>
+</body>
 
-### 5) 좌우정렬 : justify-content
-
-| 값            | 설명                                                                                                           |
-| ------------- | -------------------------------------------------------------------------------------------------------------- |
-| flex-start    | 아이템들을 시작점으로 정렬한다.<br/>flex-direction이 row(가로 배치)일 때는 왼쪽, column(세로 배치)일 때는 위   |
-| flex-end      | 아이템들을 끝점으로 정렬한다.<br/>flex-direction이 row(가로 배치)일 때는 오른쪽, column(세로 배치)일 때는 아래 |
-| center        | 아이템들을 가운데로 정렬한다.                                                                                  |
-| space-between | 아이템들의 “사이(between)”에 균일한 간격을 만들어 준다.                                                        |
-| space-around  | 아이템들의 “둘레(around)”에 균일한 간격을 만들어 준다.                                                         |
-| space-evenly  | 아이템들의 사이와 양 끝에 균일한 간격을 만들어 준다.<br/>(주의! IE와 엣지(Edge)에서는 지원되지 않음.)          |
-
-![img](/images/2022/0320/10-1.jpeg)
-
-### 6) 수직축 방향 정렬 : align-items
-
-| 값         | 설명                                                                                                    |
-| ---------- | ------------------------------------------------------------------------------------------------------- |
-| stretch    | 아이템들이 수직축 방향으로 끝까지 늘어난다.                                                             |
-| flex-start | 아이템들을 시작점으로 정렬<br/>flex-direction이 row(가로 배치)일 때는 위, column(세로 배치)일 때는 왼쪽 |
-| flex-end   | 아이템들을 끝으로 정렬<br/>flex-direction이 row(가로 배치)일 때는 아래, column(세로 배치)일 때는 오른쪽 |
-| center     | 아이템들을 가운데로 정렬                                                                                |
-| baseline   | 아이템들을 텍스트 베이스라인 기준으로 정렬                                                              |
-
-### 7) 여러 행 정렬 : align-content
-
-`flex-wrap: wrap;`이 설정된 상태에서, 아이템들의 행이 2줄 이상 되었을 때의 수직축 방향 정렬을 결정하는 속성.
-
-| 값            | 설명                                                                                                  |
-| ------------- | ----------------------------------------------------------------------------------------------------- |
-| stretch       | 아이템들이 세로축 방향으로 끝까지 늘어난다.                                                           |
-| flex-start    | 아이템들을 시작점으로 정렬(위)                                                                        |
-| flex-end      | 아이템들을 끝으로 정렬(아래)                                                                          |
-| center        | 아이템들을 가운데로 정렬                                                                              |
-| space-between | 아이템들의 “사이(between)”에 균일한 간격을 만들어 준다.                                               |
-| space-around  | 아이템들의 “둘레(around)”에 균일한 간격을 만들어 준다.                                                |
-| space-evenly  | 아이템들의 사이와 양 끝에 균일한 간격을 만들어 준다.<br/>(주의! IE와 엣지(Edge)에서는 지원되지 않음.) |
-
-
-## #02. 아이템에 적용하는 속성들.
-
-### 1) 유연한 박스의 기본 영역 : flex-basis
-
-flex-basis는 Flex 아이템의 기본 크기를 설정한다.(flex-direction이 row일 때는 너비, column일 때는 높이)
-
-flex-basis의 값으로는 width, height 등에 사용하는 각종 단위의 수(px,%,rem)가 들어갈 수 있으며 기본값 `auto`는 해당 아이템의 width값을 사용한다.(width를 따로 설정하지 않으면 컨텐츠의 크기가 됨)
-
-`content`는 컨텐츠의 크기로, width를 따로 설정하지 않은 경우와 같다.
-
-### 2) 유연하게 늘리기 : flex-grow
-
-flex-grow는 아이템이 flex-basis의 값보다 커질 수 있는지를 결정하는 속성이다.
-
-flex-grow에는 숫자값이 들어가는데, 몇이든 일단 0보다 큰 값이 세팅이 되면 해당 아이템이 유연한(Flexible) 박스로 변하고 원래의 크기보다 커지며 빈 공간을 메우게 된다.
-
-기본값이 0이기 때문에, 따로 적용하기 전까지는 아이템이 늘어나지 않는다.
-
-### 3) 유연하게 줄이기 : flex-shrink
-
-flex-shrink는 flex-grow와 쌍을 이루는 속성으로, 아이템이 flex-basis의 값보다 작아질 수 있는지를 결정한다.
-
-flex-shrink에는 숫자값이 들어가는데, 몇이든 일단 0보다 큰 값이 세팅이 되면 해당 아이템이 유연한(Flexible) 박스로 변하고 flex-basis보다 작아진다.
-
-기본값이 1이기 때문에 따로 세팅하지 않는다면 아이템이 flex-basis보다 작아질 수 있다.
-
-### 4) 축약형 속성 : flex
-
-flex-grow, flex-shrink, flex-basis를 한 번에 쓸 수 있는 축약형 속성.
-
-이 세 속성들은 서로 관련이 깊기 때문에, 이 축약형을 쓰는 경우가 많다.
-
-주의할 점은, flex: 1; 이런 식으로 flex-basis를 생략해서 쓰면 flex-basis의 값은 0이 된다.
-
-#### 예시
-
-```CSS
-/* flex-grow: 1; flex-shrink: 1; flex-basis: 0%; */
-flex: 1;
-
-/* flex-grow: 1; flex-shrink: 1; flex-basis: auto; */
-flex: 1 1 auto;
-
-/* flex-grow: 1; flex-shrink: 1; flex-basis: 500px; */
-flex: 1 500px;
+</html>
 ```
 
-### 5) 배치 순서 : order
+### 2. `flex-direction`: 배치 방향 설정 (중요)
 
-각 아이템들의 시각적 나열 순서를 결정
+`flex-direction` 속성은 아이템이 컨테이너 안에서 배치될 방향을 결정합니다.
 
-숫자값이 들어가며, 작은 숫자일 수록 먼저 배치됩니다. “시각적” 순서일 뿐, HTML 자체의 구조를 바꾸는 것은 아니므로 접근성 측면에서 사용에 주의해야 한다.
+| 값 | 설명 |
+|--|--|
+| `row` | **(기본값)** 아이템을 가로 방향으로 왼쪽에서 오른쪽으로 배치합니다. |
+| `row-reverse` | 아이템을 가로 방향으로 오른쪽에서 왼쪽으로 배치합니다. |
+| `column` | 아이템을 세로 방향으로 위에서 아래로 배치합니다. |
+| `column-reverse` | 아이템을 세로 방향으로 아래에서 위로 배치합니다. |
 
-시각 장애인분들이 사용하는 스크린 리더로 화면을 읽을 때, order를 이용해 순서를 바꾼 것은 의미가 없다.
+**실습: `/14-CSS-Display(2)-Flex/01-2-flex-direction.html`**
 
-### 6) 수직축으로 아이템 정렬 : align-self
+- `row`: 아이템을 가로 방향으로 왼쪽에서 오른쪽으로 배치합니다. (기본값)
+- `row-reverse`: 아이템을 가로 방향으로 오른쪽에서 왼쪽으로 배치합니다.
+- `column`: 아이템을 세로 방향으로 위에서 아래로 배치합니다.
+- `column-reverse`: 아이템을 세로 방향으로 아래에서 위로 배치합니다.
 
-align-items의 아이템 버전
+```html
+<!DOCTYPE html>
+<html lang="ko" translate="no">
 
-align-items가 전체 아이템의 수직축 방향 정렬이라면, align-self는 해당 아이템의 수직축 방향 정렬이다.
+<head>
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01-2-flex-direction</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
 
-기본값은 auto로, 기본적으로 align-items 설정을 상속 받는다.
+        .container {
+            border: 2px dotted #06f;
+            padding: 10px;
+            width: 800px;
+            display: flex;
 
-align-self는 align-items보다 우선 적용된다.
+            .item {
+                border: 2px solid #f0f;
+                padding: 10px;
+                margin: 5px;
+            }
 
-auto외의 나머지 값들은 align-items와 동일하다.
+            /* 아이템을 가로 방향으로 왼쪽에서 오른쪽으로 배치합니다. (기본값) */
+            &.container1 { flex-direction: row; }
+            /* 아이템을 가로 방향으로 오른쪽에서 왼쪽으로 배치합니다. */
+            &.container2 { flex-direction: row-reverse; }
+            /* 아이템을 세로 방향으로 위에서 아래로 배치합니다. */
+            &.container3 { flex-direction: column; }
+            /* 아이템을 세로 방향으로 아래에서 위로 배치합니다. */
+            &.container4 { flex-direction: column-reverse; }
+        }
+    </style>
+</head>
 
-| 값         | 설명                                                                                                    |
-| ---------- | ------------------------------------------------------------------------------------------------------- |
-| auto       | 컨테이너의 align-items 설정을 상속 받는다.                                                              |
-| stretch    | 아이템들이 수직축 방향으로 끝까지 늘어난다.                                                             |
-| flex-start | 아이템들을 시작점으로 정렬<br/>flex-direction이 row(가로 배치)일 때는 위, column(세로 배치)일 때는 왼쪽 |
-| flex-end   | 아이템들을 끝으로 정렬<br/>flex-direction이 row(가로 배치)일 때는 아래, column(세로 배치)일 때는 오른쪽 |
-| center     | 아이템들을 가운데로 정렬                                                                                |
-| baseline   | 아이템들을 텍스트 베이스라인 기준으로 정렬                                                              |
+<body>
+    <h1>row</h1>
+    <div class="container container1">...</div>
+    <h1>row-reverse</h1>
+    <div class="container container2">...</div>
+    <h1>column</h1>
+    <div class="container container3">...</div>
+    <h1>column-reverse</h1>
+    <div class="container container4">...</div>
+</body>
 
+</html>
+```
 
+### 3. `flex-wrap`: 줄 바꿈 속성 (중요)
 
-## 참고문헌
+`flex-wrap` 속성은 아이템들이 컨테이너의 가로폭을 초과할 때 줄바꿈을 어떻게 처리할지 결정합니다.
 
-https://studiomeal.com/archives/197
+| 값 | 설명 |
+|--|--|
+| `nowrap` | **(기본값)** 줄바꿈을 하지 않고, 아이템의 크기를 강제로 축소하여 한 줄에 모두 표시합니다. |
+| `wrap` | 아이템들이 컨테이너를 벗어나면 다음 줄로 줄바꿈합니다. |
+| `wrap-reverse` | 아이템을 역순으로 배치하여 줄바꿈합니다. |
+
+> `flex-direction`과 `flex-wrap`을 한 번에 지정하는 단축 속성으로 `flex-flow`가 있지만, 개별적으로 지정하는 것이 더 명확할 수 있습니다.
+
+**실습: `/14-CSS-Display(2)-Flex/01-3-flex-wrap.html`**
+
+- `nowrap`: 아이템의 총 너비가 컨테이너보다 커도 줄바꿈을 하지 않고, 대신 아이템의 너비를 강제로 줄여서 한 줄에 표시합니다.
+- `wrap`: 아이템의 총 너비가 컨테이너보다 크면 줄바꿈을 허용하여 여러 줄로 표시합니다.
+- `wrap-reverse`: `wrap`과 동일하게 줄바꿈을 하지만, 아이템을 아래에서 위 순서로 배치합니다.
+
+```html
+<!DOCTYPE html>
+<html lang="ko" translate="no">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01-3-flex-wrap</title>
+    <style>
+        .container {
+            border: 2px dotted #06f;
+            padding: 10px;
+            width: 800px;
+            display: flex;
+
+            .item {
+                border: 2px solid #f0f;
+                padding: 10px;
+                margin: 5px;
+                width: 300px;
+            }
+
+            /* 줄바꿈을 하지 않고 아이템의 크기가 컨테이너에 맞게 강제로 축소된다. */
+            &.container1 { flex-wrap: nowrap; }
+            /* 줄바꿈을 한다. */
+            &.container2 { flex-wrap: wrap; }
+            /* 줄바꿈을 하지만 아이템의 행을 역순으로 배치한다. */
+            &.container3 { flex-wrap: wrap-reverse; }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>nowrap</h1>
+    <div class="container container1">...</div>
+    <h1>wrap</h1>
+    <div class="container container2">...</div>
+    <h1>wrap-reverse</h1>
+    <div class="container container3">...</div>
+</body>
+
+</html>
+```
+
+### 4. `justify-content`: 주 축(main-axis) 정렬 (중요)
+
+`justify-content` 속성은 주 축(main-axis)을 기준으로 아이템들을 정렬합니다. `flex-direction`이 `row`일 때는 가로 정렬, `column`일 때는 세로 정렬을 의미합니다.
+
+| 값 | 설명 |
+|--|--|
+| `flex-start` | 아이템을 주 축의 시작점으로 정렬합니다. |
+| `flex-end` | 아이템을 주 축의 끝점으로 정렬합니다. |
+| `center` | 아이템을 주 축의 중앙으로 정렬합니다. |
+| `space-between` | 첫 번째와 마지막 아이템을 양 끝에 붙이고, 나머지 아이템들 사이에 균일한 간격을 만듭니다. |
+| `space-around` | 모든 아이템의 둘레(around)에 균일한 간격을 만듭니다. |
+| `space-evenly` | 모든 아이템의 사이와 양 끝에 균일한 간격을 만듭니다. |
+
+**실습: `/14-CSS-Display(2)-Flex/01-4-justify-content.html`**
+
+- `flex-start`: 아이템들을 컨테이너의 시작 부분(왼쪽)으로 정렬합니다.
+- `flex-end`: 아이템들을 컨테이너의 끝 부분(오른쪽)으로 정렬합니다.
+- `center`: 아이템들을 컨테이너의 중앙으로 정렬합니다.
+- `space-between`: 첫 번째와 마지막 아이템을 양 끝에 붙이고, 나머지 아이템들 사이의 간격을 균등하게 분배합니다.
+- `space-around`: 모든 아이템의 양쪽에 동일한 간격을 주어 정렬합니다.
+- `space-evenly`: 모든 아이템 사이 및 양 끝과의 간격을 모두 동일하게 만듭니다.
+
+```html
+<!DOCTYPE html>
+<html lang="ko" translate="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01-4-justify-content</title>
+    <style>
+        .container {
+            border: 2px dotted #06f;
+            padding: 10px;
+            width: 800px;
+            display: flex;
+
+            .item {
+                border: 2px solid #f0f;
+                padding: 10px;
+                margin: 5px;
+                width: 100px;
+            }
+
+            /* 아이템들을 시작점으로 정렬한다. */
+            &.container1 { justify-content: flex-start; }
+            /* 아이템들을 끝점으로 정렬한다. */
+            &.container2 { justify-content: flex-end; }
+            /* 아이템들을 가운데로 정렬한다. */
+            &.container3 { justify-content: center; }
+            /* 아이템들의 “사이(between)”에 균일한 간격을 만들어 준다. */
+            &.container4 { justify-content: space-between; }
+            /* 아이템들의 “둘레(around)”에 균일한 간격을 만들어 준다. */
+            &.container5 { justify-content: space-around; }
+            /* 아이템들의 사이와 양 끝에 균일한 간격을 만들어 준다. */
+            &.container6 { justify-content: space-evenly; }
+        }
+    </style>
+</head>
+<body>
+    <h1>flex-start</h1>
+    <div class="container container1">...</div>
+    <h1>flex-end</h1>
+    <div class="container container2">...</div>
+    <h1>center</h1>
+    <div class="container container3">...</div>
+    <h1>space-between</h1>
+    <div class="container container4">...</div>
+    <h1>space-around</h1>
+    <div class="container container5">...</div>
+    <h1>space-evenly</h1>
+    <div class="container container6">...</div>
+</body>
+</html>
+```
+
+### 5. `align-content`: 여러 행 정렬 (중요)
+
+`align-content` 속성은 `flex-wrap: wrap`이 설정되어 아이템이 여러 줄로 표시될 때, 교차 축(cross-axis) 방향의 정렬을 결정합니다.
+
+| 값 | 설명 |
+|--|--|
+| `stretch` | **(기본값)** 아이템의 높이를 늘려 교차 축 방향으로 컨테이너를 가득 채웁니다. |
+| `flex-start` | 아이템들을 교차 축의 시작점으로 정렬합니다. |
+| `flex-end` | 아이템들을 교차 축의 끝점으로 정렬합니다. |
+| `center` | 아이템들을 교차 축의 중앙으로 정렬합니다. |
+| `space-between` | 첫 번째와 마지막 줄을 양 끝에 붙이고 나머지 줄 사이에 균일한 간격을 만듭니다. |
+| `space-around` | 모든 줄의 둘레에 균일한 간격을 만듭니다. |
+| `space-evenly` | 모든 줄의 사이와 양 끝에 균일한 간격을 만듭니다. |
+
+**실습: `/14-CSS-Display(2)-Flex/01-5-align-content.html`**
+
+- 이 속성은 `flex-wrap: wrap`이 설정되어 아이템이 **여러 줄**일 때만 효과가 있습니다.
+- `stretch`: 아이템의 높이를 늘려 컨테이너의 교차 축(세로)을 가득 채웁니다.
+- `flex-start`: 아이템들을 컨테이너의 교차 축 시작점(위)으로 정렬합니다.
+- `flex-end`: 아이템들을 컨테이너의 교차 축 끝점(아래)으로 정렬합니다.
+- `center`: 아이템들을 교차 축의 중앙으로 정렬합니다.
+- `space-between`, `space-around`, `space-evenly`: 줄들 사이의 간격을 조절합니다.
+
+```html
+<!DOCTYPE html>
+<html lang="ko" translate="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01-5-align-content</title>
+    <style>
+        .container {
+            border: 2px dotted #06f;
+            padding: 10px;
+            width: 800px;
+            height: 400px;
+            display: flex;
+            flex-wrap: wrap;
+
+            .item {
+                border: 2px solid #f0f;
+                padding: 10px;
+                margin: 5px;
+                width: 300px;
+            }
+
+            /* 아이템들이 세로축 방향으로 끝까지 늘어난다. */
+            &.container1 { align-content: stretch; }
+            /* 아이템들을 시작점으로 정렬(위) */
+            &.container2 { align-content: flex-start; }
+            /* 아이템들을 끝으로 정렬(아래) */
+            &.container3 { align-content: flex-end; }
+            /* 아이템들을 가운데로 정렬 */
+            &.container4 { align-content: center; }
+            /* 아이템들의 “사이(between)”에 균일한 간격을 만들어 준다. */
+            &.container5 { align-content: space-between; }
+            /* 아이템들의 “둘레(around)”에 균일한 간격을 만들어 준다. */
+            &.container6 { align-content: space-around; }
+            /* 아이템들의 사이와 양 끝에 균일한 간격을 만들어 준다. */
+            &.container7 { align-content: space-evenly; }
+        }
+    </style>
+</head>
+<body>
+    <h1>stretch</h1>
+    <div class="container container1">...</div>
+    ...
+</body>
+</html>
+```
+
+### 6. `align-items`: 교차 축(cross-axis) 정렬
+
+`align-items` 속성은 한 줄일 때의 아이템들을 교차 축(cross-axis) 방향으로 정렬합니다.
+
+| 값 | 설명 |
+|--|--|
+| `stretch` | **(기본값)** 아이템의 높이를 늘려 교차 축 방향으로 컨테이너를 가득 채웁니다. |
+| `flex-start` | 아이템을 교차 축의 시작점으로 정렬합니다. |
+| `flex-end` | 아이템을 교차 축의 끝점으로 정렬합니다. |
+| `center` | 아이템을 교차 축의 중앙으로 정렬합니다. |
+| `baseline` | 아이템을 텍스트의基선(baseline)에 맞춰 정렬합니다. |
+
+**실습: `/14-CSS-Display(2)-Flex/01-6-align-items.html`**
+
+- 이 속성은 아이템이 **한 줄**일 때 교차 축(세로)의 정렬 상태를 제어합니다.
+- `stretch`: 아이템의 높이를 컨테이너에 꽉 채웁니다.
+- `flex-start`: 아이템을 교차 축의 시작점(위)으로 정렬합니다.
+- `flex-end`: 아이템을 교차 축의 끝점(아래)으로 정렬합니다.
+- `center`: 아이템을 교차 축의 중앙으로 정렬합니다.
+- `baseline`: 아이템 안의 텍스트의 기준선(baseline)에 맞춰 정렬합니다.
+
+```html
+<!DOCTYPE html>
+<html lang="ko" translate="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01-6-align-items</title>
+    <style>
+        .container {
+            border: 2px dotted #06f;
+            padding: 10px;
+            width: 800px;
+            display: flex;
+
+            .item {
+                border: 2px solid #f0f;
+                padding: 10px;
+                margin: 5px;
+                width: 200px;
+            }
+
+            /* 아이템들이 수직축 방향으로 끝까지 늘어난다. */
+            &.container1 { align-items: stretch; }
+            /* 아이템들을 시작점으로 정렬 */
+            &.container2 { align-items: flex-start; }
+            /* 아이템들을 끝으로 정렬 */
+            &.container3 { align-items: flex-end; }
+            /* 아이템들을 가운데로 정렬 */
+            &.container4 { align-items: center; }
+            /* 아이템들을 텍스트 베이스라인 기준으로 정렬 */
+            &.container5 { align-items: baseline; }
+        }
+    </style>
+</head>
+<body>
+    <h1>stretch</h1>
+    <div class="container container1">...</div>
+    ...
+</body>
+</html>
+```
+
+## #02. 아이템(자식)에 적용하는 속성
+
+### 1. `flex-basis`: 아이템의 기본 크기
+
+`flex-basis`는 아이템의 기본 크기를 설정합니다. `flex-direction`이 `row`일 때는 너비, `column`일 때는 높이를 의미합니다. `width`나 `height`보다 우선 적용됩니다.
+
+-   **`auto` (기본값)**: 아이템의 `width`나 `height` 값을 사용합니다.
+-   **`content`**: 내용(content)의 크기를 사용합니다.
+-   **단위 값 (px, %, rem 등)**: 지정된 값으로 기본 크기를 설정합니다.
+
+**실습: `/14-CSS-Display(2)-Flex/02-1-flex-basis.html`**
+
+```html
+<!DOCTYPE html>
+<html lang="ko" translate="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02-1-flex-basis</title>
+    <style>
+        .container {
+            border: 2px dotted #06f;
+            padding: 10px;
+            width: 500px;
+            display: flex;
+            flex-wrap: wrap;
+
+            .item {
+                border: 2px solid #f0f;
+                padding: 10px;
+                margin: 5px;
+
+                &.item100px {
+                    flex-basis: 100px;
+                }
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>flex-basis: 100px;</h1>
+    <div class="container">
+        <div class="item item100px">Normal Contents.</div>
+        <div class="item item100px">Very~~~ Very~~~ Long Contents.</div>
+        <div class="item item100px">Short.</div>
+    </div>
+</body>
+</html>
+```
+
+### 2. `flex-grow`: 아이템 확장 비율
+
+`flex-grow`는 컨테이너에 여유 공간이 있을 때, 아이템이 얼마나 늘어날지를 결정하는 비율입니다.
+
+-   **`0` (기본값)**: 아이템이 늘어나지 않습니다.
+-   **`1` 이상의 숫자**: 숫자가 클수록 더 많은 여유 공간을 차지합니다. 예를 들어, 모든 아이템에 `flex-grow: 1`을 주면 여유 공간을 균등하게 나눠 가집니다.
+
+**실습: `/14-CSS-Display(2)-Flex/02-2-flex-grow.html`**
+
+```html
+<!DOCTYPE html>
+<html lang="ko" translate="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02-2-flex-grow</title>
+    <style>
+        .container {
+            border: 2px dotted #06f;
+            padding: 10px;
+            width: 500px;
+            display: flex;
+
+            .item {
+                border: 2px solid #f0f;
+                padding: 10px;
+                margin: 5px;
+
+                &.grow1 { flex-grow: 1; }
+                &.item1 { flex-grow: 1; }
+                &.item2 { flex-grow: 3; }
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>grow1</h1>
+    <div class="container">
+        <div class="item grow1">...</div>
+    </div>
+    <h1>1:3:1</h1>
+    <div class="container">
+        <div class="item item1">A</div>
+        <div class="item item2">B</div>
+        <div class="item item1">C</div>
+    </div>
+</body>
+</html>
+```
+
+### 3. `flex-shrink`: 아이템 축소 비율
+
+`flex-shrink`는 컨테이너 공간이 부족할 때, 아이템이 얼마나 줄어들지를 결정하는 비율입니다.
+
+-   **`1` (기본값)**: 공간이 부족하면 아이템이 `flex-basis`보다 작아집니다.
+-   **`0`**: 아이템이 줄어들지 않고 고정 크기를 유지하려고 합니다.
+
+**실습: `/14-CSS-Display(2)-Flex/02-3-flex-shrink.html`**
+
+```html
+<!DOCTYPE html>
+<html lang="ko" translate="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02-3-flex-shrink</title>
+    <style>
+        .container {
+            border: 2px dotted #06f;
+            padding: 10px;
+            display: flex;
+
+            &.w250px { width: 250px; }
+
+            .item {
+                border: 2px solid #f0f;
+                padding: 10px;
+                margin: 5px;
+
+                &.left {
+                    flex-shrink: 0;
+                    flex-basis: 100px;
+                }
+                &.right {
+                    flex-grow: 1;
+                }
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>container width 250px</h1>
+    <div class="container w250px">
+        <div class="item left">넓이가 고정된 영역</div>
+        <div class="item right">Very~~~ Very~~~ Long Contents.</div>
+    </div>
+</body>
+</html>
+```
+
+### 4. `flex`: 단축 속성
+
+`flex`는 `flex-grow`, `flex-shrink`, `flex-basis`를 한 번에 설정하는 단축 속성입니다.
+
+| 예시 | 설명 |
+|--|--|
+| `flex: 1;` | `flex: 1 1 0;`와 같습니다. |
+| `flex: 1 500px;` | `flex: 1 1 500px;`와 같습니다. |
+| `flex: 1 1 auto;` | `flex-grow: 1`, `flex-shrink: 1`, `flex-basis: auto`를 의미합니다. |
+
+**실습: `/14-CSS-Display(2)-Flex/02-4-flex.html`**
+
+```html
+<!DOCTYPE html>
+<html lang="ko" translate="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02-4-flex</title>
+    <style>
+        .container {
+            border: 2px dotted #06f;
+            padding: 10px;
+            display: flex;
+
+            .item {
+                border: 2px solid #f0f;
+                padding: 10px;
+                margin: 5px;
+
+                &.flex1 { flex: 1; }
+                &.flex2 { flex: 2; }
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>flex 1:2:1</h1>
+    <div class="container">
+        <div class="item flex1">Normal Contents.</div>
+        <div class="item flex2">Very~~~ Very~~~ Long Contents.</div>
+        <div class="item flex1">Short</div>
+    </div>
+</body>
+</html>
+```
+
+## #03. Flexbox 활용 예제
+
+### 1. 박스 중앙 배치
+
+`flex`를 사용하면 아이템을 수평, 수직 중앙에 매우 쉽게 배치할 수 있습니다.
+
+-   `justify-content: center;` : 가로 중앙 정렬
+-   `align-items: center;` : 세로 중앙 정렬
+
+**실습: `/14-CSS-Display(2)-Flex/03-1-박스중앙배치.html`**
+
+```html
+<!DOCTYPE html>
+<html lang="ko" translate="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03-1-박스중앙배치</title>
+    <style>
+        .box {
+            border: 5px dotted #06f;
+            height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .item {
+                border: 5px solid #f0f;
+                width: 360px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="item">아이템</div>
+    </div>
+</body>
+</html>
+```
+
+### 2. 정렬이 다른 메뉴
+
+`justify-content: space-between;`을 사용하면 메뉴 항목들을 양쪽 끝으로 정렬할 수 있습니다.
+
+**실습: `/14-CSS-Display(2)-Flex/03-2-정렬이_다른_메뉴.html`**
+
+```html
+<!DOCTYPE html>
+<html lang="ko" translate="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03-2-정렬이_다른_메뉴</title>
+    <style>
+        .tablist {
+            border: 1px solid rgba(0, 0, 0, 0.12);
+            display: flex;
+            justify-content: space-between;
+
+            .tab {
+                height: 50px;
+                display: flex;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <ul class="tablist">
+        <li><a href="#" class="tab">...</a></li>
+        <li><a href="#" class="tab">정렬이 다른 메뉴</a></li>
+        <li><a href="#" class="tab">...</a></li>
+    </ul>
+</body>
+</html>
+```
+
+### 3. 네비게이션 바
+
+`flex`를 활용하여 로고, 검색창, 메뉴 등으로 구성된 복잡한 네비게이션 바를 쉽게 만들 수 있습니다. `margin-left: auto;`를 특정 아이템에 적용하면 해당 아이템을 오른쪽 끝으로 밀어낼 수 있습니다.
+
+**실습: `/14-CSS-Display(2)-Flex/03-3-네비게이션박스.html`**
+
+```html
+<!DOCTYPE html>
+<html lang="ko" translate="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03-3-네비게이션박스</title>
+    <style>
+        .header-container {
+            display: flex;
+            max-width: 1000px;
+            margin: auto;
+
+            .gnb {
+                margin-left: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">logo</div>
+            <div class="search">...</div>
+            <div class="gnb">gnb</div>
+        </div>
+    </header>
+</body>
+</html>
+```
