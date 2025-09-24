@@ -53,6 +53,18 @@ HTML 요소의 배경을 제어하는 가장 기본적인 속성들을 알아봅
 background: #000000 url(img/bg.jpg) fixed right top repeat-x;
 ```
 
+필요 없는 속성은 생략할 수 있습니다. 예를 들어, 배경 이미지와 색상만 지정하고 싶다면 다음과 같이 작성할 수 있습니다.
+
+```css
+background: #000000 url(img/bg.jpg);
+```
+
+그러므로 배경 색상을 제외한 모든 속성을 생략할 경우 `background`와 `background-color` 속성이 같은 의미가 됩니다.
+
+```css
+background: #000000; /* background-color와 동일 */
+```
+
 ### 3. 실습 예제
 
 아래 예제는 `<body>` 태그에 배경 속성을 적용한 모습입니다.
@@ -118,6 +130,8 @@ background: #000000 url(img/bg.jpg) fixed right top repeat-x;
 - **`cover` 와 `contain`**:
     - `cover`는 주로 요소 전체를 배경 이미지로 가득 채우고 싶을 때 사용됩니다. (예: 히어로 이미지)
     - `contain`은 이미지 전체가 반드시 보여야 할 때 사용됩니다. (예: 로고, 아이콘)
+
+> `contain`과 `cover`는 이미지의 원본 비율을 유지한다는 점에서 유사하지만, `cover`는 요소를 완전히 덮기 위해 이미지의 일부가 잘릴 수 있고, `contain`은 이미지 전체가 보이도록 크기를 조절하기 때문에 요소 내에 빈 공간이 생길 수 있다는 차이가 있습니다.
 
 ### 2. 실습 예제
 
