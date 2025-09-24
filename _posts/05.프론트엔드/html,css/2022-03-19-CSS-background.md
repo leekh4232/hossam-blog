@@ -529,9 +529,8 @@ CSS 그라디언트는 두 가지 이상의 색상이 부드럽게 전환되는 
 
 > **어떤 숨김 처리 방식이 좋을까?**
 >
-> - **`display: none;` 또는 `visibility: hidden;`**: 이 방식은 텍스트를 시각적으로 숨길 뿐만 아니라, 스크린 리더에서도 완전히 제외시켜 버리는 경우가 많아 IR 기법에 적합하지 않습니다.
+> - **`display: none;` 또는 `visibility: hidden;`**: 이 방식은 텍스트를 시각적으로 숨길 뿐만 아니라, 스크린 리더에서도 완전히 제외시켜 버리는 경우가 많아 IR 기법에 적합하지 않습니다. (하지만 많이 사용됩니다.)
 > - **`text-indent: -9999px;`**: **가장 보편적이고 안정적인 방법입니다.** 텍스트를 화면 밖 아주 먼 곳으로 밀어내어 시각적으로는 보이지 않지만, 스크린 리더는 정상적으로 읽을 수 있습니다.
-> - `position`, `clip` 등을 이용하는 복잡한 방법도 있지만, `text-indent`가 가장 간결하고 효과적입니다.
 
 ### 2. 실습 예제 분석
 
@@ -570,12 +569,20 @@ CSS 그라디언트는 두 가지 이상의 색상이 부드럽게 전환되는 
         .hidden {
             display: none;
         }
+
+        .indent {
+            text-indent: -9999px;
+            overflow: hidden;
+        }
     </style>
 </head>
 
 <body>
     <h1>네이버 아이콘 예제</h1>
+    <h2>텍스트를 hidden 처리하는 경우</h2>
     <a href="#" class="naver-icon"><span class="hidden">네이버 웨일</span></a>
+    <h2>텍스트를 text-indent로 처리하는 경우</h2>
+    <a href="#" class="naver-icon indent">네이버 웨일</a>
 </body>
 
 </html>
